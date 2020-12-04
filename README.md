@@ -17,7 +17,7 @@ Este software está diseñado para la administración y el manejo de los emplead
 
 ## Como descargar e iniciar el proyecto en un entorno de desarrollo
 
-1. Descargar e instalar Visual Studio >= 2019
+1. Descargar e instalar Visual Studio 2019 >= 16.7.8
 2. Descargar e instalar MySql
 3. Descargar e instalar Git
 4. Realizar un "git clone https://github.com/bmongemendez/Sistema-de-Administracion-de-Recursos-Humanos" 
