@@ -13,6 +13,7 @@ Este software está diseñado para la administración y el manejo de los emplead
 * ASP.Net Core >= 3.1
 * ADO.NET Entity Framework Core >= 3.1.1
 * MySQL MySQL Community Server >= 8.0.22
+* MySQL Workbench 8.0.22
 
 ## Como descargar e iniciar el proyecto en un entorno de desarrollo
 
