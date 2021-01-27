@@ -5,7 +5,6 @@ Este software está diseñado para la administración y el manejo de los emplead
 ## Desarrolladores
 
 * [Brayan Monge Méndez](http://github.com/bmongemendez)
-* [Jenny Fonseca Núñez](http://github.com)
 * [Byron Leal Mora](http://github.com)
 
 ## Requerimientos Mínimos
