@@ -1,0 +1,237 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="icon"
+          href="~/images/favicon.ico"
+          type="image/x-icon" />
+    <title>Tablero</title>
+    <meta name="description" content="Laravel" />
+    <meta name="author" content="Laravel" />
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+          href="~/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/css/site.min.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
+</head>
+
+<body class="theme-blue-primary font-raleway light_version">
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+            <div class="bar4"></div>
+            <div class="bar5"></div>
+        </div>
+    </div>
+    <!-- Ajustes del tema -->
+    <div class="themesetting">
+        <a href="javascript:void(0);" class="theme_btn">
+            <i class="icon-magic-wand"></i>
+        </a>
+        <div class="card font_setting">
+            <div class="header">
+                <h2>Ajustes de Fuente</h2>
+            </div>
+            <div>
+                <div class="fancy-radio mb-2">
+                    <label>
+                        <input name="font"
+                               value="font-raleway"
+                               type="radio"
+                               checked /><span><i></i>Raleway</span>
+                    </label>
+                </div>
+                <div class="fancy-radio mb-2">
+                    <label>
+                        <input name="font" value="font-montserrat" type="radio" /><span><i></i>Montserrat Google font</span>
+                    </label>
+                </div>
+                <div class="fancy-radio">
+                    <label>
+                        <input name="font" value="font-bitter" type="radio" /><span><i></i>Bitter</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="card setting_switch">
+            <div class="header">
+                <h2>Ajustes</h2>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    Modo Oscuro
+                    <div class="float-right">
+                        <label class="switch">
+                            <input type="checkbox" class="lv-btn" />
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    Menú a la izquierda
+                    <div class="float-right">
+                        <label class="switch">
+                            <input type="checkbox" class="rtl-btn" />
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    Menú Horizontal
+                    <div class="float-right">
+                        <label class="switch">
+                            <input type="checkbox" class="hmenu-btn" />
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    Menú Reducido
+                    <div class="float-right">
+                        <label class="switch">
+                            <input type="checkbox" class="mini-sidebar-btn" />
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Content Wrapper -->
+    <div class="overlay"></div>
+    <div id="wrapper">
+        <!-- Navbar -->
+        <nav class="navbar top-navbar">
+            <div class="container-fluid">
+                <div class="navbar-left">
+                    <div class="navbar-btn navbar__button">
+                        <a href="index.html"></a>
+                        <button type="button" class="btn-toggle-offcanvas">
+                            <i class="lnr lnr-menu fa fa-bars"></i>
+                        </button>
+                    </div>
+                    <ul class="nav navbar-nav d-flex align-items-center"></ul>
+                </div>
+                <div class="navbar-right">
+                    <div id="navbar-menu">
+                        <ul class="nav navbar-nav d-flex flex-row">
+                            <li class="ml-auto">
+                                <img src="~/img/logoMinimalPNG.png"
+                                     alt="Logo JMéndez Constructora"
+                                     class="d-inline-block navbar-right__image" />
+                            </li>
+                            <li>
+                                <a href="https://oculux.nsdbytes.com/laravel/public/authentication/login"
+                                   class="icon-menu">
+                                    <i class="icon-power"></i>
+                                    <span>Salir</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="myBar"></div>
+            </div>
+        </nav>
+
+        <!-- Sidebar -->
+        <div id="left-sidebar" class="sidebar">
+            <div class="navbar-brand">
+                <button type="button"
+                        class="btn-toggle-offcanvas btn btn-sm float-right">
+                    <i class="lnr lnr-menu fa fa-chevron-circle-left"></i>
+                </button>
+                <a href="../home/dashboard.html"><span class="navbar-brand__text">SARH</span></a>
+            </div>
+            <div class="sidebar-scroll">
+                <div class="user-account">
+                    <div class="user_div">
+                        <img src="~/images/user.png"
+                             class="user-photo"
+                             alt="Foto perfil Usuario" />
+                    </div>
+                    <div class="dropdown">
+                        <span>Bienvenido,</span>
+                        <a href="javascript:void(0);"
+                           class="dropdown-toggle user-name"
+                           data-toggle="dropdown"><strong>Greivin Méndez</strong></a>
+                        <ul class="dropdown-menu dropdown-menu-right account vivify flipInY">
+                            <li>
+                                <a href="../sistema/perfilUsuario.html"><i class="icon-user"></i>Mi Perfil</a>
+                            </li>
+                            <li>
+                                <a href="../sistema/ajustesUsuario.html"><i class="icon-settings"></i>Ajustes</a>
+                            </li>
+                            <li>
+                                <a href="../autenticacion/inicioSesion.html"><i class="icon-power"></i>Salir</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <nav id="left-sidebar-nav" class="sidebar-nav left-sidebar">
+                    <ul id="main-menu" class="metismenu">
+                        <li class="pt-3 sidebar__item active">
+                            <a href="../home/dashboard.html" class="sidebar__link">
+                                <i class="icon-screen-desktop sidebar__icon"></i><span class="left-sidebar__span">Tablero</span>
+                            </a>
+                        </li>
+                        <li class="pt-3 sidebar__item">
+                            <a href="../trabajadores/trabajadoresActivos.html"
+                               class="sidebar__link">
+                                <i class="icon-users sidebar__icon"></i><span class="left-sidebar__span">Trabajadores</span>
+                            </a>
+                        </li>
+                        <li class="pt-3 sidebar__item">
+                            <a href="../pagos/generarReporte.html" class="sidebar__link">
+                                <i class="icon-credit-card sidebar__icon"></i><span class="left-sidebar__span">Pagos</span>
+                            </a>
+                        </li>
+                        <li class="pt-3 sidebar__item">
+                            <a href="../controlTiempo/controlTiempo.html"
+                               class="sidebar__link">
+                                <i class="icon-clock sidebar__icon"></i><span class="left-sidebar__span">Control de Tiempo</span>
+                            </a>
+                        </li>
+                        <li class="pt-3 sidebar__item">
+                            <a href="../registroRendimiento/realizarReporte.html"
+                               class="sidebar__link">
+                                <i class="icon-docs sidebar__icon"></i><span class="left-sidebar__span">Registro Rendimiento</span>
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="../sistema/gestionUsuarios.html" class="sidebar__link">
+                                <i class="icon-users sidebar__icon"></i><span class="left-sidebar__span">Gestión de Usuarios</span>
+                            </a>
+                        </li>
+                        <li class="pt-3 sidebar__item">
+                            <a href="../reportes/aguinaldos.html" class="sidebar__link">
+                                <i class="icon-folder sidebar__icon"></i><span class="left-sidebar__span">Reportes</span>
+                            </a>
+                        </li>
+                        <li class="pt-3 sidebar__item">
+                            <a href="../controlTiempo/calendario.html" class="sidebar__link">
+                                <i class="icon-calendar sidebar__icon"></i><span class="left-sidebar__span">Calendario</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div id="main-content">
+            @RenderBody()
+        </div>
+    </div>
+    <script src="~/lib/jquery/jquery-3.3.1.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="~/bundles/vendorscripts.bundle.js"></script>
+    <script src="~/bundles/mainscripts.bundle.js"></script>
+</body>
+</html>

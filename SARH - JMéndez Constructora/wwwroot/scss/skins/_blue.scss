@@ -1,0 +1,157 @@
+﻿$cyan-darklight: #6f7b7d;
+$cyan-light: #e8e8e8;
+$blue-primary: $blue !default;
+
+.theme-blue-primary {
+	::selection {
+		color: $white;
+		background: $blue-primary;
+	}
+	.sidebar-nav .metismenu {
+		> li {
+			&.active > a {
+				color: $blue-primary;
+				i {
+					background: $blue-primary;
+					color: $white;
+				}
+			}
+			ul {
+				.active {
+					a {
+						color: $blue-primary;
+					}
+				}
+			}
+		}
+
+		a:hover,
+		a:focus {
+			color: $blue-primary;
+			i {
+				background: $blue-primary;
+				color: $white;
+			}
+
+			&:after {
+				color: $blue-primary;
+			}
+		}
+		ul a:hover {
+			&::before {
+				background: $blue-primary;
+			}
+		}
+	}
+	.card .header {
+		h2 {
+			color: $blue-primary;
+			font-weight: $font-weight-400;
+		}
+	}
+	.form-control {
+		&:focus {
+			color: $blue-primary;
+		}
+	}
+	.fancy-checkbox {
+		input[type='checkbox'] {
+			&:checked + span:before {
+				color: $blue-primary;
+				border-color: $blue-primary;
+			}
+		}
+	}
+	.chat-widget {
+		li {
+			&.right {
+				.chat-info {
+					background: $blue-primary;
+					color: $white;
+
+					&:before {
+						border-left: 10px solid $blue-primary;
+					}
+				}
+			}
+		}
+	}
+	.wizard {
+		> .steps {
+			.current a {
+				background: $blue-primary;
+			}
+			.done a {
+				background: $cyan-darklight;
+			}
+		}
+	}
+	.pagination {
+		> li {
+			> a {
+				color: $blue-primary;
+				&:hover {
+					background: $blue-primary;
+					border-color: $blue-primary;
+					color: $white;
+				}
+			}
+			> span {
+				color: $blue-primary;
+			}
+		}
+	}
+	.page-item.active .page-link {
+		background-color: $blue-primary;
+		border-color: $blue-primary;
+	}
+	.switch {
+		input:checked + .slider {
+			background-color: $blue-primary;
+		}
+
+		input:focus + .slider {
+			box-shadow: 0 0 1px $blue-primary;
+		}
+	}
+	.top-navbar #navbar-search .form-control {
+		&:focus,
+		&:active {
+			background: $blue-primary;
+			color: $white;
+		}
+	}
+	.top-navbar {
+		.progress-bar {
+			background: $blue-primary;
+		}
+	}
+	.jvectormap-zoomin,
+	.jvectormap-zoomout {
+		background: $blue-primary;
+	}
+	.nav.nav-tabs3 {
+		border-color: $blue-primary !important;
+		> li > a.active,
+		> li > a:hover {
+			color: $blue-primary;
+			border-color: $blue-primary !important;
+			&::after {
+				background: $blue-primary;
+			}
+		}
+	}
+	.nav.nav-tabs2 {
+		> li > a.active,
+		> li > a:hover {
+			background: $blue-primary;
+		}
+	}
+	&.h-menu {
+		.metismenu {
+			.collapse {
+				border-top: 1px solid $blue-primary;
+			}
+		}
+	}
+}
