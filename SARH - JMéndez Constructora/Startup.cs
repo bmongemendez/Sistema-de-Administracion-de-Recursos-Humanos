@@ -37,7 +37,8 @@ namespace SARH___JMéndez_Constructora
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
-            services.AddRazorPages().AddRazorRuntimeCompilation(); ;
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddProgressiveWebApp();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
