@@ -3,13 +3,16 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using SARH___JMéndez_Constructora.Data;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,6 +26,7 @@ namespace SARH___JMéndez_Constructora
         }
 
         public IConfiguration Configuration { get; }
+        public object HostEnvironment { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -33,7 +37,7 @@ namespace SARH___JMéndez_Constructora
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
-            services.AddRazorPages();
+            services.AddRazorPages().AddRazorRuntimeCompilation(); ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +47,12 @@ namespace SARH___JMéndez_Constructora
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+                if (env.IsDevelopment())
+                {
+                    app.UseDeveloperExceptionPage();
+                    app.UseBrowserLink();
+                }
+
             }
             else
             {
@@ -62,7 +72,7 @@ namespace SARH___JMéndez_Constructora
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Tablero}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

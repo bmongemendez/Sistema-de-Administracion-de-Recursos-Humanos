@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Tablero";
+    ViewData["sidebarActive"] = "Tablero";
 }
 
 <div class="container-fluid">
@@ -20,71 +21,67 @@
             </div>
         </div>
     </div>
-    <!-- Aqui va lo principal  -->
     <div class="body">
         <div class="row clearfix">
-            <div class="col-6 col-md-4 col-xl-2">
+            <div class="col-6 col-md-4 col-xl-2 px-lg-1">
                 <div class="card">
                     <div class="body ribbon">
                         <div class="ribbon-box green">5</div>
-                        <a href="https://oculux.nsdbytes.com/laravel/public/hr/users"
-                           class="my_sort_cut text-muted">
+                        <a class="my_sort_cut text-muted" asp-area="" asp-controller="Trabajadores" asp-action="Index">
                             <i class="icon-users"></i>
                             <span>Trabajadores</span>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4 col-xl-2">
+            <div class="col-6 col-md-4 col-xl-2 px-lg-1">
                 <div class="card">
                     <div class="body">
-                        <a href="https://oculux.nsdbytes.com/laravel/public/hr/holidays"
-                           class="my_sort_cut text-muted">
+                        <a class="my_sort_cut text-muted" asp-area="" asp-controller="Rendimiento" asp-action="Index">
                             <i class="icon-like"></i>
                             <span>Rendimiento</span>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4 col-xl-2">
+            <div class="col-6 col-md-4 col-xl-2 px-lg-1">
                 <div class="card">
                     <div class="body ribbon">
                         <div class="ribbon-box orange">8</div>
-                        <a href="https://oculux.nsdbytes.com/laravel/public/hr/events"
-                           class="my_sort_cut text-muted">
+                        <a class="my_sort_cut text-muted" asp-area="" asp-controller="Calendario" asp-action="Index">
                             <i class="icon-calendar"></i>
-                            <span>Control de Tiempo</span>
+                            <span>Calendario</span>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4 col-xl-2">
+            <div class="col-6 col-md-4 col-xl-2 px-lg-1">
                 <div class="card">
                     <div class="body">
-                        <a href="https://oculux.nsdbytes.com/laravel/public/hr/payroll"
-                           class="my_sort_cut text-muted">
+                        <a class="my_sort_cut text-muted" asp-area="" asp-controller="Pagos" asp-action="Index">
+                            
                             <i class="icon-credit-card"></i>
                             <span>Pagos</span>
                         </a>
                     </div>
                 </div>
-            </div>
-            <div class="col-6 col-md-4 col-xl-2">
+            </div> 
+            <div class="col-6 col-md-4 col-xl-2 px-lg-1">
                 <div class="card">
                     <div class="body">
-                        <a href="https://oculux.nsdbytes.com/laravel/public/hr/accounts"
-                           class="my_sort_cut text-muted">
+                        <a class="my_sort_cut text-muted" asp-area="" asp-controller="Usuarios" asp-action="Index">
+                            
                             <i class="icon-users"></i>
                             <span>Usuarios</span>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4 col-xl-2">
+            <div class="col-6 col-md-4 col-xl-2 px-lg-1">
                 <div class="card">
                     <div class="body">
-                        <a href="https://oculux.nsdbytes.com/laravel/public/hr/report"
-                           class="my_sort_cut text-muted">
+                        <a class="my_sort_cut text-muted" asp-area="" asp-controller="Reportes" asp-action="Index">
+                            
                             <i class="icon-pie-chart"></i>
                             <span>Reportes</span>
                         </a>

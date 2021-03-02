@@ -1,0 +1,677 @@
+﻿@{
+    ViewData["Title"] = "Trabajadores";
+    ViewData["sidebarActive"] = "Trabajadores";
+}
+
+<div class="container-fluid">
+    <div class="block-header">
+        <div class="row clearfix">
+            <div class="col-md-6 col-sm-12">
+                <h1>Inicio</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="../home/dashboard.html">
+                                <i class="icon-home"></i>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">Trabajadores</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="row clearfix">
+            <div class="col-lg-12">
+                <div class="card">
+                    <ul class="nav nav-tabs2">
+                        <li class="nav-item">
+                            <a class="nav-link active show"
+                               data-toggle="tab"
+                               href="#e_add">Añadir Trabajador</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#e_list">Trabajadores Activos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#e_leave">Trabajadores Inactivos</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane show active" id="e_add">
+                            <div class="body">
+                                <div class="row clearfix">
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   placeholder="Número de Cédula" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   placeholder="Nombre Completo" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   placeholder="Email" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="number"
+                                                   class="form-control"
+                                                   placeholder="Número de Teléfono" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text"
+                                                   data-provide="datepicker"
+                                                   data-date-autoclose="true"
+                                                   class="form-control"
+                                                   placeholder="Inicio Contrato *" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text"
+                                                   data-provide="datepicker"
+                                                   data-date-autoclose="true"
+                                                   class="form-control"
+                                                   placeholder="Código de puesto" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text"
+                                                   data-provide="datepicker"
+                                                   data-date-autoclose="true"
+                                                   class="form-control"
+                                                   placeholder="Nombre contacto de emergencia" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="number"
+                                                   class="form-control"
+                                                   placeholder="Número de Teléfono Contacto de Emergencia" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="number"
+                                                   class="form-control"
+                                                   placeholder="Nivel de educación" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <div class="form-group">
+                                            <select class="form-control show-tick">
+                                                <option>
+                                                    Seleccione el puesto del trabajador
+                                                </option>
+                                                <option>A</option>
+                                                <option>B</option>
+                                                <option>C</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group mt-3 mb-5">
+                                            <input type="file" class="dropify" />
+                                            <small id="fileHelp" class="form-text text-muted">Licencia de conducir</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="button" class="btn btn-primary">
+                                            AÑDAIR
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-secondary"
+                                                data-dismiss="modal">
+                                            CERRAR
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="e_list">
+                            <div class="table-responsive">
+                                <table class="table table-hover js-basic-example dataTable table-custom spacing5 mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Nombre</th>
+                                            <th>Cédula de empleado</th>
+                                            <th>Teléfono</th>
+                                            <th>Fecha de ingreso</th>
+                                            <th>Rol</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="w60">
+                                                <label class="fancy-checkbox">
+                                                    <input class="checkbox-tick"
+                                                           type="checkbox"
+                                                           name="checkbox" />
+                                                    <span></span>
+                                                </label>
+                                                <div class="avtar-pic w35 bg-red"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Avatar Name">
+                                                    <span>MN</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="font-15">Marshall Nichols</div>
+                                                <span class="text-muted">
+                                                    <a href="/cdn-cgi/l/email-protection"
+                                                       class="__cf_email__"
+                                                       data-cfemail="99f4f8ebeaf1f8f5f5b4f7d9fef4f8f0f5b7faf6f4">[email&#160;protected]</a>
+                                                </span>
+                                            </td>
+                                            <td><span>LA-0215</span></td>
+                                            <td><span>+ 264-625-2583</span></td>
+                                            <td>24 Jun, 2015</td>
+                                            <td>Web Designer</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default js-sweetalert"
+                                                        title="Delete"
+                                                        data-type="confirm">
+                                                    <i class="fa fa-trash-o text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="w60">
+                                                <label class="fancy-checkbox">
+                                                    <input class="checkbox-tick"
+                                                           type="checkbox"
+                                                           name="checkbox" />
+                                                    <span></span>
+                                                </label>
+                                                <img src="../../assets/images/xs/avatar6.jpg"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Avatar Name"
+                                                     alt="Avatar"
+                                                     class="w35 h35 rounded" />
+                                            </td>
+                                            <td>
+                                                <div class="font-15">Susie Willis</div>
+                                                <span class="text-muted">
+                                                    <a href="/cdn-cgi/l/email-protection"
+                                                       class="__cf_email__"
+                                                       data-cfemail="65161016160c004812250208040c094b060a08">[email&#160;protected]</a>
+                                                </span>
+                                            </td>
+                                            <td><span>LA-0216</span></td>
+                                            <td><span>+ 264-625-2583</span></td>
+                                            <td>28 Jun, 2015</td>
+                                            <td>Web Developer</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default js-sweetalert"
+                                                        title="Delete"
+                                                        data-type="confirm">
+                                                    <i class="fa fa-trash-o text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="w60">
+                                                <label class="fancy-checkbox">
+                                                    <input class="checkbox-tick"
+                                                           type="checkbox"
+                                                           name="checkbox" />
+                                                    <span></span>
+                                                </label>
+                                                <div class="avtar-pic w35 bg-pink"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Avatar Name">
+                                                    <span>MN</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="font-15">Debra Stewart</div>
+                                                <span class="text-muted">
+                                                    <a href="/cdn-cgi/l/email-protection"
+                                                       class="__cf_email__"
+                                                       data-cfemail="d4b0b1b6a6b594b3b9b5bdb8fab7bbb9">[email&#160;protected]</a>
+                                                </span>
+                                            </td>
+                                            <td><span>LA-0218</span></td>
+                                            <td><span>+ 264-625-2583</span></td>
+                                            <td>21 July, 2015</td>
+                                            <td>Web Developer</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default js-sweetalert"
+                                                        title="Delete"
+                                                        data-type="confirm">
+                                                    <i class="fa fa-trash-o text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="w60">
+                                                <label class="fancy-checkbox">
+                                                    <input class="checkbox-tick"
+                                                           type="checkbox"
+                                                           name="checkbox" />
+                                                    <span></span>
+                                                </label>
+                                                <img src="../../assets/images/xs/avatar6.jpg"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Avatar Name"
+                                                     alt="Avatar"
+                                                     class="w35 h35 rounded" />
+                                            </td>
+                                            <td>
+                                                <div class="font-15">Francisco Vasquez</div>
+                                                <span class="text-muted">
+                                                    <a href="/cdn-cgi/l/email-protection"
+                                                       class="__cf_email__"
+                                                       data-cfemail="a9cfdbc8c7cac0dadfe9cec4c8c0c587cac6c4">[email&#160;protected]</a>
+                                                </span>
+                                            </td>
+                                            <td><span>LA-0222</span></td>
+                                            <td><span>+ 264-625-2583</span></td>
+                                            <td>18 Jan, 2016</td>
+                                            <td>Team Leader</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default js-sweetalert"
+                                                        title="Delete"
+                                                        data-type="confirm">
+                                                    <i class="fa fa-trash-o text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="w60">
+                                                <label class="fancy-checkbox">
+                                                    <input class="checkbox-tick"
+                                                           type="checkbox"
+                                                           name="checkbox" />
+                                                    <span></span>
+                                                </label>
+                                                <img src="../../assets/images/xs/avatar6.jpg"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Avatar Name"
+                                                     alt="Avatar"
+                                                     class="w35 h35 rounded" />
+                                            </td>
+                                            <td>
+                                                <div class="font-15">Jane Hunt</div>
+                                                <span class="text-muted">
+                                                    <a href="/cdn-cgi/l/email-protection"
+                                                       class="__cf_email__"
+                                                       data-cfemail="8de7ece3e8a0e5f8e3f9cdeae0ece4e1a3eee2e0">[email&#160;protected]</a>
+                                                </span>
+                                            </td>
+                                            <td><span>LA-0232</span></td>
+                                            <td><span>+ 264-625-2583</span></td>
+                                            <td>08 Mar, 2016</td>
+                                            <td>Android Developer</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default js-sweetalert"
+                                                        title="Delete"
+                                                        data-type="confirm">
+                                                    <i class="fa fa-trash-o text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="w60">
+                                                <label class="fancy-checkbox">
+                                                    <input class="checkbox-tick"
+                                                           type="checkbox"
+                                                           name="checkbox" />
+                                                    <span></span>
+                                                </label>
+                                                <img src="../../assets/images/xs/avatar6.jpg"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Avatar Name"
+                                                     alt="Avatar"
+                                                     class="w35 h35 rounded" />
+                                            </td>
+                                            <td>
+                                                <div class="font-15">Darryl Day</div>
+                                                <span class="text-muted">
+                                                    <a href="/cdn-cgi/l/email-protection"
+                                                       class="__cf_email__"
+                                                       data-cfemail="9df9fcefefe4f1b3f9fce4ddfaf0fcf4f1b3fef2f0">[email&#160;protected]</a>
+                                                </span>
+                                            </td>
+                                            <td><span>LA-0233</span></td>
+                                            <td><span>+ 264-625-2583</span></td>
+                                            <td>13 Nov, 2016</td>
+                                            <td>IOS Developer</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default js-sweetalert"
+                                                        title="Delete"
+                                                        data-type="confirm">
+                                                    <i class="fa fa-trash-o text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="w60">
+                                                <label class="fancy-checkbox">
+                                                    <input class="checkbox-tick"
+                                                           type="checkbox"
+                                                           name="checkbox" />
+                                                    <span></span>
+                                                </label>
+                                                <div class="avtar-pic w35 bg-blue"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Avatar Name">
+                                                    <span>MN</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="font-15">Marshall Nichols</div>
+                                                <span class="text-muted">
+                                                    <a href="/cdn-cgi/l/email-protection"
+                                                       class="__cf_email__"
+                                                       data-cfemail="dab7bba8a9b2bbb6b6f7b49abdb7bbb3b6f4b9b5b7">[email&#160;protected]</a>
+                                                </span>
+                                            </td>
+                                            <td><span>LA-0215</span></td>
+                                            <td><span>+ 264-625-2583</span></td>
+                                            <td>24 Jun, 2015</td>
+                                            <td>Web Designer</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default js-sweetalert"
+                                                        title="Delete"
+                                                        data-type="confirm">
+                                                    <i class="fa fa-trash-o text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="w60">
+                                                <label class="fancy-checkbox">
+                                                    <input class="checkbox-tick"
+                                                           type="checkbox"
+                                                           name="checkbox" />
+                                                    <span></span>
+                                                </label>
+                                                <div class="avtar-pic w35 bg-indigo"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Avatar Name">
+                                                    <span>MN</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="font-15">Susie Willis</div>
+                                                <span class="text-muted">
+                                                    <a href="/cdn-cgi/l/email-protection"
+                                                       class="__cf_email__"
+                                                       data-cfemail="92e1e7e1e1fbf7bfe5d2f5fff3fbfebcf1fdff">[email&#160;protected]</a>
+                                                </span>
+                                            </td>
+                                            <td><span>LA-0216</span></td>
+                                            <td><span>+ 264-625-2583</span></td>
+                                            <td>28 Jun, 2015</td>
+                                            <td>Web Developer</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default js-sweetalert"
+                                                        title="Delete"
+                                                        data-type="confirm">
+                                                    <i class="fa fa-trash-o text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="w60">
+                                                <label class="fancy-checkbox">
+                                                    <input class="checkbox-tick"
+                                                           type="checkbox"
+                                                           name="checkbox" />
+                                                    <span></span>
+                                                </label>
+                                                <img src="../../assets/images/xs/avatar6.jpg"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Avatar Name"
+                                                     alt="Avatar"
+                                                     class="w35 h35 rounded" />
+                                            </td>
+                                            <td>
+                                                <div class="font-15">Darryl Day</div>
+                                                <span class="text-muted">
+                                                    <a href="/cdn-cgi/l/email-protection"
+                                                       class="__cf_email__"
+                                                       data-cfemail="593d382b2b2035773d3820193e34383035773a3634">[email&#160;protected]</a>
+                                                </span>
+                                            </td>
+                                            <td><span>LA-0233</span></td>
+                                            <td><span>+ 264-625-2583</span></td>
+                                            <td>13 Nov, 2016</td>
+                                            <td>IOS Developer</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default js-sweetalert"
+                                                        title="Delete"
+                                                        data-type="confirm">
+                                                    <i class="fa fa-trash-o text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="e_leave">
+                            <div class="table-responsive">
+                                <table class="table table-hover js-basic-example dataTable table-custom spacing5 mb-0">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Nombre</th>
+                                            <th>Cédula de empleado/th></th>
+                                            <th>Tipo de Salida</th>
+                                            <th>Fecha de Salida</th>
+                                            <th>Razón</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="width45">
+                                                <div class="avtar-pic w35 bg-cyan"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Avatar Name">
+                                                    <span>OP</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="font-15">Marshall Nichols</div>
+                                            </td>
+                                            <td><span>LA-8150</span></td>
+                                            <td><span>Casual Leave</span></td>
+                                            <td>24 July, 2019 to 26 July, 2019</td>
+                                            <td>Going to Family Function</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Approved">
+                                                    <i class="fa fa-check text-success"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default js-sweetalert"
+                                                        title="Delete"
+                                                        data-type="confirm">
+                                                    <i class="fa fa-trash-o text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="width45">
+                                                <div class="avtar-pic w35 bg-red"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Avatar Name">
+                                                    <span>GC</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="font-15">Gary Camara</div>
+                                            </td>
+                                            <td><span>LA-8795</span></td>
+                                            <td><span>Medical Leave</span></td>
+                                            <td>20 July, 2019 to 26 July, 2019</td>
+                                            <td>Going to Development</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Approved">
+                                                    <i class="fa fa-check text-success"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default js-sweetalert"
+                                                        title="Delete"
+                                                        data-type="confirm">
+                                                    <i class="fa fa-trash-o text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="width45">
+                                                <img src="../../assets/images/xs/avatar6.jpg"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Avatar Name"
+                                                     alt="Avatar"
+                                                     class="w35 h35 rounded" />
+                                            </td>
+                                            <td>
+                                                <div class="font-15">Maryam Amiri</div>
+                                            </td>
+                                            <td><span>LA-0258</span></td>
+                                            <td><span>Casual Leave</span></td>
+                                            <td>21 July, 2019 to 26 July, 2019</td>
+                                            <td>Attend Birthday party</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Approved">
+                                                    <i class="fa fa-check text-success"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default js-sweetalert"
+                                                        title="Delete"
+                                                        data-type="confirm">
+                                                    <i class="fa fa-trash-o text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="width45">
+                                                <img src="../../assets/images/xs/avatar6.jpg"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Avatar Name"
+                                                     alt="Avatar"
+                                                     class="w35 h35 rounded" />
+                                            </td>
+                                            <td>
+                                                <div class="font-15">Frank Camly</div>
+                                            </td>
+                                            <td><span>LA-1515</span></td>
+                                            <td><span>Casual Leave</span></td>
+                                            <td>11 Aug, 2019 to 21 Aug, 2019</td>
+                                            <td>Going to Holiday</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Approved">
+                                                    <i class="fa fa-check text-success"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default js-sweetalert"
+                                                        title="Delete"
+                                                        data-type="confirm">
+                                                    <i class="fa fa-trash-o text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

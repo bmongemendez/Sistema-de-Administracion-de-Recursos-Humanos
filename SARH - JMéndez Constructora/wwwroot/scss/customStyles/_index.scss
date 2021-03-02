@@ -48,6 +48,7 @@
 	align-items: center;
 }
 
+
 .h-menu {
 	#main-content {
 		margin-top: 160px !important;
@@ -57,6 +58,7 @@
 		display: grid !important;
 		place-items: center;
 	}
+
 	.left-sidebar__span {
 		display: block !important;
 	}
@@ -87,22 +89,19 @@
 }
 
 .sidebar__item {
-	width: 100% !important;
-	padding: 15px 5px !important;
-	&:hover {
-		background-image: linear-gradient(
-			180deg,
-			$color-primary 0%,
-			$color-secondary 100%
-		);
-		.left-sidebar__span {
-			color: white !important;
-		}
+    width: 100% !important;
 
-		.sidebar__icon {
-			color: white !important;
-		}
-	}
+    &:hover {
+        background: lighten($color-primary, 15%);
+
+        .left-sidebar__span {
+            color: white !important;
+        }
+
+        .sidebar__icon {
+            color: white !important;
+        }
+    }
 }
 
 .sidebar__item.active {
@@ -133,6 +132,15 @@
 	.sidebar__icon {
 		background: none !important;
 		color: white !important;
+	}
+}
+
+
+.sidebar__link {
+	padding: 25px 5px !important;
+
+	@media screen and (max-width: 576px) {
+		padding: 20px 5px !important;
 	}
 }
 

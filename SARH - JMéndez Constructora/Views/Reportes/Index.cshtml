@@ -1,0 +1,423 @@
+﻿@{
+    ViewData["Title"] = "Reportes";
+    ViewData["sidebarActive"] = "Reportes";
+
+}
+
+<div class="container-fluid">
+    <div class="block-header">
+        <div class="row clearfix">
+            <div class="col-md-6 col-sm-12">
+                <h1>Inicio</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="../home/dashboard.html">
+                                <i class="icon-home"></i>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">Reporte de Aguinaldos</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="row clearfix">
+            <div class="col-lg-12">
+                <div class="card">
+                    <ul class="nav nav-tabs3 table-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active show"
+                               data-toggle="tab"
+                               href="#Expenses">Aguinaldos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#Invoice">Pagos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#Invoice">Ocupaciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#Invoice">Bitácora de movimientos</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-0">
+                        <div class="tab-pane show active" id="Expenses">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-custom spacing8">
+                                    <thead>
+                                        <tr>
+                                            <th>Trabajador</th>
+                                            <th>Puesto</th>
+                                            <th>Fecha de ingreso</th>
+                                            <th>Fecha actual</th>
+                                            <th>Pagado con</th>
+                                            <th>Estado</th>
+                                            <th>Monto</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Bobby Marshal Daniels</td>
+                                            <td>Conductor</td>
+                                            <td>07 Marzo, 2020</td>
+                                            <td>15 Diciembre, 2020</td>
+                                            <td>
+                                                <img src="../assets/images/paypal.png"
+                                                     class="rounded w40"
+                                                     alt="paypal" />
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-warning">Pending</span>
+                                            </td>
+                                            <td>$205</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bobby Marshal Daniels</td>
+                                            <td>Conductor</td>
+                                            <td>07 Marzo, 2020</td>
+                                            <td>15 Diciembre, 2020</td>
+                                            <td>
+                                                <img src="../assets/images/paypal.png"
+                                                     class="rounded w40"
+                                                     alt="paypal" />
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-warning">Pending</span>
+                                            </td>
+                                            <td>$355</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bobby Marshal Daniels</td>
+                                            <td>Conductor</td>
+                                            <td>07 Marzo, 2020</td>
+                                            <td>15 Diciembre, 2020</td>
+                                            <td>
+                                                <img src="../assets/images/paypal.png"
+                                                     class="rounded w40"
+                                                     alt="paypal" />
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-success">Approved</span>
+                                            </td>
+                                            <td>$40</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bobby Marshal Daniels</td>
+                                            <td>Conductor</td>
+                                            <td>07 Marzo, 2020</td>
+                                            <td>15 Diciembre, 2020</td>
+                                            <td>
+                                                <img src="../assets/images/paypal.png"
+                                                     class="rounded w40"
+                                                     alt="paypal" />
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-success">Approved</span>
+                                            </td>
+                                            <td>$800</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bobby Marshal Daniels</td>
+                                            <td>Conductor</td>
+                                            <td>07 Marzo, 2020</td>
+                                            <td>15 Diciembre, 2020</td>
+                                            <td>
+                                                <img src="../assets/images/paypal.png"
+                                                     class="rounded w40"
+                                                     alt="paypal" />
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-success">Approved</span>
+                                            </td>
+                                            <td>$205</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="Invoice">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-custom spacing8">
+                                    <thead>
+                                        <tr>
+                                            <th>Invoice Number</th>
+                                            <th>Clients</th>
+                                            <th>Date</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                            <th class="w60">Amount</th>
+                                            <th class="w60">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#LA-5218</td>
+                                            <td>vPro tec LLC.</td>
+                                            <td>07 March, 2018</td>
+                                            <td>
+                                                <img src="../assets/images/paypal.png"
+                                                     class="rounded w40"
+                                                     alt="paypal" />
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-success">Approved</span>
+                                            </td>
+                                            <td>$4,205</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Send Invoice"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-envelope text-info"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Print"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-printer"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Delete"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-trash text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#LA-1212</td>
+                                            <td>BT Technology</td>
+                                            <td>25 Jun, 2018</td>
+                                            <td>
+                                                <img src="../assets/images/mastercard.png"
+                                                     class="rounded w40"
+                                                     alt="mastercard" />
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-warning">Pending</span>
+                                            </td>
+                                            <td>$5,205</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Send Invoice"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-envelope text-info"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Print"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-printer"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Delete"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-trash text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#LA-0222</td>
+                                            <td>More Infoweb Pvt.</td>
+                                            <td>12 July, 2018</td>
+                                            <td>
+                                                <img src="../assets/images/paypal.png"
+                                                     class="rounded w40"
+                                                     alt="paypal" />
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-warning">Pending</span>
+                                            </td>
+                                            <td>$2,000</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Send Invoice"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-envelope text-info"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Print"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-printer"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Delete"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-trash text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#LA-0312</td>
+                                            <td>RETO Tech LLC.</td>
+                                            <td>13 July, 2018</td>
+                                            <td>
+                                                <img src="../assets/images/paypal.png"
+                                                     class="rounded w40"
+                                                     alt="paypal" />
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-success">Approved</span>
+                                            </td>
+                                            <td>$10,000</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Send Invoice"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-envelope text-info"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Print"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-printer"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Delete"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-trash text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#LA-5656</td>
+                                            <td>SDRAPP Pvt.</td>
+                                            <td>27 July, 2018</td>
+                                            <td>
+                                                <img src="../assets/images/visa-card.png"
+                                                     class="rounded w40"
+                                                     alt="visa card" />
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-success">Approved</span>
+                                            </td>
+                                            <td>$1,205</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Send Invoice"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-envelope text-info"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Print"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-printer"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Delete"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-trash text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#LA-4515</td>
+                                            <td>Kdash Infoweb LLC.</td>
+                                            <td>07 March, 2018</td>
+                                            <td>
+                                                <img src="../assets/images/paypal.png"
+                                                     class="rounded w40"
+                                                     alt="paypal" />
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-success">Approved</span>
+                                            </td>
+                                            <td>$4,205</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Send Invoice"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-envelope text-info"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Print"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-printer"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Delete"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-trash text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#LA-7845</td>
+                                            <td>BT infoweb</td>
+                                            <td>25 Jun, 2018</td>
+                                            <td>
+                                                <img src="../assets/images/mastercard.png"
+                                                     class="rounded w40"
+                                                     alt="mastercard" />
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-warning">Pending</span>
+                                            </td>
+                                            <td>$5,205</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Send Invoice"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-envelope text-info"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Print"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-printer"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Delete"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top">
+                                                    <i class="icon-trash text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

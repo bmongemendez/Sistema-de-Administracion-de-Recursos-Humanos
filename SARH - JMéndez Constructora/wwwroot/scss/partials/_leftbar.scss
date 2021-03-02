@@ -1,65 +1,64 @@
 /* Side Bar Menu */
 
 #left-sidebar {
-	@include transition(all .3s ease-in-out);
+	@include transition(all 0.3s ease-in-out);
 	@extend .m-t-0;
 	width: $sidebar-width;
 	height: 100%;
 	position: fixed;
-	left: 0px;	
+	left: 0px;
 	z-index: 9;
-	
+
 	@include max-screen($break-large) {
-		@include box-shadow(0 5px 10px 0px rgba($dark,.2));		
+		@include box-shadow(0 5px 10px 0px rgba($dark, 0.2));
 		background-color: $body-color;
-		left: - 250px;
+		left: -250px;
 	}
-	
-	.btn-toggle-offcanvas{
+
+	.btn-toggle-offcanvas {
 		display: none;
 	}
 
-    .navbar-brand{
+	.navbar-brand {
 		@include display-block;
-        padding: 0 0 16px 0;
-        margin: 15px 10px 0 10px;
-        border-bottom: 1px solid rgba(255,255,255,.1);
-        
-        @include max-screen($break-1024){
+		padding: 0 0 13px 0;
+		margin: 15px 10px 0 10px;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+		@include max-screen($break-1024) {
 			padding: 0 0 10px 0;
-            margin: 10px 10px 0 10px;
+			margin: 10px 10px 0 10px;
 		}
-		
-		a:hover{
-			.logo{
+
+		a:hover {
+			.logo {
 				-webkit-animation: fa-spin 2s infinite linear;
-    			animation: fa-spin 2s infinite linear;
+				animation: fa-spin 2s infinite linear;
 			}
 		}
-		        
-        .logo{
-            width: 25px;
-        }
-        span{
+
+		.logo {
+			width: 25px;
+		}
+		span {
 			@include inline-block;
 			@extend .m-l-10;
-			font-size: $font-size + 4px;			
+			font-size: $font-size + 4px;
 			color: $gray-200;
-            vertical-align: middle;
-        }
-    }
+			vertical-align: middle;
+		}
+	}
 }
 
-.offcanvas-active{
+.offcanvas-active {
+	#left-sidebar {
+		left: 0;
 
-    #left-sidebar{
-		left:0;
-				
-		@include max-screen($break-small - 1px){
+		@include max-screen($break-small - 1px) {
 			width: 100%;
 		}
-		
-		.btn-toggle-offcanvas{
+
+		.btn-toggle-offcanvas {
 			display: block !important;
 			background: rgba($white, 0.05);
 			color: $orange;
@@ -68,8 +67,7 @@
 }
 
 .layout-fullwidth #wrapper {
-
-	.top-navbar{
+	.top-navbar {
 		width: 100%;
 	}
 	#left-sidebar {
@@ -88,20 +86,20 @@
 .user-account {
 	margin: 20px 10px;
 	color: $gray-400;
-    
-    .user_div{
+
+	.user_div {
 		@include border-radius(4px);
 		@include inline-block;
-		padding: 2px;        
+		padding: 2px;
 		vertical-align: top;
 
-        .user-photo {
+		.user-photo {
 			@include border-radius(4px);
-            width: 40px;
-        }
-    }
+			width: 40px;
+		}
+	}
 	.user-name {
-		@include display-block;		
+		@include display-block;
 		color: inherit;
 
 		&:hover,
@@ -109,39 +107,39 @@
 			text-decoration: none;
 		}
 	}
-	.dropdown{
+	.dropdown {
 		@include inline-block;
-		@extend .m-l-10;		
+		@extend .m-l-10;
 
-		.dropdown-menu{			
+		.dropdown-menu {
 			border-radius: $border-radius-large;
-			box-shadow: 0px 2px 20px 0px rgba($dark,0.5);
-			border: none;			
+			box-shadow: 0px 2px 20px 0px rgba($dark, 0.5);
+			border: none;
 			padding: 15px;
 			width: 100%;
 			top: 50px !important;
 			right: 0;
 			left: auto !important;
 
-			li.divider{
-				border-bottom:1px solid rgba(255,255,255,.1);
-				margin: 10px 0; 
+			li.divider {
+				border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+				margin: 10px 0;
 			}
 
-			a{
-				@include display-block;				
+			a {
+				@include display-block;
 				font-size: $font-size;
 				color: $gray-500;
 				padding: 10px;
 
-				&:hover{
+				&:hover {
 					color: $gray-800;
-					i{
+					i {
 						color: $gray-800;
 					}
 				}
 
-				i{
+				i {
 					@extend .m-r-10;
 					font-size: $font-size;
 				}
@@ -151,11 +149,11 @@
 }
 
 .sidebar-nav {
-    margin: 0 12px;
+	margin: 0 12px;
 
-    ul{
-        @extend .padding-0;
+	ul {
+		@extend .padding-0;
 		@extend .margin-0;
 		list-style: none;
-    }
+	}
 }

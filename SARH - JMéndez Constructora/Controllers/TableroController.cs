@@ -9,21 +9,16 @@ using System.Threading.Tasks;
 
 namespace SARH___JMéndez_Constructora.Controllers
 {
-    public class HomeController : Controller
+    public class TableroController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<TableroController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public TableroController(ILogger<TableroController> logger)
         {
             _logger = logger;
         }
 
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }

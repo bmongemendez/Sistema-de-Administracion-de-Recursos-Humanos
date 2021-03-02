@@ -1,0 +1,409 @@
+﻿@{
+    ViewData["Title"] = "Usuarios";
+    ViewData["sidebarActive"] = "Usuarios";
+}
+
+<div class="container-fluid">
+    <div class="block-header">
+        <div class="row clearfix">
+            <div class="col-md-6 col-sm-12">
+                <h1>Inicio</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="../home/dashboard.html">
+                                <i class="icon-home"></i>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            Gestión de Usuarios del Sistema
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="row clearfix">
+            <div class="col-lg-12">
+                <div class="card">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active show"
+                               data-toggle="tab"
+                               href="#Users">Usuarios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#addUser">Añadir Usuario</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-0">
+                        <div class="tab-pane show active" id="Users">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-custom spacing8">
+                                    <thead>
+                                        <tr>
+                                            <th class="w60">Nombre</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th>Fecha de creación</th>
+                                            <th>Rol</th>
+                                            <th class="w100">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="width45">
+                                                <div class="avtar-pic w35 bg-pink"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Avatar Name">
+                                                    <span>MN</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <h6 class="mb-0">Greivin Méndez Montero</h6>
+                                                <span>
+                                                    <a href="/cdn-cgi/l/email-protection"
+                                                       class="__cf_email__"
+                                                       data-cfemail="97faf6e5e4fff6fbfbbaf9d7f0faf6fefbb9f4f8fa">[email&#160;protected]</a>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-danger">Super Admin</span>
+                                            </td>
+                                            <td>24 Jun, 2015</td>
+                                            <td>CEO and Founder</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="../../assets/images/xs/avatar6.jpg"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Avatar Name"
+                                                     alt="Avatar"
+                                                     class="w35 h35 rounded" />
+                                            </td>
+                                            <td>
+                                                <h6 class="mb-0">Susie Willis</h6>
+                                                <span>
+                                                    <a href="/cdn-cgi/l/email-protection"
+                                                       class="__cf_email__"
+                                                       data-cfemail="b3c0c6c0c0dad69ec4f3d4ded2dadf9dd0dcde">[email&#160;protected]</a>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-info">Admin</span>
+                                            </td>
+                                            <td>28 Jun, 2015</td>
+                                            <td>Team Lead</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default js-sweetalert"
+                                                        title="Delete"
+                                                        data-type="confirm">
+                                                    <i class="fa fa-trash-o text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="../../assets/images/xs/avatar6.jpg"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Avatar Name"
+                                                     alt="Avatar"
+                                                     class="w35 h35 rounded" />
+                                            </td>
+                                            <td>
+                                                <h6 class="mb-0">Debra Stewart</h6>
+                                                <span>
+                                                    <a href="/cdn-cgi/l/email-protection"
+                                                       class="__cf_email__"
+                                                       data-cfemail="94f0f1f6e6f5d4f3f9f5fdf8baf7fbf9">[email&#160;protected]</a>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-info">Admin</span>
+                                            </td>
+                                            <td>21 July, 2015</td>
+                                            <td>Team Lead</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default js-sweetalert"
+                                                        title="Delete"
+                                                        data-type="confirm">
+                                                    <i class="fa fa-trash-o text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="../../assets/images/xs/avatar6.jpg"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Avatar Name"
+                                                     alt="Avatar"
+                                                     class="w35 h35 rounded" />
+                                            </td>
+                                            <td>
+                                                <h6 class="mb-0">Erin Gonzales</h6>
+                                                <span>
+                                                    <a href="/cdn-cgi/l/email-protection"
+                                                       class="__cf_email__"
+                                                       data-cfemail="0247706b6c6d6c78636e677142656f636b6e2c616d6f">[email&#160;protected]</a>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-default">Employee</span>
+                                            </td>
+                                            <td>21 July, 2015</td>
+                                            <td>Web Developer</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default js-sweetalert"
+                                                        title="Delete"
+                                                        data-type="confirm">
+                                                    <i class="fa fa-trash-o text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="avtar-pic w35 bg-blue"
+                                                     data-toggle="tooltip"
+                                                     data-placement="top"
+                                                     title="Avatar Name">
+                                                    <span>MN</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <h6 class="mb-0">Ava Alexander</h6>
+                                                <span>
+                                                    <a href="/cdn-cgi/l/email-protection"
+                                                       class="__cf_email__"
+                                                       data-cfemail="f3929f968b929d979681b3949e929a9fdd909c9e">[email&#160;protected]</a>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-success">HR Admin</span>
+                                            </td>
+                                            <td>21 July, 2015</td>
+                                            <td>HR</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default"
+                                                        title="Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-default js-sweetalert"
+                                                        title="Delete"
+                                                        data-type="confirm">
+                                                    <i class="fa fa-trash-o text-danger"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="addUser">
+                            <div class="body mt-2">
+                                <div class="row clearfix">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   placeholder="Nombre *" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   placeholder="Apellidos" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   placeholder="Email *" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   placeholder="Contraseña" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   placeholder="Confirme la contraseña" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   placeholder="Número de teléfono" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   placeholder="Cédula *" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <select class="form-control show-tick">
+                                                <option>Seleccione el rol del usuario</option>
+                                                <option>Super Usuario</option>
+                                                <option>Admministrador</option>
+                                                <option>Usuario</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <h6>Module Permission</h6>
+                                        <div class="table-responsive">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>Leer</th>
+                                                        <th>Escribir</th>
+                                                        <th>Eliminar</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Gestor de Usuarios</td>
+                                                        <td>
+                                                            <label class="fancy-checkbox">
+                                                                <input class="checkbox-tick"
+                                                                       type="checkbox"
+                                                                       name="checkbox"
+                                                                       checked />
+                                                                <span></span>
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="fancy-checkbox">
+                                                                <input class="checkbox-tick"
+                                                                       type="checkbox"
+                                                                       name="checkbox"
+                                                                       checked />
+                                                                <span></span>
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="fancy-checkbox">
+                                                                <input class="checkbox-tick"
+                                                                       type="checkbox"
+                                                                       name="checkbox"
+                                                                       checked />
+                                                                <span></span>
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Planilla</td>
+                                                        <td>
+                                                            <label class="fancy-checkbox">
+                                                                <input class="checkbox-tick"
+                                                                       type="checkbox"
+                                                                       name="checkbox"
+                                                                       checked />
+                                                                <span></span>
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="fancy-checkbox">
+                                                                <input class="checkbox-tick"
+                                                                       type="checkbox"
+                                                                       name="checkbox"
+                                                                       checked />
+                                                                <span></span>
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="fancy-checkbox">
+                                                                <input class="checkbox-tick"
+                                                                       type="checkbox"
+                                                                       name="checkbox" />
+                                                                <span></span>
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Reportes</td>
+                                                        <td>
+                                                            <label class="fancy-checkbox">
+                                                                <input class="checkbox-tick"
+                                                                       type="checkbox"
+                                                                       name="checkbox"
+                                                                       checked />
+                                                                <span></span>
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="fancy-checkbox">
+                                                                <input class="checkbox-tick"
+                                                                       type="checkbox"
+                                                                       name="checkbox" />
+                                                                <span></span>
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="fancy-checkbox">
+                                                                <input class="checkbox-tick"
+                                                                       type="checkbox"
+                                                                       name="checkbox" />
+                                                                <span></span>
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <button type="button" class="btn btn-primary">
+                                            Añadir
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-secondary"
+                                                data-dismiss="modal">
+                                            Cerrar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

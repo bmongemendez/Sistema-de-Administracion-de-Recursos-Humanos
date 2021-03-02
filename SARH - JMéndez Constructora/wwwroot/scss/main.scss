@@ -7,9 +7,11 @@
 @import 'mixins/clearfix';
 @import 'mixins/css3';
 @import 'mixins/elements-color-custom';
+@import 'mixins/waitMe';
 
 @import 'base/variables';
 @import 'base/general';
+
 @import 'metisMenu/metisMenu';
 
 @import 'partials/tabs';
@@ -34,7 +36,6 @@
 @import 'partials/formwizard';
 @import 'partials/tables';
 @import 'partials/flipcards';
-
 @import 'partials/summernote';
 @import 'partials/ekeditor';
 
@@ -46,7 +47,6 @@
 @import 'pages/calendar';
 @import 'pages/pricing';
 @import 'pages/invoice';
-
 @import 'pages/news';
 @import 'pages/social';
 @import 'pages/rtl';

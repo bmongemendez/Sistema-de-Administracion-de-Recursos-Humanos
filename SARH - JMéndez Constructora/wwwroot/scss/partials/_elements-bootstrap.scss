@@ -1,4 +1,3 @@
-
 .progress {
 	@include border-radius(50px);
 	@include box-shadow(none);
@@ -27,7 +26,7 @@
 		height: 1px;
 	}
 
-	&.progress-sm, 
+	&.progress-sm,
 	&.progress-xs {
 		.progress-bar {
 			text-indent: -9999px;
@@ -77,9 +76,9 @@
 	}
 }
 .popover {
-	@include box-shadow(0px 2px 6px 0px rgba($dark,0.05));
+	@include box-shadow(0px 2px 6px 0px rgba($dark, 0.05));
 
-	font-family: $font-family-krub;
+	font-family: $font-family-raleway;
 	border-color: #ededed;
 }
 .popover-title {
@@ -95,7 +94,7 @@
 
 	.panel-title {
 		font-size: $font-size + 1px;
-		font-family: $font-family-krub;
+		font-family: $font-family-raleway;
 	}
 
 	.panel-title > a {
@@ -139,7 +138,7 @@
 	> li > span {
 		color: $color-accent;
 	}
-	
+
 	> li {
 		@include pagination-button-color($color-accent);
 
@@ -157,7 +156,8 @@
 	> .active {
 		@include pagination-button-color($color-accent);
 
-		> a, > span {
+		> a,
+		> span {
 			background-color: $color-accent;
 			border-color: darken($color-accent, 5%);
 		}
@@ -195,12 +195,12 @@
 			}
 		}
 	}
-	.page-link{
+	.page-link {
 		background-color: transparent;
 		border-color: $border-color;
 	}
-	.disabled.page-item{
-		.page-link{
+	.disabled.page-item {
+		.page-link {
 			background-color: $border-color;
 			border-color: $border-color;
 		}
@@ -210,141 +210,143 @@
 	li > a {
 		border-color: $color-accent;
 
-		&:hover, &:focus {
+		&:hover,
+		&:focus {
 			background-color: $color-accent;
 			border-color: darken($color-accent, 3%);
 			color: $white;
 		}
 	}
 
-	.disabled > a, 
-	.disabled > a:hover, 
-	.disabled > a:focus, 
+	.disabled > a,
+	.disabled > a:hover,
+	.disabled > a:focus,
 	.disabled > span {
 		border-color: $gray-300;
 	}
 }
 .blockquote {
 	border-left: none;
-	border: 1px solid $gray-600;;
+	border: 1px solid $gray-600;
 	padding: 20px;
 	font-size: 1.2em;
-    line-height: 1.8;
-    
+	line-height: 1.8;
+
 	&.blockquote-primary {
-        border-color: $cyan;
-        small{
-            color: $cyan;
-        }
-    }
-
-    &.blockquote-info {
-        border-color: $info;
-        small{
-            color: $info;
-        }
-    }
-
-    &.blockquote-danger {
-        border-color: $red;
-        small{
-            color: $red;
-        }
-    }
-    
-    small {        
-        font-size: .93em;
-        text-transform: uppercase;
-    }
-}
-.btn{
-    @include transition(all .3s ease-in-out);
-    &:hover{
-        @include box-shadow(0 5px 10px 0 rgba(0,0,0,0.2));        
+		border-color: $cyan;
+		small {
+			color: $cyan;
+		}
 	}
-	&.btn-default{
+
+	&.blockquote-info {
+		border-color: $info;
+		small {
+			color: $info;
+		}
+	}
+
+	&.blockquote-danger {
+		border-color: $red;
+		small {
+			color: $red;
+		}
+	}
+
+	small {
+		font-size: 0.93em;
+		text-transform: uppercase;
+	}
+}
+.btn {
+	@include transition(all 0.3s ease-in-out);
+	&:hover {
+		@include box-shadow(0 5px 10px 0 rgba(0, 0, 0, 0.2));
+	}
+	&.btn-default {
 		color: $gray-500;
 		background-color: $card-color;
 		border-color: $border-color;
 		font-weight: $font-weight-400;
 		padding: 6px 18px;
-		
-		&.btn-sm{
+
+		&.btn-sm {
 			padding: 4px 10px;
 		}
-		&:hover{
+		&:hover {
 			color: $gray-500;
 			border-color: $gray-500;
 		}
 	}
 }
 
-.list-group-item{
+.list-group-item {
 	background-color: $card-color;
 	border-color: $border-color;
-	&.disabled{
+	&.disabled {
 		background-color: $body-color;
 		color: $gray-700;
 	}
 }
-.list-group-item-action{
+.list-group-item-action {
 	&:focus,
-	&:hover{
+	&:hover {
 		background-color: $body-color;
 	}
 }
-.modal-dialog{
-	.close{
+.modal-dialog {
+	.close {
 		text-shadow: none;
 		color: $red;
 	}
-	.modal-content{
+	.modal-content {
 		background: $card-color;
 		.modal-header,
-		.modal-footer{
-			border-color: $border-color; 
+		.modal-footer {
+			border-color: $border-color;
 		}
 	}
 }
-.custom-file-label{
-	&:after{
+.custom-file-label {
+	&:after {
 		background-color: $border-color;
-		border-color: $border-color; 
+		border-color: $border-color;
 	}
 }
-.noUi-target{
+.noUi-target {
 	border-color: $border-color;
 	box-shadow: none;
 	&.noUi-connect,
-	.noUi-connect{
+	.noUi-connect {
 		background: $orange;
 	}
-	.noUi-background{
+	.noUi-background {
 		background: $border-color;
 		box-shadow: none;
 	}
-	.noUi-handle{
+	.noUi-handle {
 		background: $green;
 		box-shadow: none;
 	}
 }
-.btn-toolbar>.btn-group{@extend .m-l-5;}
-.bd-example-border-utils [class^=border] {
+.btn-toolbar > .btn-group {
+	@extend .m-l-5;
+}
+.bd-example-border-utils [class^='border'] {
 	@include inline-block();
 	width: 5rem;
 	height: 5rem;
-	margin: .25rem;
+	margin: 0.25rem;
 	background-color: #f5f5f5;
 }
-.carousel{
-	
-	&.vert{
+.carousel {
+	&.vert {
 		.carousel-item-next.carousel-item-left,
-		.carousel-item-prev.carousel-item-right{
+		.carousel-item-prev.carousel-item-right {
 			-webkit-transform: translate3d(0, 0, 0);
 			transform: translate3d(0, 0, 0);
 		}
-		
+
 		.carousel-item-next,
 		.active.carousel-item-right {
 			-webkit-transform: translate3d(0, 100%, 0);
@@ -353,16 +355,16 @@
 
 		.carousel-item-prev,
 		.active.carousel-item-left {
-			-webkit-transform: translate3d(0,-100%, 0);
-			transform: translate3d(0,-100%, 0);
+			-webkit-transform: translate3d(0, -100%, 0);
+			transform: translate3d(0, -100%, 0);
 		}
 	}
 }
-.modal-title{
+.modal-title {
 	font-size: $font-size + 2px;
 }
-.modal-dialog{
-	.close{
+.modal-dialog {
+	.close {
 		color: $blush;
 	}
 }
@@ -372,12 +374,14 @@
 	display: inline-block;
 	width: 36px;
 	height: 22px;
-	font-size: 0;	
+	font-size: 0;
 
-	input {display:none;}
+	input {
+		display: none;
+	}
 
 	.slider {
-		@include transition(all .4s ease-in-out);
+		@include transition(all 0.4s ease-in-out);
 		background-color: rgba($white, 0.1);
 		border-radius: $border-radius-small;
 		position: absolute;
@@ -385,29 +389,29 @@
 		top: 0;
 		left: 0;
 		right: 0;
-		bottom: 0;		
+		bottom: 0;
 
 		&:before {
-			@include transition(all .4s ease-in-out);
+			@include transition(all 0.4s ease-in-out);
 			background-color: $white;
 			border-radius: $border-radius-small;
 			position: absolute;
-			content: "";
+			content: '';
 			height: 16px;
 			width: 16px;
 			left: 4px;
-			bottom: 3px;			
+			bottom: 3px;
 		}
 	}
 
 	input:checked + .slider {
 		background-color: $green;
 	}
-	
+
 	input:focus + .slider {
 		box-shadow: 0 0 1px $green;
 	}
-	
+
 	input:checked + .slider:before {
 		-webkit-transform: translateX(12px);
 		-ms-transform: translateX(12px);
