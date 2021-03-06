@@ -1,21 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using SARH___JMéndez_Constructora.Data;
 using SARH___JMéndez_Constructora.Models;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SARH___JMéndez_Constructora
 {
@@ -32,11 +23,15 @@ namespace SARH___JMéndez_Constructora
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            // Hay problemas con la creacion de la base de datos
+            // La mejor solucion en cuanto a no modificar el contexto seria:
+            // crear la base de datos con el siguiente Charset/Collation
+            // Charset/Collation: latin1/latin1_bin 
+            // https://stackoverflow.com/questions/23562585/identity-entity-framework-library-update-database-mysql
+            services.AddDbContext<IdentityDbContext>(options =>
+                options.UseMySQL(Configuration.GetConnectionString("IdentityConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<IdentityDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddProgressiveWebApp();
