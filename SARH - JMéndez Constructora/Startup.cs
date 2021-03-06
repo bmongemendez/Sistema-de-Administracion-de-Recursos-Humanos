@@ -32,6 +32,9 @@ namespace SARH___JMéndez_Constructora
                 options.UseMySQL(Configuration.GetConnectionString("IdentityConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<IdentityDbContext>();
+            // Contexto de Planilla
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseMySQL(Configuration.GetConnectionString("ApplicationConnection")));
             services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddProgressiveWebApp();
