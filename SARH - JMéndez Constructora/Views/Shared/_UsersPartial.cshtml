@@ -1,0 +1,221 @@
+﻿@using SARH___JMéndez_Constructora.Models
+
+<table id="table">
+    <thead>
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(ViewBag.Users.UserName)*@
+                @ViewBag.UserName
+
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(ViewBag.Users.IsDeleted)*@
+                @ViewBag.IsDeleted
+
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.Users)
+        {
+            <tr>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.UserName)*@
+                    @item.UserName
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @*Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                    <form class="form-inline" asp-controller="Admin" asp-action="Delete">
+                        @*@Html.Hidden("id", item.Id)*@
+                        <input type="submit" class="btn btn-link" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="table-responsive">
+    <table class="table table-hover table-custom spacing8">
+        <thead>
+            <tr>
+                <th class="w60">Nombre</th>
+                <th>Rol</th>
+                <th class="w100">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="width45">
+                    <div class="avtar-pic w35 bg-pink"
+                         data-toggle="tooltip"
+                         data-placement="top"
+                         title="Avatar Name">
+                        <span>MN</span>
+                    </div>
+                </td>
+                <td>
+                    <h6 class="mb-0">Greivin Méndez Montero</h6>
+                    <span>
+                        <a href="/cdn-cgi/l/email-protection"
+                           class="__cf_email__"
+                           data-cfemail="97faf6e5e4fff6fbfbbaf9d7f0faf6fefbb9f4f8fa">[email&#160;protected]</a>
+                    </span>
+                </td>
+                <td>
+                    <span class="badge badge-danger">Super Admin</span>
+                </td>
+                <td>24 Jun, 2015</td>
+                <td>CEO and Founder</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="../../assets/images/xs/avatar6.jpg"
+                         data-toggle="tooltip"
+                         data-placement="top"
+                         title="Avatar Name"
+                         alt="Avatar"
+                         class="w35 h35 rounded" />
+                </td>
+                <td>
+                    <h6 class="mb-0">Susie Willis</h6>
+                    <span>
+                        <a href="/cdn-cgi/l/email-protection"
+                           class="__cf_email__"
+                           data-cfemail="b3c0c6c0c0dad69ec4f3d4ded2dadf9dd0dcde">[email&#160;protected]</a>
+                    </span>
+                </td>
+                <td>
+                    <span class="badge badge-info">Admin</span>
+                </td>
+                <td>28 Jun, 2015</td>
+                <td>Team Lead</td>
+                <td>
+                    <button type="button"
+                            class="btn btn-sm btn-default"
+                            title="Edit">
+                        <i class="fa fa-edit"></i>
+                    </button>
+                    <button type="button"
+                            class="btn btn-sm btn-default js-sweetalert"
+                            title="Delete"
+                            data-type="confirm">
+                        <i class="fa fa-trash-o text-danger"></i>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="../../assets/images/xs/avatar6.jpg"
+                         data-toggle="tooltip"
+                         data-placement="top"
+                         title="Avatar Name"
+                         alt="Avatar"
+                         class="w35 h35 rounded" />
+                </td>
+                <td>
+                    <h6 class="mb-0">Debra Stewart</h6>
+                    <span>
+                        <a href="/cdn-cgi/l/email-protection"
+                           class="__cf_email__"
+                           data-cfemail="94f0f1f6e6f5d4f3f9f5fdf8baf7fbf9">[email&#160;protected]</a>
+                    </span>
+                </td>
+                <td>
+                    <span class="badge badge-info">Admin</span>
+                </td>
+                <td>21 July, 2015</td>
+                <td>Team Lead</td>
+                <td>
+                    <button type="button"
+                            class="btn btn-sm btn-default"
+                            title="Edit">
+                        <i class="fa fa-edit"></i>
+                    </button>
+                    <button type="button"
+                            class="btn btn-sm btn-default js-sweetalert"
+                            title="Delete"
+                            data-type="confirm">
+                        <i class="fa fa-trash-o text-danger"></i>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="../../assets/images/xs/avatar6.jpg"
+                         data-toggle="tooltip"
+                         data-placement="top"
+                         title="Avatar Name"
+                         alt="Avatar"
+                         class="w35 h35 rounded" />
+                </td>
+                <td>
+                    <h6 class="mb-0">Erin Gonzales</h6>
+                    <span>
+                        <a href="/cdn-cgi/l/email-protection"
+                           class="__cf_email__"
+                           data-cfemail="0247706b6c6d6c78636e677142656f636b6e2c616d6f">[email&#160;protected]</a>
+                    </span>
+                </td>
+                <td>
+                    <span class="badge badge-default">Employee</span>
+                </td>
+                <td>21 July, 2015</td>
+                <td>Web Developer</td>
+                <td>
+                    <button type="button"
+                            class="btn btn-sm btn-default"
+                            title="Edit">
+                        <i class="fa fa-edit"></i>
+                    </button>
+                    <button type="button"
+                            class="btn btn-sm btn-default js-sweetalert"
+                            title="Delete"
+                            data-type="confirm">
+                        <i class="fa fa-trash-o text-danger"></i>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="avtar-pic w35 bg-blue"
+                         data-toggle="tooltip"
+                         data-placement="top"
+                         title="Avatar Name">
+                        <span>MN</span>
+                    </div>
+                </td>
+                <td>
+                    <h6 class="mb-0">Ava Alexander</h6>
+                    <span>
+                        <a href="/cdn-cgi/l/email-protection"
+                           class="__cf_email__"
+                           data-cfemail="f3929f968b929d979681b3949e929a9fdd909c9e">[email&#160;protected]</a>
+                    </span>
+                </td>
+                <td>
+                    <span class="badge badge-success">HR Admin</span>
+                </td>
+                <td>21 July, 2015</td>
+                <td>HR</td>
+                <td>
+                    <button type="button"
+                            class="btn btn-sm btn-default"
+                            title="Edit">
+                        <i class="fa fa-edit"></i>
+                    </button>
+                    <button type="button"
+                            class="btn btn-sm btn-default js-sweetalert"
+                            title="Delete"
+                            data-type="confirm">
+                        <i class="fa fa-trash-o text-danger"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

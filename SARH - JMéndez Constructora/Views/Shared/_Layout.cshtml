@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -129,11 +135,12 @@
                                      class="d-inline-block navbar-right__image" />
                             </li>
                             <li>
-                                <a href="https://oculux.nsdbytes.com/laravel/public/authentication/login"
-                                   class="icon-menu">
-                                    <i class="icon-power"></i>
-                                    <span>Salir</span>
-                                </a>
+                                <form class="form-inline h-100" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                    <button type="submit" class="btn icon-menu">
+                                        <i class="icon-power"></i>
+                                        <span>Logout</span>
+                                    </button>
+                                </form>
                             </li>
                         </ul>
                     </div>
@@ -232,5 +239,6 @@
     <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js"
             data-cf-settings="c3cdcb1f54af327e782883c8-|49"
             defer=""></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

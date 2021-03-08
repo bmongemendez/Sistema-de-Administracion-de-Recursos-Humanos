@@ -78,7 +78,7 @@ namespace SARH___JMéndez_Constructora
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Autenticacion}/{action=Index}/{id?}");
+                    pattern: "{controller=Tablero}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
