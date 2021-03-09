@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using SARH___JMéndez_Constructora.Controllers;
-using SARH___JMéndez_Constructora.Models;
-using SARH___JMéndez_Constructora.Models.AccountViewModels;
+using SARH___JMÃ©ndez_Constructora.Controllers;
+using SARH___JMÃ©ndez_Constructora.Models;
+using SARH___JMÃ©ndez_Constructora.Models.AccountViewModels;
 
-namespace SARH___JMéndez_Constructora.Controllers
+namespace SARH___JMÃ©ndez_Constructora.Controllers
 {
     [Authorize]
     public class AccountController : Controller
@@ -86,42 +86,6 @@ namespace SARH___JMéndez_Constructora.Controllers
             await _signInManager.SignOutAsync();
             _logger.LogInformation(4, "User logged out.");
             return RedirectToAction(nameof(AccountController.Login), "Account");
-        }
-
-        //
-        // GET: /Account/Register
-        [HttpGet]
-        [AllowAnonymous]
-        public IActionResult Register(string returnUrl = null)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
-        }
-
-        //
-        // POST: /Account/Register
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-            public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-            if (ModelState.IsValid)
-            {
-                var user = new ApplicationUser { UserName = model.UserName };
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await _userManager.AddToRoleAsync(user, model.Role);
-                    //await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation(3, "User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
-                }
-                AddErrors(result);
-            }
-
-            // If we got this far, something failed, redisplay form
-            return RedirectToAction(nameof(UsuariosController.Index), "Usuarios");
         }
 
         #region Helpers

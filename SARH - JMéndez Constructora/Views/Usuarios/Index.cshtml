@@ -5,9 +5,22 @@
 
 @using SARH___JMéndez_Constructora.Models.AccountViewModels
 @model RegisterViewModel
-
+@{
+    var statusMessage = ViewData["StatusMessage"];
+} 
 <div class="container-fluid">
     <div class="block-header">
+        @if (statusMessage != null)
+        {
+            if (!statusMessage.ToString().Equals(""))
+            {
+                <div class="alert alert-dismissible bg-info text-white" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <i class="fa fa-info-circle"></i> Informacion: @ViewData["StatusMessage"]
+                </div>
+            }
+        }
         <div class="row clearfix">
             <div class="col-md-6 col-sm-12">
                 <h1>Inicio</h1>
@@ -42,12 +55,12 @@
                     </ul>
                     <div class="tab-content mt-0">
                         <div class="tab-pane " id="Users">
-                            <partial name="../Shared/_UsersPartial" />
+                            <partial name="_UsersPartial" />
                         </div>
                         <div class="tab-pane show active" id="addUser">
                             <div class="body mt-2">
                                 <div class="row clearfix">
-                                    <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal col-12" role="form">
+                                    <form asp-controller="Usuarios" asp-action="Index" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal col-12" role="form">
                                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                         <div class="col-12">
                                             <div class="form-group">

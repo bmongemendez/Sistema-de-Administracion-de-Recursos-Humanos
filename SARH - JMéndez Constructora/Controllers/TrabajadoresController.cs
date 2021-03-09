@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SARH___JMéndez_Constructora.Data;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace SARH___JMéndez_Constructora.Controllers
 {
+    [Authorize]
     public class TrabajadoresController : Controller
     {
         private readonly ApplicationDbContext _appContext;
@@ -22,7 +24,7 @@ namespace SARH___JMéndez_Constructora.Controllers
         public IActionResult Index(TrabajadoresMessageId? message = null)
         {
             ViewData["StatusMessage"] =
-                message == TrabajadoresMessageId.AddEmployeeSuccess ? "Se ha agreado al empleado."
+                message == TrabajadoresMessageId.AddEmployeeSuccess ? "Se ha agregado al empleado."
                 : message == TrabajadoresMessageId.Error ? "Ha ocurrido un error."
                 : "";
 

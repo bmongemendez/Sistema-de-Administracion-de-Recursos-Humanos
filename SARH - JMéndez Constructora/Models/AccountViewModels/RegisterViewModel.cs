@@ -8,22 +8,22 @@ namespace SARH___JMéndez_Constructora.Models.AccountViewModels
 {
     public class RegisterViewModel
     {
-        [Required]
-        [Display(Name = "Nombre de Usuario")]
+        [Required(ErrorMessage = "El campo de 'Usuario' es requerido")]
+        [Display(Name = "Nombre de Usuario**")]
         public string UserName { get; set; }
         [Required]
         [Display(Name = "Rol del Usuario")]
         public string Role { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "El campo de 'Contraseña' es requerido")]
+        [StringLength(100, ErrorMessage = "La {0} debe tener al menos {2} de extension.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Contraseña**")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Confirme la contraseña**")]
+        [Compare("Password", ErrorMessage = "Las contraseñas deben coincidir.")]
         public string ConfirmPassword { get; set; }
     }
 }

@@ -12,15 +12,15 @@ namespace SARH___JMéndez_Constructora.Models
         public string Id { get; set; }
         [Required]
         public string UserName { get; set; }
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "El campo de 'Contraseña' es requerido")]
+        [StringLength(100, ErrorMessage = "La {0} debe tener al menos {2} de extension.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "Contraseña**")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "Confirme la contraseña**")]
+        [Compare("NewPassword", ErrorMessage = "Las contraseñas deben coincidir.")]
         public string ConfirmPassword { get; set; }
     }
 }
