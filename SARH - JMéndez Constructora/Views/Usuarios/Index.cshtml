@@ -64,28 +64,30 @@
                                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                         <div class="col-12">
                                             <div class="form-group">
+                                                <label asp-for="UserName"></label>
                                                 <input asp-for="UserName"
                                                        type="text"
                                                        class="form-control"
-                                                       placeholder="Nombre de usuario *" />
+                                                       />
                                                 <span asp-validation-for="UserName" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
+                                                <label asp-for="Password"></label>
                                                 <input asp-for="Password"
-                                                       type="text"
+                                                       type="password"
                                                        class="form-control"
-                                                       placeholder="Contraseña" />
+                                                        />
                                                 <span asp-validation-for="Password" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
+                                                <label asp-for="ConfirmPassword"></label>
                                                 <input asp-for="ConfirmPassword"
-                                                       type="text"
-                                                       class="form-control"
-                                                       placeholder="Confirme la contraseña" />
+                                                       type="password"
+                                                       class="form-control" />
                                                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                                             </div>
                                         </div>

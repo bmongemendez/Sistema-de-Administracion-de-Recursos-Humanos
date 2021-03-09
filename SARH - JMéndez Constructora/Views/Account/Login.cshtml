@@ -50,7 +50,7 @@
         <div class="auth_div vivify popIn">
             <div class="auth_brand">
                 <a class="navbar-brand" href="javascript:void(0);">
-                    <img src="../../assets/img/..."
+                    <img src="~/img/JMLogoMini.png"
                          width="30"
                          height="30"
                          class="d-inline-block align-top mr-2"
@@ -59,21 +59,21 @@
             </div>
             <div class="card">
                 <div class="body">
-                    <p class="lead">Iniciar Sesión</p>
+                    <p class="lead text-light">Iniciar Sesión</p>
                     <form asp-controller="Account" asp-action="Login"  method="post" class="form-auth-small m-t-20" role="form">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group">
-                            <label asp-for="UserName" for="signin-email" class="control-label sr-only">Email</label>
+                            <label asp-for="UserName" class="control-label sr-only">Nombre de usuario</label>
                             <input asp-for="UserName"
-                                   class="form-control round"
+                                   class="form-control round text-light border-light"
                                    id="signin-email"
-                                   placeholder="Email" />
+                                   placeholder="Usuario" />
                             <span asp-validation-for="UserName" class="text-danger d-block p-1 text-left"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Password" for="signin-password" class="control-label sr-only">Contraseña</label>
+                            <label asp-for="Password" class="control-label sr-only">Contraseña</label>
                             <input asp-for="Password" type="password"
-                                   class="form-control round"
+                                   class="form-control round text-light border-light"
                                    id="signin-password"
                                    placeholder="Contraseña" />
                             <span asp-validation-for="Password" class="text-danger d-block p-1 text-left"></span>
@@ -82,7 +82,7 @@
                         <div class="form-group m-0 clearfix d-flex justify-content-start align-items-center">
                             <div class="col-md-offset-2 col-md-10 p-1">
                                 <div class="checkbox d-flex justify-content-start align-items-center" >
-                                    <label asp-for="RememberMe">
+                                    <label asp-for="RememberMe" class="text-light">
                                         <input asp-for="RememberMe" type="checkbox"/>
                                         @Html.DisplayNameFor(m => m.RememberMe)
                                     </label>
@@ -91,7 +91,7 @@
                         </div>
                         <div class="form-group m-0">
                             <div class=" col-md-offset-2 col-md-10 mx-auto">
-                                <button type="submit" class="btn btn-default m-0 ">Iniciar Sesión</button>
+                                <button type="submit" class="btn btn-default m-0 text-light border-light">Iniciar Sesión</button>
                             </div>
                         </div>
                         @*<div class="bottom">

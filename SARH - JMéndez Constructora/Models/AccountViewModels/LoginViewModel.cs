@@ -8,11 +8,11 @@ namespace SARH___JMéndez_Constructora.Models.AccountViewModels
 {
     public class LoginViewModel
     {
-        [Required]
-        [Display(Name = "Nombre de usuario")]
+        [Required(ErrorMessage = "El campo de 'Usuario' es requerido")]
+        [Display(Name = "Usuario")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El campo de 'Contraseña' es requerido")]
         [Display(Name = "Contraseña")]
         [DataType(DataType.Password)]
         public string Password { get; set; }

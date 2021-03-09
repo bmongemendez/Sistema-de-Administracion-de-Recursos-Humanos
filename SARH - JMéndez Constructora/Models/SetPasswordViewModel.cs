@@ -11,6 +11,7 @@ namespace SARH___JMéndez_Constructora.Models
         [Required]
         public string Id { get; set; }
         [Required]
+        [Display(Name = "Nombre de Usuario")]
         public string UserName { get; set; }
         [Required(ErrorMessage = "El campo de 'Contraseña' es requerido")]
         [StringLength(100, ErrorMessage = "La {0} debe tener al menos {2} de extension.", MinimumLength = 6)]
