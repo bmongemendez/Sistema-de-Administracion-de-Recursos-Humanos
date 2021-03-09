@@ -11,6 +11,9 @@ namespace SARH___JMéndez_Constructora.Models.AccountViewModels
         [Required]
         [Display(Name = "Nombre de Usuario")]
         public string UserName { get; set; }
+        [Required]
+        [Display(Name = "Rol del Usuario")]
+        public string Role { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

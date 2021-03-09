@@ -83,14 +83,15 @@ namespace SARH___JMéndez_Constructora.Controllers
 
         // GET: /Manage/ChangePassword
         [HttpGet]
-        public IActionResult SetPassword(string id)
+        public IActionResult SetPassword(string id, string userName)
         {
             SetPasswordViewModel setPassword;
             if (_userManager.FindByIdAsync(id) != null)
             {
                 setPassword = new SetPasswordViewModel
                 {
-                    Id = id
+                    Id = id,
+                    UserName = userName
                 };
                 return View(setPassword);
             }
@@ -116,35 +117,48 @@ namespace SARH___JMéndez_Constructora.Controllers
                 var addResult = await _userManager.AddPasswordAsync(user, model.NewPassword);
                 if (removeResult.Succeeded && addResult.Succeeded)
                 {
-                    return RedirectToAction(nameof(Index), new { Message = ManageMessageId.SetPasswordSuccess });
+                    return RedirectToAction(nameof(UsuariosController.Index), "Usuarios", new { Message = ManageMessageId.SetPasswordSuccess });
                 }
                 AddErrors(removeResult);
                 AddErrors(addResult);
                 return View(model);
             }
-            return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
+            return RedirectToAction(nameof(UsuariosController.Index), "Usuarios", new { Message = ManageMessageId.SetPasswordSuccess });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(string returnUrl)
         {
+            string id = returnUrl;
+
             var user = await _userManager.FindByIdAsync(id);
             if (user != null)
             {
-                user.isDeleted = true;
-                var result = await _userManager.UpdateAsync(user);
+                //user.isDeleted = true;
+                var result = await _userManager.DeleteAsync(user);
+                //var result = await _userManager.UpdateAsync(user);
+
                 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(UsuariosController.Index), "Usuarios", new { Message = ManageMessageId.Error });
                 }
                 AddErrors(result);
                 
                 return View(nameof(Index));
             }
-            return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
+
+            ApplicationUser usr = await GetCurrentUserAsync();
+
+            if (usr.Id == id) {
+                return RedirectToAction(nameof(AccountController.Login), "Account", new { Message = ManageMessageId.Error });
+            }
+            return RedirectToAction(nameof(UsuariosController.Index), "Usuarios", new { Message = ManageMessageId.Error });
+
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         private void AddErrors(IdentityResult result)
         {

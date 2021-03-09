@@ -10,7 +10,7 @@ using SARH___JMéndez_Constructora.Controllers;
 using SARH___JMéndez_Constructora.Models;
 using SARH___JMéndez_Constructora.Models.AccountViewModels;
 
-namespace IdentityMySQL.Controllers
+namespace SARH___JMéndez_Constructora.Controllers
 {
     [Authorize]
     public class AccountController : Controller
@@ -34,7 +34,7 @@ namespace IdentityMySQL.Controllers
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Login(string returnUrl = null)
-        {
+            {
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
@@ -85,7 +85,7 @@ namespace IdentityMySQL.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation(4, "User logged out.");
-            return RedirectToAction(nameof(AccountController.Login), "Login");
+            return RedirectToAction(nameof(AccountController.Login), "Account");
         }
 
         //
@@ -103,7 +103,7 @@ namespace IdentityMySQL.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
+            public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
@@ -112,12 +112,14 @@ namespace IdentityMySQL.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _userManager.AddToRoleAsync(user, model.Role);
+                    //await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
             }
+
             // If we got this far, something failed, redisplay form
             return RedirectToAction(nameof(UsuariosController.Index), "Usuarios");
         }
