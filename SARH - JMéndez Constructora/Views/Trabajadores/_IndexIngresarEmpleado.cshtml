@@ -1,0 +1,193 @@
+@model SARH___JMéndez_Constructora.ViewModels.IngresoTrabajadorFormViewModel
+@{
+    IEnumerable<SelectListItem> puestos = (IEnumerable<SelectListItem>)ViewData["puestos"];
+}
+<form asp-action="Index">
+    <div class="row clearfix">
+        <div asp-validation-summary="ModelOnly" class="col-md-12 col-sm-6 text-danger"></div>
+        <div class="col-md-12 col-sm-6">
+            <h6>Informacion Básica</h6>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group">
+                <label asp-for="Cedula" class="control-label"></label>
+                <input asp-for="Cedula" class="form-control" placeholder="1-1111-1111"/>
+                <span asp-validation-for="Cedula" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" placeholder="Lorem"/>
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group">
+                <label asp-for="Apellido1" class="control-label"></label>
+                <input asp-for="Apellido1" class="form-control" placeholder="Ipsum"/>
+                <span asp-validation-for="Apellido1" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group">
+                <label asp-for="Apellido2" class="control-label"></label>
+                <input asp-for="Apellido2" class="form-control" placeholder="Ipsum"/>
+                <span asp-validation-for="Apellido2" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group">
+                <label asp-for="FechaNacimiento" class="control-label"></label>
+                <input asp-for="FechaNacimiento" class="form-control" />
+                <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group">
+                <label asp-for="Telefono" class="control-label"></label>
+                <input asp-for="Telefono" class="form-control" placeholder="409040000"/>
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group">
+                <label asp-for="TelefonoEmergencia" class="control-label"></label>
+                <input asp-for="TelefonoEmergencia" class="form-control" placeholder="409040000"/>
+                <span asp-validation-for="TelefonoEmergencia" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group">
+                <label asp-for="ContactoEmergencia" class="control-label"></label>
+                <input asp-for="ContactoEmergencia" class="form-control" placeholder="Sans Serif"/>
+                <span asp-validation-for="ContactoEmergencia" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-6">
+            <small id="fileHelp" class="form-text mb-2 mt-0 text-danger">** Campos requeridos.</small>
+        </div>
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="col-md-12 col-sm-6">
+            <h6>Educación</h6>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group fancy-checkbox">
+                <label class="">
+                    <input class="" asp-for="TieneBachiller" />
+                    <span>@Html.DisplayNameFor(model => model.TieneBachiller)</span>
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group fancy-checkbox">
+                <label class="">
+                    <input class="" asp-for="TieneLicenciatura" />
+                    <span>@Html.DisplayNameFor(model => model.TieneLicenciatura)</span>
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group fancy-checkbox">
+                <label class="">
+                    <input class="" asp-for="TieneTecnico" />
+                    <span>@Html.DisplayNameFor(model => model.TieneTecnico)</span>
+                </label>
+            </div>
+        </div>
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="col-md-12 col-sm-6">
+            <h6>Licencias de conducir</h6>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group fancy-checkbox">
+                <label class="">
+                    <input class="" asp-for="TieneLicenciaA3" />
+                    <span>@Html.DisplayNameFor(model => model.TieneLicenciaA3)</span>
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group fancy-checkbox">
+                <label class="">
+                    <input class="" asp-for="TieneLicenciaB1" />
+                    <span>@Html.DisplayNameFor(model => model.TieneLicenciaB1)</span>
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group fancy-checkbox">
+                <label class="">
+                    <input class="" asp-for="TieneLicenciaB2" />
+                    <span>@Html.DisplayNameFor(model => model.TieneLicenciaB2)</span>
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group fancy-checkbox">
+                <label class="">
+                    <input class="" asp-for="TieneLicenciaB3" />
+                    <span>@Html.DisplayNameFor(model => model.TieneLicenciaB3)</span>
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group fancy-checkbox">
+                <label class="">
+                    <input class="" asp-for="TieneLicenciaD" />
+                    <span>@Html.DisplayNameFor(model => model.TieneLicenciaD)</span>
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group fancy-checkbox">
+                <label class="">
+                    <input class="" asp-for="TieneLicenciaE" />
+                    <span>@Html.DisplayNameFor(model => model.TieneLicenciaE)</span>
+                </label>
+            </div>
+        </div>
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="col-md-12 col-sm-6">
+            <h6>Contrato</h6>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group">
+                <label asp-for="IdPuesto" class="control-label"></label>
+                <select asp-for="IdPuesto" class="form-control show-tick"
+                    asp-items="@(new SelectList(puestos, "Value", "Text"))">
+                </select>
+                <span asp-validation-for="Inicio" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group">
+                <label asp-for="Inicio" class="control-label"></label>
+                <input asp-for="Inicio" class="form-control" />
+                <span asp-validation-for="Inicio" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group">
+                <label asp-for="SalarioDefinidoDia" class="control-label"></label>
+                <input asp-for="SalarioDefinidoDia" class="form-control" placeholder="15600" type="number"/>
+                <span asp-validation-for="SalarioDefinidoDia" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group">
+                <label asp-for="CargoEspecifico" class="control-label"></label>
+                <input asp-for="CargoEspecifico" class="form-control" placeholder="ingeniero residente"/>
+                <span asp-validation-for="CargoEspecifico" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-6">
+            <small id="fileHelp" class="form-text mb-2 mt-0 text-danger">** Campos requeridos.</small>
+        </div>
+        <!-- -------------------------------------------------------------------------- -->
+        <div class="col-12">
+            <input type="submit" value="Añadir" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+
