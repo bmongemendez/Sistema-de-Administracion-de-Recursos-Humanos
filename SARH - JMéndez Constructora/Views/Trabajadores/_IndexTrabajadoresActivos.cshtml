@@ -1,0 +1,87 @@
+@model IEnumerable<SARH___JMéndez_Constructora.Models.Empleados>
+
+<div class="table-responsive">
+    <table class="table table-hover js-basic-example dataTable table-custom spacing5 mb-0">
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cedula)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telefono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ingresocontrato.SingleOrDefault().Inicio)
+                </th>
+                <th>
+                    @Html.DisplayName("Puesto")
+                </th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    <div class="avtar-pic w35 bg-red"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Avatar Name">
+                        @{
+                            string iniciales = (item.Nombre.Substring(0,1)
+                                + item.Apellido1.Substring(0,1)).ToUpper();
+                        }
+                        <span>@iniciales</span>
+                    </div>
+                </td>
+                <td>
+                    <span>
+                    <a class="text-secondary" asp-action="Details" asp-route-id="@item.Id" >
+                        <span>@Html.DisplayFor(modelItem => item.Cedula)</span>
+                    </a>  
+                    </span>      
+                </td>
+                <td>
+                    <div class="font-15">
+                        <a class="text-secondary" asp-action="Details" asp-route-id="@item.Id" >
+                            @Html.DisplayFor(modelItem => item.Nombre) 
+                            @Html.DisplayFor(modelItem => item.Apellido1) 
+                            @Html.DisplayFor(modelItem => item.Apellido2) 
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <span>@Html.DisplayFor(modelItem => item.Telefono)</span>
+                </td>
+                <td>
+                    <div class="font-15">
+                        @Html.DisplayFor(modelItem => item.Ingresocontrato.SingleOrDefault().Inicio)
+                    </div>
+                </td>
+                <td>
+                    <span>@Html.DisplayFor(modelItem => item.Ingresocontrato.SingleOrDefault().IdPuestoNavigation.Nombre)</span>
+                </td>
+                <td class="opacity-3">
+                    <button type="button"
+                            class="btn btn-sm btn-default"
+                            title="Edit"
+                            disabled>
+                        <i class="fa fa-edit"></i>
+                    </button>
+                    <button type="button"
+                            class="btn btn-sm btn-default js-sweetalert"
+                            title="Delete"
+                            data-type="confirm"
+                            disabled>
+                        <i class="fa fa-trash-o text-danger"></i>
+                    </button>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+</div>

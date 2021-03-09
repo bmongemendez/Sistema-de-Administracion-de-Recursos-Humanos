@@ -32,8 +32,18 @@ namespace SARH___JMéndez_Constructora
                 options.UseMySQL(Configuration.GetConnectionString("IdentityConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<IdentityDbContext>();
+            // Contexto de Planilla
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseMySQL(Configuration.GetConnectionString("ApplicationConnection")));
+            //dotnet ef dbcontext scaffold "server=localhost;database=sahr.application;user=root;password=fidelitas" MySql.Data.EntityFrameworkCore -o Models -t empleados  -d --context-dir Data -c ApplicationDbContext -f
             services.AddControllersWithViews();
-            services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddRazorPages()
+                .AddMvcOptions(options => {
+                        options.MaxModelValidationErrors = 50;
+                        options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
+                            _ => "El campo no es valido.");
+                    })
+                .AddRazorRuntimeCompilation();
             services.AddProgressiveWebApp();
         }
 
