@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using SARH___JMéndez_Constructora.Models 
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -124,16 +131,15 @@
                     <div id="navbar-menu">
                         <ul class="nav navbar-nav d-flex flex-row">
                             <li class="ml-auto">
-                                <img src="~/img/logoMinimalPNG.png"
-                                     alt="Logo JMéndez Constructora"
-                                     class="d-inline-block navbar-right__image" />
+                                <div class="d-inline-block navbar-right__image"></div>
                             </li>
                             <li>
-                                <a href="https://oculux.nsdbytes.com/laravel/public/authentication/login"
-                                   class="icon-menu">
-                                    <i class="icon-power"></i>
-                                    <span>Salir</span>
-                                </a>
+                                <form class="form-inline h-100" asp-controller="Account" asp-action="Logout" >
+                                    <button type="submit" class="btn icon-menu">
+                                        <i class="icon-power"></i>
+                                        <span>Logout</span>
+                                    </button>
+                                </form>
                             </li>
                         </ul>
                     </div>
@@ -144,78 +150,102 @@
             </div>
         </nav>
         @* Sidebar *@
-        <div id="left-sidebar" class="sidebar">
-            <div class="navbar-brand">
-                <button type="button"
-                        class="btn-toggle-offcanvas btn btn-sm float-right">
-                    <i class="lnr lnr-menu fa fa-chevron-circle-left"></i>
-                </button>
-                <a asp-area="" asp-controller="Tablero" asp-action="Index"><span class="navbar-brand__text">SARH</span></a>
-            </div>
-            <div class="user-account">
-                <div class="user_div">
-                    <img src="~/images/user.png"
-                         class="user-photo"
-                         alt="Foto perfil Usuario" />
-                </div>
-                <div class="dropdown">
-                    <span>Bienvenido,</span>
-                    <a href="javascript:void(0);"
-                       class="dropdown-toggle user-name"
-                       data-toggle="dropdown"><strong>Greivin Méndez</strong></a>
-                    <ul class="dropdown-menu dropdown-menu-right account vivify flipInY">
-                        <li>
-                            <a href="../sistema/perfilUsuario.html"><i class="icon-user"></i>Mi Perfil</a>
-                        </li>
-                        <li>
-                            <a href="../sistema/ajustesUsuario.html"><i class="icon-settings"></i>Ajustes</a>
-                        </li>
-                        <li>
-                            <a href="../autenticacion/inicioSesion.html"><i class="icon-power"></i>Salir</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <nav id="left-sidebar-nav" class="sidebar-nav left-sidebar">
-                <ul id="main-menu" class="metismenu">
-                    <li class="sidebar__item @((string)ViewData["sidebarActive"] == "Tablero" ? "active" : "")">
-                        <a class="sidebar__link" asp-area="" asp-controller="Tablero" asp-action="Index">
-                            <i class="icon-screen-desktop sidebar__icon"></i><span class="left-sidebar__span">Tablero</span>
-                        </a>
-                    </li>
-                    <li class="sidebar__item @((string)ViewData["sidebarActive"] == "Trabajadores" ? "active" : "")">
-                        <a class="sidebar__link" asp-area="" asp-controller="Trabajadores" asp-action="Index">
-                            <i class="icon-users sidebar__icon"></i><span class="left-sidebar__span">Trabajadores</span>
-                        </a>
-                    </li>
-                    <li class="sidebar__item @((string)ViewData["sidebarActive"] == "Pagos" ? "active" : "")">
-                        <a class="sidebar__link" asp-area="" asp-controller="Pagos" asp-action="Index">
-                            <i class="icon-credit-card sidebar__icon"></i><span class="left-sidebar__span">Pagos</span>
-                        </a>
-                    </li>
-                    <li class="sidebar__item @((string)ViewData["sidebarActive"] == "Calendario" ? "active" : "")">
-                        <a class="sidebar__link" asp-area="" asp-controller="Calendario" asp-action="Index">
-                            <i class="icon-clock sidebar__icon"></i><span class="left-sidebar__span">Calendario</span>
-                        </a>
-                    </li>
-                    <li class="sidebar__item @((string)ViewData["sidebarActive"] == "Rendimiento" ? "active" : "")">
-                        <a class="sidebar__link" asp-area="" asp-controller="Rendimiento" asp-action="Index">
-                            <i class="icon-docs sidebar__icon"></i><span class="left-sidebar__span">Rendimiento</span>
-                        </a>
-                    </li>
-                    <li class="sidebar__item @((string)ViewData["sidebarActive"] == "Usuarios" ? "active" : "")">
-                        <a class="sidebar__link" asp-area="" asp-controller="Usuarios" asp-action="Index">
-                            <i class="icon-users sidebar__icon"></i><span class="left-sidebar__span">Usuarios</span>
-                        </a>
-                    </li>
-                    <li class="sidebar__item @((string)ViewData["sidebarActive"] == "Reportes" ? "active" : "")">
-                        <a class="sidebar__link" asp-area="" asp-controller="Reportes" asp-action="Index">
-                            <i class="icon-folder sidebar__icon"></i><span class="left-sidebar__span">Reportes</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+    <div id="left-sidebar" class="sidebar">
+        <div class="navbar-brand">
+            <button type="button"
+                    class="btn-toggle-offcanvas btn btn-sm float-right">
+                <i class="lnr lnr-menu fa fa-chevron-circle-left"></i>
+            </button>
+            <a asp-area="" asp-controller="Tablero" asp-action="Index"><span class="navbar-brand__text">SARH</span></a>
         </div>
+        <div class="user-account">
+            <div class="user_div">
+                <img src="~/images/user.png"
+                     class="user-photo"
+                     alt="Foto perfil Usuario" />
+            </div>
+            <div class="dropdown">
+                <span>Bienvenido,</span>
+                <a href="javascript:void(0);"
+                   class="@*dropdown-toggle*@ user-name"
+                   data-toggle="dropdown"><strong>@User.Identity.Name</strong></a>
+                @*<ul class="dropdown-menu dropdown-menu-right account vivify flipInY">
+                    <li>
+                        <a href="../sistema/perfilUsuario.html"><i class="icon-user"></i>Mi Perfil</a>
+                    </li>
+                    <li>
+                        <a href="../sistema/ajustesUsuario.html"><i class="icon-settings"></i>Ajustes</a>
+                    </li>
+                    <li>
+                        <a href="../autenticacion/inicioSesion.html"><i class="icon-power"></i>Salir</a>
+                    </li>
+                </ul>*@
+            </div>
+        </div>
+        @{
+            if (User.IsInRole("Admin"))
+            {
+                string[] actionsAllowed = new string[] { "tablero", "trabajadores", "pagos", "calendario", "rendimiento", "usuarios", "reportes" };
+
+            } else if (User.IsInRole("RRHH"))
+            {
+                string[] actionsAllowed = new string[] { "trabajadores", "pagos" };
+
+            } else if (User.IsInRole("Gerencia"))
+            {
+                string[] actionsAllowed = new string[] { "tablero", "rendimiento", "reportes" };
+
+            }
+
+            //if (stringArray.Any(stringToCheck.Contains))
+        }
+        <nav id="left-sidebar-nav" class="sidebar-nav left-sidebar">
+            <ul id="main-menu" class="metismenu">
+                <li class="sidebar__item @((string)ViewData["sidebarActive"] == "Tablero" ? "active" : "")">
+                    <a class="btn text-left sidebar__link"
+                       asp-area="" asp-controller="Tablero" asp-action="Index">
+                        <i class="icon-screen-desktop sidebar__icon"></i><span class="left-sidebar__span">Tablero</span>
+                    </a>
+                </li>
+                <li class="sidebar__item  @((string)ViewData["sidebarActive"] == "Trabajadores" ? "active" : "")">
+                    <a class="btn text-left sidebar__link"
+                       asp-area="" asp-controller="Trabajadores" asp-action="Index">
+                        <i class="icon-users sidebar__icon"></i><span class="left-sidebar__span">Trabajadores</span>
+                    </a>
+                </li>
+                <li class="sidebar__item @((string)ViewData["sidebarActive"] == "Pagos" ? "active" : "")">
+                    <a class="btn text-left sidebar__link " 
+                       asp-area="" asp-controller="Pagos" asp-action="Index">
+                        <i class="icon-credit-card sidebar__icon"></i><span class="left-sidebar__span">Pagos</span>
+                    </a>
+                </li>
+                <li class="sidebar__item @((string)ViewData["sidebarActive"] == "Calendario" ? "active" : "")">
+                    <a class="btn text-left sidebar__link" 
+                       asp-area="" asp-controller="Calendario" asp-action="Index">
+                        <i class="icon-clock sidebar__icon"></i><span class="left-sidebar__span">Calendario</span>
+                    </a>
+                </li>
+                <li class="sidebar__item  @((string)ViewData["sidebarActive"] == "Rendimiento" ? "active" : "")">
+                    <a class="btn text-left sidebar__link" 
+                       asp-area="" asp-controller="Rendimiento" asp-action="Index">
+                        <i class="icon-docs sidebar__icon"></i><span class="left-sidebar__span">Rendimiento</span>
+                    </a>
+                </li>
+                <li class="sidebar__item  @((string)ViewData["sidebarActive"] == "Usuarios" ? "active" : "")">
+                    <a class="btn text-left sidebar__link" 
+                       asp-area="" asp-controller="Usuarios" asp-action="Index">
+                        <i class="icon-users sidebar__icon"></i><span class="left-sidebar__span">Usuarios</span>
+                    </a>
+                </li>
+                <li class="sidebar__item   @((string)ViewData["sidebarActive"] == "Reportes" ? "active" : "")">
+                    <a class="btn text-left  sidebar__link" 
+                       asp-area="" asp-controller="Reportes" asp-action="Index">
+                        <i class="icon-folder sidebar__icon"></i><span class="left-sidebar__span">Reportes</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
         @* Main Content *@
         <div id="main-content">
             @RenderBody()
@@ -232,5 +262,6 @@
     <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js"
             data-cf-settings="c3cdcb1f54af327e782883c8-|49"
             defer=""></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

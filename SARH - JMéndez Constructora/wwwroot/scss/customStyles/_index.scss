@@ -147,10 +147,19 @@
 .navbar-right__image {
 	padding: 10px 0 !important;
 	height: 60px !important;
-	width: auto !important;
+	width: 130px !important;
 	border-radius: 10px;
-
+	background-image: url("../../img/logoMinimalLight.png");
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
 	@media screen and (max-width: 300px) {
 		display: none !important;
+	}
+}
+
+body.light_version {
+	.navbar-right__image {
+		background-image: url("../../img/logoMinimalDark.jpg");
 	}
 }

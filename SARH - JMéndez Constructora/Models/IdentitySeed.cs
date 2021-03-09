@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SARH___JMéndez_Constructora.Data
+namespace SARH___JMéndez_Constructora.Models
 {
     public static class IdentitySeed
     {

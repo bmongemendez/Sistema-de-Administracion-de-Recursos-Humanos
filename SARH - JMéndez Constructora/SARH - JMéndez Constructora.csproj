@@ -5,6 +5,7 @@
     <UserSecretsId>aspnet-SARH___JMéndez_Constructora-B1D17D50-B401-4BDE-9A5F-40BDF5B18F69</UserSecretsId>
     <RootNamespace>SARH___JMéndez_Constructora</RootNamespace>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <StartupObject>SARH___JMéndez_Constructora.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

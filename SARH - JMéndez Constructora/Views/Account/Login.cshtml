@@ -1,0 +1,119 @@
+﻿@using System.Collections.Generic
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Identity
+@using SARH___JMéndez_Constructora.Models.AccountViewModels 
+@model LoginViewModel
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    Layout = null;
+}
+
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login - SARH</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="icon"
+          href="~/favicon.ico"
+          type="image/x-icon" />
+    <link rel="apple-touch-icon" href="~/apple-touch-icon.png" />
+    <meta name="description" content="Sistema de Administración de Recursos Humanos - SARH" />
+    <meta name="author" content="Laravel" />
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+          href="~/lib/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet"
+          href="~/lib/fullcalendar/fullcalendar.min.css" />
+    <link rel="stylesheet" href="~/css/main.min.css" />
+</head>
+<body class="theme-cyan font-raleway">
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+            <div class="bar4"></div>
+            <div class="bar5"></div>
+        </div>
+    </div>
+    <div class="auth-main particles_js">
+        <div class="auth_div vivify popIn">
+            <div class="auth_brand">
+                <a class="navbar-brand" href="javascript:void(0);">
+                    <img src="../../assets/img/..."
+                         width="30"
+                         height="30"
+                         class="d-inline-block align-top mr-2"
+                         alt="" />JMéndez Constructora S.A
+                </a>
+            </div>
+            <div class="card">
+                <div class="body">
+                    <p class="lead">Iniciar Sesión</p>
+                    <form asp-controller="Account" asp-action="Login"  method="post" class="form-auth-small m-t-20" role="form">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="UserName" for="signin-email" class="control-label sr-only">Email</label>
+                            <input asp-for="UserName"
+                                   class="form-control round"
+                                   id="signin-email"
+                                   placeholder="Email" />
+                            <span asp-validation-for="UserName" class="text-danger d-block p-1 text-left"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Password" for="signin-password" class="control-label sr-only">Contraseña</label>
+                            <input asp-for="Password" type="password"
+                                   class="form-control round"
+                                   id="signin-password"
+                                   placeholder="Contraseña" />
+                            <span asp-validation-for="Password" class="text-danger d-block p-1 text-left"></span>
+
+                        </div>
+                        <div class="form-group m-0 clearfix d-flex justify-content-start align-items-center">
+                            <div class="col-md-offset-2 col-md-10 p-1">
+                                <div class="checkbox d-flex justify-content-start align-items-center" >
+                                    <label asp-for="RememberMe">
+                                        <input asp-for="RememberMe" type="checkbox"/>
+                                        @Html.DisplayNameFor(m => m.RememberMe)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m-0">
+                            <div class=" col-md-offset-2 col-md-10 mx-auto">
+                                <button type="submit" class="btn btn-default m-0 ">Iniciar Sesión</button>
+                            </div>
+                        </div>
+                        @*<div class="bottom">
+                            <span class="helper-text m-b-10">
+                                <i class="fa fa-lock"></i>
+                                    <a asp-action="ForgotPassword">Olvidó su contraseña?</a>
+                            </span>
+                        </div>*@
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="particles-js"></div>
+    </div>
+    <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js"
+            data-cf-settings="421b55c22a708589a692a7aa-|49"
+            defer=""></script>
+    <script src="~/lib/jquery/jquery-3.3.1.min.js"></script>
+    <script src="~/lib/bootstrap/js/popper.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <script type="421b55c22a708589a692a7aa-text/javascript" src="~/bundles/mainscripts.bundle.js"></script>
+    <script src="~/bundles/libscripts.bundle.js"></script>
+    <script src="~/bundles/vendorscripts.bundle.js"></script>
+</body>
+</html>

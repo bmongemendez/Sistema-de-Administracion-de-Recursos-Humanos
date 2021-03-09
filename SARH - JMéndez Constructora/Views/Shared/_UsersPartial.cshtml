@@ -1,0 +1,76 @@
+﻿
+<table id="table">
+    <thead>
+        <tr>
+            <th>
+                @ViewBag.UserName
+
+            </th>
+            <th>
+                @ViewBag.IsDeleted
+
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<div class="table-responsive">
+    <table class="table table-hover table-custom spacing8">
+        <thead>
+            <tr>
+                <th class="w60">#</th>
+                <th>Nombre</th>
+                <th class="w100">Rol</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Users)
+            {
+                <tr>
+                    <td>
+                        <div class="avtar-pic w35 bg-blue"
+                             data-toggle="tooltip"
+                             data-placement="top"
+                             title="Avatar Name">
+                            <span>@( 
+                                item.UserName.Length >= 2
+                                ? item.UserName.Substring(0, 2)
+                                : item.UserName
+                            )</span>
+                        </div>
+                    </td>
+                    <td>
+                        <h6 class="mb-0">@item.UserName</h6>
+                        <span>
+                            <a href="/cdn-cgi/l/email-protection"
+                               class="__cf_email__"
+                               data-cfemail="f3929f968b929d979681b3949e929a9fdd909c9e">[email&#160;protected]</a>
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge badge-success">Rol</span>
+                    </td>
+                    <td class="text-right">
+                        <a class="btn btn-sm btn-default" href="@Url.Action("SetPassword", "Admin", new { id = item.Id,  userName = item.UserName})">
+                            <i class="fa fa-edit">
+                            </i>
+                        </a>
+                            <form class="form-inline d-inline" asp-controller="Admin" asp-action="Delete" asp-route-returnurl="@item.Id">
+                                @*@Html.Hidden("id", "hola")*@
+                                <button type="submit"
+                                        class="btn btn-sm btn-default js-sweetalert  @(User.Identity.Name == item.UserName ? "shadow-none" : "") " 
+                                        @(User.Identity.Name == item.UserName ? "disabled" : "")
+                                                title="Delete"
+                                        data-type="confirm">
+                                    <i class="fa fa-trash-o text-danger"></i>
+                                </button>
+                            </form> 
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
