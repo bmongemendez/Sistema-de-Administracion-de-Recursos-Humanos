@@ -1,0 +1,80 @@
+@model BasicFormViewModel
+@{
+    Layout = "_DetailsLayout.cshtml"; 
+}
+
+<div class="card">
+    <div class="header">
+        <h2>Informacion Básica</h2>
+    </div>
+    <div class="body">
+        <form asp-action="Basic" method="POST">
+            <input type="hidden" asp-for="IdEmpleado">
+            <div class="row clearfix">
+                <div asp-validation-summary="ModelOnly" class="col-md-12 col-sm-6 text-danger"></div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Cedula" class="control-label"></label>
+                        <input asp-for="Cedula" class="form-control" placeholder="1-1111-1111"/>
+                        <span asp-validation-for="Cedula" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Nombre" class="control-label"></label>
+                        <input asp-for="Nombre" class="form-control" placeholder="Lorem"/>
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Apellido1" class="control-label"></label>
+                        <input asp-for="Apellido1" class="form-control" placeholder="Ipsum"/>
+                        <span asp-validation-for="Apellido1" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Apellido2" class="control-label"></label>
+                        <input asp-for="Apellido2" class="form-control" placeholder="Ipsum"/>
+                        <span asp-validation-for="Apellido2" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label asp-for="FechaNacimiento" class="control-label"></label>
+                        <input asp-for="FechaNacimiento" class="form-control" />
+                        <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Telefono" class="control-label"></label>
+                        <input asp-for="Telefono" class="form-control" placeholder="409040000"/>
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label asp-for="TelefonoEmergencia" class="control-label"></label>
+                        <input asp-for="TelefonoEmergencia" class="form-control" placeholder="409040000"/>
+                        <span asp-validation-for="TelefonoEmergencia" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label asp-for="ContactoEmergencia" class="control-label"></label>
+                        <input asp-for="ContactoEmergencia" class="form-control" placeholder="Sans Serif"/>
+                        <span asp-validation-for="ContactoEmergencia" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-6">
+                    <small id="fileHelp" class="form-text mb-2 mt-0 text-danger">** Campos requeridos.</small>
+                </div>
+                <div class="col-12">
+                    <input type="submit" value="Actualizar" class="btn btn-round btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

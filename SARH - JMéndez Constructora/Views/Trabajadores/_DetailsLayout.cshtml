@@ -1,0 +1,87 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Detalles del trabajador";
+    ViewData["sidebarActive"] = "Trabajadores";
+    PartialDetailsViewModel trabajador = (PartialDetailsViewModel)ViewData["Empleado"];
+    var statusMessage = ViewData["StatusMessage"];
+}
+
+<div class="container-fluid">
+    <div class="block-header">
+         @if (statusMessage != null)
+        {
+            if (!statusMessage.ToString().Equals(""))
+            {
+                <div class="alert alert-dismissible bg-info text-white" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <i class="fa fa-info-circle"></i> Informacion: @ViewData["StatusMessage"]
+                </div>
+            }
+        }
+        <div class="row clearfix">
+            <div class="col-md-6 col-sm-12">
+                <h1>@ViewData["Title"]</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a asp-action="Index"
+                                asp-controller="Tablero">
+                                <i class="icon-home"></i>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item"><a asp-action="Index">Trabajadores</a></li>
+                        <li class="breadcrumb-item active">Detalles</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-lg-4 col-md-12">
+            <div class="card">
+                <div class="body">
+                    <div class="media mb-0">
+                        <div class="avtar-pic w35 bg-red mr-3"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Avatar Name">
+                            @{
+                                string iniciales = (trabajador.Nombre.Substring(0,1)
+                                    + trabajador.Apellido1.Substring(0,1)).ToUpper();
+                            }
+                            <span>@iniciales</span>
+                        </div>
+                        <div class="media-body">
+                            <h5 class="m-0">@Html.Raw(trabajador.Nombre + " " + trabajador.Apellido1)</h5>
+                            @{
+                                string rol;
+                                if (string.IsNullOrEmpty(rol =  trabajador.Puesto))
+                                { rol = "Rol sin asignar"; }
+                                //else
+                                //{ trabajador.puestos.Where(e => e.Value == trabajador.ingresoTrabajador.IdPuesto); }  
+                            }
+                            <p class="text-muted mb-0">@Html.Raw(rol.Replace("*",""))</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <ul class="list-group">
+
+
+                    <a class="list-group-item list-group-item-action @{if(ViewContext.RouteData.Values["action"].Equals("Basic") || ViewContext.RouteData.Values["action"].Equals("Details")) @Html.Raw("active");}" 
+                            asp-action="Basic" asp-route-id="@trabajador.Id">Informacion Básica</a>
+                    <a class="list-group-item list-group-item-action @{if(ViewContext.RouteData.Values["action"].Equals("EdccnLicncs")) @Html.Raw("active");}" 
+                            asp-action="EdccnLicncs" asp-route-id="@trabajador.Id">Educacion y Licencias</a>
+                    <a class="list-group-item list-group-item-action @{if(ViewContext.RouteData.Values["action"].Equals("Contract")) @Html.Raw("active");}" 
+                            asp-action="Contract" asp-route-id="@trabajador.Id">Contrato</a>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-12">
+            @RenderBody();
+        </div>
+    </div>
+</div>

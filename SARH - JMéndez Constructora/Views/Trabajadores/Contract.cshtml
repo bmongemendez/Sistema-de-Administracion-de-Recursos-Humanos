@@ -1,0 +1,60 @@
+@model ContractFormViewModel
+@{
+    Layout = "_DetailsLayout.cshtml"; 
+    IEnumerable<SelectListItem> puestos = 
+        (IEnumerable<SelectListItem>)ViewData["puestos"];
+}
+<div class="card">
+    <div class="header">
+        <h2>Contrato</h2>
+    </div>
+    <div class="body">
+            <form asp-action="Contract">
+                <input type="hidden" asp-for="IdEmpleado">
+                <div class="row clearfix">
+                    <div asp-validation-summary="ModelOnly" class="col-md-12 col-sm-6 text-danger"></div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label asp-for="IdPuesto" class="control-label"></label>
+                            @{
+                                SelectListItem currentItem = new SelectListItem()
+                                { Value = Model.IdPuesto }; 
+                            }
+                            <select asp-for="IdPuesto" class="form-control show-tick"
+                             asp-items="@(new SelectList(puestos, "Value", "Text"))">
+                            </select>
+                            <span asp-validation-for="Inicio" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label asp-for="Inicio" class="control-label"></label>
+                            <input asp-for="Inicio" class="form-control" />
+                            <span asp-validation-for="Inicio" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label asp-for="SalarioDefinidoDia" class="control-label"></label>
+                            <input asp-for="SalarioDefinidoDia" class="form-control" placeholder="15600" type="number"/>
+                            <span asp-validation-for="SalarioDefinidoDia" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label asp-for="CargoEspecifico" class="control-label"></label>
+                            <input asp-for="CargoEspecifico" class="form-control" placeholder="ingeniero residente"/>
+                            <span asp-validation-for="CargoEspecifico" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-6">
+                        <small id="fileHelp" class="form-text mb-2 mt-0 text-danger">** Campos requeridos.</small>
+                    </div>
+                    <!-- -------------------------------------------------------------------------- -->
+                    <div class="col-12">
+                        <input type="submit" value="Actualizar" class="btn btn-round btn-primary" />
+                    </div>
+                </div>
+            </form>
+    </div>
+</div>
