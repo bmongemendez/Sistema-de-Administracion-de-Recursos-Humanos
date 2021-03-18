@@ -140,8 +140,8 @@ CREATE TABLE IF NOT EXISTS `sahr.application`.`FinContrato` (
   `cesantia` DECIMAL(13,3) NULL,
   `vacaciones` DECIMAL(13,3) NULL,
   `preaviso` DECIMAL(13,3) NULL,
-  INDEX `idInicioContratoFN_idx` (`idInicioContrato` ASC) VISIBLE,
   PRIMARY KEY (`idInicioContrato`),
+  INDEX `idInicioContratoFN_idx` (`idInicioContrato` ASC) VISIBLE,
   CONSTRAINT `idInicioContratoFN`
     FOREIGN KEY (`idInicioContrato`)
     REFERENCES `sahr.application`.`IngresoContrato` (`id`)
@@ -186,10 +186,16 @@ CREATE TABLE IF NOT EXISTS `sahr.application`.`Pagos` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `idEmpleado` INT NOT NULL,
   `idContrato` INT NOT NULL,
+  `idTiempo` INT NOT NULL,
   `horasNormal` DECIMAL(7,3) NOT NULL,
   `horasExtra` DECIMAL(7,3) NULL DEFAULT 0,
+  `diaDescanso` DECIMAL(10,3) NULL DEFAULT 0,
+  `salarioNormal` DECIMAL(13,3) NOT NULL DEFAULT 0,
+  `salarioExtras` DECIMAL(13,3) NULL DEFAULT 0,
+  `salarioDiaDescanso` DECIMAL(13,3) NULL DEFAULT 0,
   `salarioBruto` DECIMAL(13,3) NOT NULL DEFAULT 0,
   `deducciones` DECIMAL(13,3) NULL DEFAULT 0,
+  `cuentasPorPagar` DECIMAL(13,3) NULL DEFAULT 0,
   `salarioNeto` DECIMAL(13,3) NOT NULL DEFAULT 0,
   `patronoCCSS` DECIMAL(13,3) NOT NULL DEFAULT 0,
   `patronoROtrasInstituciones` DECIMAL(13,3) NOT NULL DEFAULT 0,
@@ -201,6 +207,7 @@ CREATE TABLE IF NOT EXISTS `sahr.application`.`Pagos` (
   INDEX `idEmpleadoP_idx` (`idEmpleado` ASC) VISIBLE,
   INDEX `idContratoP_idx` (`idContrato` ASC) VISIBLE,
   INDEX `idUserPagos_idx` (`userName` ASC) VISIBLE,
+  INDEX `idTiempoPagos_idx` (`idTiempo` ASC) VISIBLE,
   CONSTRAINT `idEmpleadoPagos`
     FOREIGN KEY (`idEmpleado`)
     REFERENCES `sahr.application`.`Empleados` (`id`)
@@ -214,6 +221,11 @@ CREATE TABLE IF NOT EXISTS `sahr.application`.`Pagos` (
   CONSTRAINT `userNamePagos`
     FOREIGN KEY (`userName`)
     REFERENCES `sahr.application`.`AspNetUsersRef` (`userName`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `idTiempoPagos`
+    FOREIGN KEY (`idTiempo`)
+    REFERENCES `sahr.application`.`Tiempo` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -400,3 +412,19 @@ insert into puestos (siglas, nombre, salarioMes, salarioDia, salarioHora, salari
 insert into puestos (siglas, nombre, salarioMes, salarioDia, salarioHora, salarioHoraJm, salarioDiaJm, salarioMesJm) values ('TOC', 'Tractorista (oruga o llanta)', 329329.28, 11761.76, 1470.22, 1617.24, 12937.94, 51751.74);
 insert into puestos (siglas, nombre, salarioMes, salarioDia, salarioHora, salarioHoraJm, salarioDiaJm, salarioMesJm) values ('TOC', 'Vagonetero', 329329.28, 11761.76, 1470.22, 1617.24, 12937.94, 51751.74);
 commit;
+
+insert into `sahr.application`.`deducciones` (`grupo`, `concepto`, `patrono`, `trabajador`) values ('A', 'SEM', '9.25', '5.50');
+insert into `sahr.application`.`deducciones` (`grupo`, `concepto`, `patrono`, `trabajador`) values ('A', 'IVM', '5.25', '4');
+insert into `sahr.application`.`deducciones` (`grupo`, `concepto`, `patrono`) values ('B', 'Cuota Banco Popular', '0.25');
+insert into `sahr.application`.`deducciones` (`grupo`, `concepto`, `patrono`) values ('B', 'Asignaciones Familiares', '5');
+insert into `sahr.application`.`deducciones` (`grupo`, `concepto`, `patrono`) values ('B', 'IMAS', '0.50');
+insert into `sahr.application`.`deducciones` (`grupo`, `concepto`, `patrono`) values ('B', 'INA', '1.50');
+insert into `sahr.application`.`deducciones` (`grupo`, `concepto`, `patrono`) values ('C', 'Aporte Patrono Banco Popular', '0.25');
+insert into `sahr.application`.`deducciones` (`grupo`, `concepto`, `patrono`) values ('C', 'Fondo Capitalizacion Laboral', '3');
+insert into `sahr.application`.`deducciones` (`grupo`, `concepto`, `patrono`) values ('C', 'Fondo de Pensiones Complementarias', '0.50');
+insert into `sahr.application`.`deducciones` (`grupo`, `concepto`, `trabajador`) values ('C', 'Aporte Trabajador Banco Popular', '1');
+insert into `sahr.application`.`deducciones` (`grupo`, `concepto`, `patrono`) values ('C', 'INS', '1');
+commit;
+
+-- insert into `fincontrato` (`idInicioContrato`,`fechaFin`,`preavisoEjercido`,`diasPendientesPreaviso`,`motivoSalida`,`saldoVacaciones`,`aguinaldo`,`cesantia`,`vacaciones`,`preaviso`) VALUES (7,'2022-12-01',1,0,0,10,30000.000,30000.000,100.000,0.000);
+-- commit;
