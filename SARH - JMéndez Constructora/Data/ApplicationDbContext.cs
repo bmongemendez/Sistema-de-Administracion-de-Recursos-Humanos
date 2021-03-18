@@ -20,13 +20,27 @@ namespace SARH___JMéndez_Constructora.Data
         {
         }
 
+        public virtual DbSet<Deducciones> Deducciones { get; set; }
         public virtual DbSet<Empleados> Empleados { get; set; }
         public virtual DbSet<Fincontrato> Fincontrato { get; set; }
         public virtual DbSet<Ingresocontrato> Ingresocontrato { get; set; }
+        public virtual DbSet<Pagos> Pagos { get; set; }
         public virtual DbSet<Puestos> Puestos { get; set; }
+        public virtual DbSet<Tiempo> Tiempo { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
+
+            modelBuilder.Entity<Deducciones>(entity =>
+            {
+                entity.Property(e => e.Grupo).IsFixedLength();
+
+                entity.Property(e => e.Patrono).HasDefaultValueSql("'0.000'");
+
+                entity.Property(e => e.Trabajador).HasDefaultValueSql("'0.000'");
+            });
+
             modelBuilder.Entity<Empleados>(entity =>
             {
                 entity.HasIndex(e => e.Cedula)
@@ -61,8 +75,7 @@ namespace SARH___JMéndez_Constructora.Data
                     .HasName("PRIMARY");
 
                 entity.HasIndex(e => e.IdInicioContrato)
-                    .HasName("idInicioContrato_UNIQUE")
-                    .IsUnique();
+                    .HasName("idInicioContratoFN_idx");
 
                 entity.Property(e => e.DiasPendientesPreaviso).HasDefaultValueSql("'0'");
 
@@ -101,6 +114,80 @@ namespace SARH___JMéndez_Constructora.Data
                     .HasConstraintName("idPuestoIC");
             });
 
+            modelBuilder.Entity<Pagos>(entity =>
+            {
+                entity.HasIndex(e => e.IdContrato)
+                    .HasName("idContratoP_idx");
+
+                entity.HasIndex(e => e.IdEmpleado)
+                    .HasName("idEmpleadoP_idx");
+
+                entity.HasIndex(e => e.IdTiempo)
+                    .HasName("idTiempoPagos_idx");
+
+                entity.HasIndex(e => e.UserName)
+                    .HasName("idUserPagos_idx");
+
+                entity.Property(e => e.CuentasPorPagar).HasDefaultValueSql("'0.000'");
+
+                entity.Property(e => e.Deducciones).HasDefaultValueSql("'0.000'");
+
+                entity.Property(e => e.DiaDescanso).HasDefaultValueSql("'0.000'");
+
+                entity.Property(e => e.HorasExtra).HasDefaultValueSql("'0.000'");
+
+                entity.Property(e => e.SalarioDiaDescanso).HasDefaultValueSql("'0.000'");
+
+                entity.Property(e => e.SalarioExtras).HasDefaultValueSql("'0.000'");
+
+                entity.HasOne(d => d.IdContratoNavigation)
+                    .WithMany(p => p.Pagos)
+                    .HasForeignKey(d => d.IdContrato)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("idContratoPagos");
+
+                entity.HasOne(d => d.IdEmpleadoNavigation)
+                    .WithMany(p => p.Pagos)
+                    .HasForeignKey(d => d.IdEmpleado)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("idEmpleadoPagos");
+
+                entity.HasOne(d => d.IdTiempoNavigation)
+                    .WithMany(p => p.Pagos)
+                    .HasForeignKey(d => d.IdTiempo)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("idTiempoPagos");
+                    
+            });
+
+            modelBuilder.Entity<Tiempo>(entity =>
+            {
+                entity.HasIndex(e => e.IdContrato)
+                    .HasName("idContratoT_idx");
+
+                entity.HasIndex(e => e.IdEmpleado)
+                    .HasName("idEmpeladoT_idx");
+
+                entity.Property(e => e.EsIncapacidad).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.EsInjustificado).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.EsLaborado).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.EsVacaciones).HasDefaultValueSql("'0'");
+
+                entity.HasOne(d => d.IdContratoNavigation)
+                    .WithMany(p => p.Tiempo)
+                    .HasForeignKey(d => d.IdContrato)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("idContratoT");
+
+                entity.HasOne(d => d.IdEmpleadoNavigation)
+                    .WithMany(p => p.Tiempo)
+                    .HasForeignKey(d => d.IdEmpleado)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("idEmpeladoT");
+            });
 
             OnModelCreatingPartial(modelBuilder);
         }
