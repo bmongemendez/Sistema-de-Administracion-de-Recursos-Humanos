@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SARH___JMéndez_Constructora.ViewModels
+namespace SARH___JMéndez_Constructora.Models.TrabajadoresViewModels
 {
     public class Edcn_n_LicncFormViewModel
     {

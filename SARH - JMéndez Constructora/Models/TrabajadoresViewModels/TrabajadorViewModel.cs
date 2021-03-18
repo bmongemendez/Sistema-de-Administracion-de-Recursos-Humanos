@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace SARH___JMéndez_Constructora.ViewModels
+namespace SARH___JMéndez_Constructora.Models.TrabajadoresViewModels
 {
     public class TrabajadorViewModel
     {

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SARH___JMéndez_Constructora.Data;
 using SARH___JMéndez_Constructora.Models;
-using SARH___JMéndez_Constructora.ViewModels;
+using SARH___JMéndez_Constructora.Models.TrabajadoresViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
