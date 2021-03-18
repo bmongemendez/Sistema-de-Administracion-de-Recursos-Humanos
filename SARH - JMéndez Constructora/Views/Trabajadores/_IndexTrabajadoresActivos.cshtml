@@ -66,12 +66,11 @@
                     <span>@Html.DisplayFor(modelItem => item.Ingresocontrato.SingleOrDefault().IdPuestoNavigation.Nombre)</span>
                 </td>
                 <td class="opacity-3">
-                    <button type="button"
-                            class="btn btn-sm btn-default"
-                            title="Edit"
-                            disabled>
+                    <a asp-action="Details" 
+                        asp-route-id="@item.Id"
+                        class="btn btn-sm btn-default">
                         <i class="fa fa-edit"></i>
-                    </button>
+                    </a>
                     <button type="button"
                             class="btn btn-sm btn-default js-sweetalert"
                             title="Delete"

@@ -131,10 +131,13 @@ namespace SARH___JMéndez_Constructora.Controllers
             if (!ModelState.IsValid)
             return View(model);
             
+            if(!ContractExist(model.IdEmpleado))
+            if(AddContractOnly(model) == 1)
+            return RedirectToAction(nameof(Contract), new { id = model.IdEmpleado, Message = TrabajadoresMessageId.UpdateEmployeeSuccess });
+
             if (UpdateContractTrabajador(model) == 1)
-            {
-                return RedirectToAction(nameof(Contract), new { id = model.IdEmpleado, Message = TrabajadoresMessageId.UpdateEmployeeSuccess });
-            }
+            return RedirectToAction(nameof(Contract), new { id = model.IdEmpleado, Message = TrabajadoresMessageId.UpdateEmployeeSuccess });
+            
             return RedirectToAction(nameof(Contract), new { Message = TrabajadoresMessageId.Error});
         }
         private IActionResult ReturnCurrentTrabajador(int id, string actionName)
@@ -433,7 +436,8 @@ namespace SARH___JMéndez_Constructora.Controllers
             try
             {
                 Ingresocontrato aux = _appContext.Ingresocontrato
-                    .Single(i => i.IdEmpleado == model.IdEmpleado);
+                    .Single(i => (i.IdEmpleado == model.IdEmpleado 
+                        && i.Fincontrato == null));
                 
                 aux.Inicio = model.Inicio;
                 aux.IdPuesto = int.Parse(model.IdPuesto);
@@ -449,6 +453,32 @@ namespace SARH___JMéndez_Constructora.Controllers
                 return -1;
                 throw;
             }
+        }
+        private int AddContractOnly(ContractFormViewModel model)
+        {
+            try
+            {
+                _appContext.Ingresocontrato.Add(new Ingresocontrato {
+                        IdEmpleado = model.IdEmpleado,
+                        Inicio = model.Inicio,
+                        IdPuesto = int.Parse(model.IdPuesto),
+                        SalarioDefinidoDia = model.SalarioDefinidoDia,
+                        CargoEspecifico = model.CargoEspecifico
+                    });
+                
+                return _appContext.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return -1;
+                throw;
+            }
+        }
+        private bool ContractExist(int idEmpleado)
+        {
+            return (_appContext.Ingresocontrato
+                    .SingleOrDefault(i => (i.IdEmpleado == idEmpleado 
+                        && i.Fincontrato == null)) != null);
         }
         #endregion
         public enum TrabajadoresMessageId
