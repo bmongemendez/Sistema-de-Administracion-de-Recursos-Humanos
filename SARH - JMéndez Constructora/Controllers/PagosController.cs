@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SARH___JMéndez_Constructora.Data;
@@ -10,6 +11,7 @@ using System.Linq;
 
 namespace MvcMovie.Controllers
 {
+    [Authorize]
     public class PagosController : Controller
     {
         private readonly ApplicationDbContext _appContext;
@@ -80,7 +82,13 @@ namespace MvcMovie.Controllers
                 DiaDescanso = decimal.Parse(DiaDescanso)
             }) );
         }
-
+        //
+        // GET: BoletaPago/1
+        [HttpGet]
+        public IActionResult BoletaPago(int id)
+        {
+            return View(GenerateBoletaPago(id));
+        }
         #region Helpers
         // Operaciones Contexto
         private IEnumerable<SelectListItem> GetTrabajadoresToSelect ()
@@ -311,6 +319,53 @@ namespace MvcMovie.Controllers
             model.PatronoCcss = Decimal.Round(model.PatronoCcss, 3);
             model.PatronoRotrasInstituciones = Decimal.Round(model.PatronoRotrasInstituciones, 3);
             model.PatronoLpt = Decimal.Round(model.PatronoLpt, 3);
+        }
+        private BoletaPagoViewModel GenerateBoletaPago(int id)
+        {
+            try
+            {
+                var result  = _appContext.Pagos
+                .Include(p => p.IdEmpleadoNavigation)
+                .Include(p => p.IdTiempoNavigation)
+                .Include(p => p.IdContratoNavigation)
+                    .ThenInclude(c => c.IdPuestoNavigation)
+                .SingleOrDefault(p => p.Id == id);
+
+                BoletaPagoViewModel aux = new BoletaPagoViewModel 
+                {
+                    FechaInicio = result.IdTiempoNavigation.FechaInicio,
+                    FechaFin = result.IdTiempoNavigation.FechaFin,
+                    IdPago = result.Id,
+                    Cedula = result.IdEmpleadoNavigation.Cedula,
+                    Nombre = result.IdEmpleadoNavigation.Nombre,
+                    Apellido1 = result.IdEmpleadoNavigation.Apellido1,
+                    Apellido2 = result.IdEmpleadoNavigation.Apellido2,
+                    NombrePuesto = result.IdContratoNavigation.IdPuestoNavigation.Nombre,
+                    InicioLabores = result.IdContratoNavigation.Inicio,
+                    HorasNormal = result.HorasNormal,
+                    HorasExtra = result.HorasExtra.GetValueOrDefault(),
+                    DiaDescanso = result.DiaDescanso.GetValueOrDefault(),
+                    SalarioNormal = result.SalarioNormal,
+                    SalarioExtras = result.SalarioExtras.GetValueOrDefault(),
+                    SalarioDiaDescanso = result.SalarioDiaDescanso.GetValueOrDefault(),
+                    Deducciones = result.Deducciones.GetValueOrDefault(),
+                    SalarioBruto = result.SalarioBruto,
+                    SalarioNeto = result.SalarioNeto,
+                    Observaciones = result.Observaciones
+                };
+
+                aux.FechaHoy = DateTime.Now;
+                aux.DiasContrato = (aux.FechaHoy - aux.FechaInicio)
+                    .TotalDays + 1;
+                aux.TotalDias = (aux.FechaFin - aux.FechaInicio)
+                    .TotalDays + 1;
+                
+                return aux;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
         public enum PagosMessageId
         {
