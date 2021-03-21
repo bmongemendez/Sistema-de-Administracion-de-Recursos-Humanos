@@ -1,5 +1,4 @@
 ﻿@model SARH___JMéndez_Constructora.Models.Deducciones
-
 @{
     ViewData["Title"] = "Editar Deducción";
     ViewData["sidebarActive"] = "Deducciones";
@@ -39,16 +38,18 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <form asp-action="Edit">
+                                                <input asp-for="Grupo" type="hidden" value="@Model.Grupo"  class="form-control" />
+                                                <input asp-for="Concepto" type="hidden" value="@Model.Concepto"  class="form-control" />
                                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                                 <input type="hidden" asp-for="Id" />
                                                 <div class="form-group">
                                                     <label asp-for="Grupo" class="control-label"></label>
-                                                    <input asp-for="Grupo" class="form-control" />
+                                                    <input asp-for="Grupo" value="@Model.Grupo" disabled class="form-control" />
                                                     <span asp-validation-for="Grupo" class="text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
                                                     <label asp-for="Concepto" class="control-label"></label>
-                                                    <input asp-for="Concepto" class="form-control" />
+                                                    <input asp-for="Concepto" value="@Model.Concepto" disabled class="form-control" />
                                                     <span asp-validation-for="Concepto" class="text-danger"></span>
                                                 </div>
                                                 <div class="form-group">

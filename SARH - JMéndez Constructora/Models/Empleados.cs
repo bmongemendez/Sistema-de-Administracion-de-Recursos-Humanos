@@ -98,6 +98,5 @@ namespace SARH___JMéndez_Constructora.Models
         
         [InverseProperty("IdEmpleadoNavigation")]
         public virtual ICollection<Pagos> Pagos { get; set; }
-        [InverseProperty("IdEmpleadoNavigation")]
     }
 }

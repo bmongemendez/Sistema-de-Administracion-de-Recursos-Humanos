@@ -45,14 +45,11 @@ namespace SARH___JMéndez_Constructora.Models
         [InverseProperty(nameof(Puestos.Ingresocontrato))]
         public virtual Puestos IdPuestoNavigation { get; set; }
         [InverseProperty("IdInicioContratoNavigation")]
-<<<<<<< HEAD
-        public virtual Fincontrato Fincontrato { get; set; }
-=======
         public virtual Fincontrato Fincontrato { get; set; }
         
         [InverseProperty("IdContratoNavigation")]
         public virtual ICollection<Pagos> Pagos { get; set; }
->>>>>>> main
+
         [InverseProperty("IdContratoNavigation")]
         public virtual ICollection<Tiempo> Tiempo { get; set; }
     }
