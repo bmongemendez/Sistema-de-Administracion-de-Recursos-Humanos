@@ -116,11 +116,18 @@ CREATE TABLE IF NOT EXISTS `sahr.application`.`Vacaciones` (
   `fechaSolicitud` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fueronAprobadas` TINYINT(1) NOT NULL DEFAULT 0,
   `notas` VARCHAR(128) NULL,
+  `idTiempo` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `idEmpleadoVacaciones_idx` (`idEmpleado` ASC) VISIBLE,
+  INDEX `idTiempoVacaciones_idx` (`idTiempo` ASC) VISIBLE,
   CONSTRAINT `idEmpleadoVacaciones`
     FOREIGN KEY (`idEmpleado`)
     REFERENCES `sahr.application`.`Empleados` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `idTiempoVacaciones`
+    FOREIGN KEY (`idTiempo`)
+    REFERENCES `sahr.application`.`Tiempo` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
