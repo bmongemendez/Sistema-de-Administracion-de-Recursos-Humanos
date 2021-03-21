@@ -22,9 +22,12 @@ namespace SARH___JMéndez_Constructora.Data
 
         public virtual DbSet<Empleados> Empleados { get; set; }
         public virtual DbSet<Fincontrato> Fincontrato { get; set; }
+        public virtual DbSet<Deducciones> Deducciones { get; set; }
         public virtual DbSet<Ingresocontrato> Ingresocontrato { get; set; }
         public virtual DbSet<Puestos> Puestos { get; set; }
-        
+        public virtual DbSet<Vacaciones> Vacaciones { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Empleados>(entity =>
@@ -80,6 +83,28 @@ namespace SARH___JMéndez_Constructora.Data
                     .HasConstraintName("idInicioContratoFN");
             });
 
+
+            modelBuilder.Entity<Deducciones>(entity =>
+            {
+                entity.Property(e => e.Grupo).IsFixedLength();
+
+                entity.Property(e => e.Patrono).HasDefaultValueSql("'0.000'");
+
+                entity.Property(e => e.Trabajador).HasDefaultValueSql("'0.000'");
+            });
+
+            modelBuilder.Entity<Vacaciones>(entity =>
+            {
+                entity.HasIndex(e => e.IdEmpleado)
+                    .HasName("idEmpleadoVacaciones_idx");
+
+                entity.HasOne(d => d.IdEmpleadoNavigation)
+                    .WithMany(p => p.Vacaciones)
+                    .HasForeignKey(d => d.IdEmpleado)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("idEmpleadoVacaciones");
+            });
+
             modelBuilder.Entity<Ingresocontrato>(entity =>
             {
                 entity.HasIndex(e => e.IdEmpleado)
@@ -101,10 +126,42 @@ namespace SARH___JMéndez_Constructora.Data
                     .HasConstraintName("idPuestoIC");
             });
 
+            modelBuilder.Entity<Tiempo>(entity =>
+            {
+                entity.HasIndex(e => e.IdContrato)
+                    .HasName("idContratoT_idx");
+
+                entity.HasIndex(e => e.IdEmpleado)
+                    .HasName("idEmpeladoT_idx");
+
+                entity.Property(e => e.EsIncapacidad).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.EsInjustificado).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.EsLaborado).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.EsVacaciones).HasDefaultValueSql("'0'");
+
+                entity.HasOne(d => d.IdContratoNavigation)
+                    .WithMany(p => p.Tiempo)
+                    .HasForeignKey(d => d.IdContrato)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("idContratoT");
+
+                entity.HasOne(d => d.IdEmpleadoNavigation)
+                    .WithMany(p => p.Tiempo)
+                    .HasForeignKey(d => d.IdEmpleado)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("idEmpeladoT");
+            });
+
 
             OnModelCreatingPartial(modelBuilder);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        public DbSet<SARH___JMéndez_Constructora.Models.Tiempo> Tiempo { get; set; }
+
     }
 }

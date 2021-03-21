@@ -1,6 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Reportes";
-    ViewData["sidebarActive"] = "Reportes";
+﻿@model SARH___JMéndez_Constructora.Models.Vacaciones
+
+@{
+    ViewData["Title"] = "Details";
 }
 
 <div class="container-fluid">
@@ -39,10 +40,40 @@
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#Invoice">Ocupaciones</a>
                         </li>
+
                     </ul>
                     <div class="tab-content mt-3">
                         <div class="tab-pane show active" id="Vacaciones">
-                            <partial name="_VacacionesPartial" />
+                            <h1>Details</h1>
+
+                            <div>
+                                <h4>Vacaciones</h4>
+                                <hr />
+                                <dl class="row">
+                                    <dt class="col-sm-2">
+                                        @Html.DisplayNameFor(model => model.FueronAprobadas)
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        @Html.DisplayFor(model => model.FueronAprobadas)
+                                    </dd>
+                                    <dt class="col-sm-2">
+                                        @Html.DisplayNameFor(model => model.Notas)
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        @Html.DisplayFor(model => model.Notas)
+                                    </dd>
+                                    <dt class="col-sm-2">
+                                        @Html.DisplayNameFor(model => model.IdEmpleadoNavigation)
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        @Html.DisplayFor(model => model.IdEmpleadoNavigation.Apellido1)
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div>
+                                <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+                                <a asp-action="Index">Back to List</a>
+                            </div>
                         </div>
                     </div>
                 </div>

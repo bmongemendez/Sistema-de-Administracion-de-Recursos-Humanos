@@ -1,35 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SARH___JMéndez_Constructora.Data;
 using SARH___JMéndez_Constructora.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SARH___JMéndez_Constructora.Controllers
 {
-    public class ReportesController : Controller
+    public class VacacionesController : Controller
     {
-
         private readonly ApplicationDbContext _context;
 
-        public ReportesController(ApplicationDbContext context)
+        public VacacionesController(ApplicationDbContext context)
         {
             _context = context;
         }
-        //public async Task<IActionResult> Index()
-        //{
-        //    ViewData["IdEmpleado"] = new SelectList(_context.Empleados, "Id", "Apellido1");
-        //    return View();
-        //}
 
-
-        // GET: Reportes
+        // GET: Vacaciones
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Vacaciones.Include(v => v.IdEmpleadoNavigation);
+            var applicationDbContextTiempo = _context.Tiempo.Include(t => t.IdContratoNavigation).Include(t => t.IdEmpleadoNavigation);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -56,8 +50,6 @@ namespace SARH___JMéndez_Constructora.Controllers
         public IActionResult Create()
         {
             ViewData["IdEmpleado"] = new SelectList(_context.Empleados, "Id", "Apellido1");
-            ViewData["IdContrato"] = new SelectList(_context.Ingresocontrato, "Id", "Id");
-
             return View();
         }
 
@@ -75,7 +67,7 @@ namespace SARH___JMéndez_Constructora.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdEmpleado"] = new SelectList(_context.Empleados, "Id", "Apellido1", vacaciones.IdEmpleado);
-            return RedirectToAction(nameof(Index));
+            return View(vacaciones);
         }
 
         // GET: Vacaciones/Edit/5
@@ -164,28 +156,6 @@ namespace SARH___JMéndez_Constructora.Controllers
         private bool VacacionesExists(int id)
         {
             return _context.Vacaciones.Any(e => e.Id == id);
-        }
-
-
-        //TIEMPO--------------------------------------------------------------------------------------------
-
-
-        // POST: Reportes/CreateTiempo
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateTiempo([Bind("Id,IdEmpleado,FechaInicio,FechaFin,IdContrato,EsLaborado,EsInjustificado,EsVacaciones,EsIncapacidad")] Tiempo tiempo)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(tiempo);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["IdContrato"] = new SelectList(_context.Ingresocontrato, "Id", "Id", tiempo.IdContrato);
-            ViewData["IdEmpleado"] = new SelectList(_context.Empleados, "Id", "Apellido1", tiempo.IdEmpleado);
-            return RedirectToAction(nameof(Index));
         }
     }
 }

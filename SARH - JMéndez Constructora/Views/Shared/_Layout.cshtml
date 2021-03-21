@@ -214,31 +214,37 @@
                     </a>
                 </li>
                 <li class="sidebar__item @((string)ViewData["sidebarActive"] == "Pagos" ? "active" : "")">
-                    <a class="btn text-left sidebar__link " 
+                    <a class="btn text-left sidebar__link "
                        asp-area="" asp-controller="Pagos" asp-action="Index">
                         <i class="icon-credit-card sidebar__icon"></i><span class="left-sidebar__span">Pagos</span>
                     </a>
                 </li>
                 <li class="sidebar__item @((string)ViewData["sidebarActive"] == "Calendario" ? "active" : "")">
-                    <a class="btn text-left sidebar__link" 
+                    <a class="btn text-left sidebar__link"
                        asp-area="" asp-controller="Calendario" asp-action="Index">
                         <i class="icon-clock sidebar__icon"></i><span class="left-sidebar__span">Calendario</span>
                     </a>
                 </li>
+                <li class="sidebar__item @((string)ViewData["sidebarActive"] == "Deducciones" ? "active" : "")">
+                    <a class="btn text-left sidebar__link "
+                       asp-area="" asp-controller="Deducciones" asp-action="Index">
+                        <i class="icon-credit-card sidebar__icon"></i><span class="left-sidebar__span">Deducciones</span>
+                    </a>
+                </li>
                 <li class="sidebar__item  @((string)ViewData["sidebarActive"] == "Rendimiento" ? "active" : "")">
-                    <a class="btn text-left sidebar__link" 
+                    <a class="btn text-left sidebar__link"
                        asp-area="" asp-controller="Rendimiento" asp-action="Index">
                         <i class="icon-docs sidebar__icon"></i><span class="left-sidebar__span">Rendimiento</span>
                     </a>
                 </li>
                 <li class="sidebar__item  @((string)ViewData["sidebarActive"] == "Usuarios" ? "active" : "")">
-                    <a class="btn text-left sidebar__link" 
+                    <a class="btn text-left sidebar__link"
                        asp-area="" asp-controller="Usuarios" asp-action="Index">
                         <i class="icon-users sidebar__icon"></i><span class="left-sidebar__span">Usuarios</span>
                     </a>
                 </li>
                 <li class="sidebar__item   @((string)ViewData["sidebarActive"] == "Reportes" ? "active" : "")">
-                    <a class="btn text-left  sidebar__link" 
+                    <a class="btn text-left  sidebar__link"
                        asp-area="" asp-controller="Reportes" asp-action="Index">
                         <i class="icon-folder sidebar__icon"></i><span class="left-sidebar__span">Reportes</span>
                     </a>

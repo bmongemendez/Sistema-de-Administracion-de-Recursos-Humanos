@@ -1,0 +1,78 @@
+﻿@model SARH___JMéndez_Constructora.Models.Tiempo
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Tiempo</h4>
+<hr />
+<div class="row">
+    <div class="col-12">
+        <div class="row">
+            <form asp-action="Create" class="d-flex">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label asp-for="IdEmpleado" class="control-label"></label>
+                        <select asp-for="IdEmpleado" class="form-control" asp-items="ViewBag.IdEmpleado"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FechaInicio" class="control-label"></label>
+                        <input asp-for="FechaInicio" class="form-control" />
+                        <span asp-validation-for="FechaInicio" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FechaFin" class="control-label"></label>
+                        <input asp-for="FechaFin" class="form-control" />
+                        <span asp-validation-for="FechaFin" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IdContrato" class="control-label"></label>
+                        <select asp-for="IdContrato" class="form-control" asp-items="ViewBag.IdContrato"></select>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label asp-for="EsVacaciones" class="control-label"></label>
+                        <input asp-for="EsVacaciones" class="form-control esVacacionesField" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EsInjustificado" class="control-label"></label>
+                        <input asp-for="EsInjustificado" class="form-control esVacacionesField" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EsIncapacidad" class="control-label"></label>
+                        <input asp-for="EsIncapacidad" class="form-control esVacacionesField" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EsLaborado" class="control-label"></label>
+                        <input asp-for="EsLaborado" class="form-control esVacacionesField" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary"> Create </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script type="text/javascript">
+            //$(document).ready(function () {
+            //    $(".esVacacionesField").val("true");
+            //});
+    </script>
+
+
+}

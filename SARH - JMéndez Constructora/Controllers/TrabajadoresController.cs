@@ -98,6 +98,7 @@ namespace SARH___JMéndez_Constructora.Controllers
             
             foreach (Puestos puesto in _appContext.Puestos.ToList())
             {
+
                 puestosSelectItem.Add(new SelectListItem()
                 {
                     Value = puesto.Id.ToString(),

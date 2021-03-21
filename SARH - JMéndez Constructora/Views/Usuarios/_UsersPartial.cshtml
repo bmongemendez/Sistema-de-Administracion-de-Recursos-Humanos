@@ -47,7 +47,7 @@
                         <h6 class="mb-0">@item.UserName</h6>
                     </td>
                     <td>
-                        <span class="badge badge-success">Rol</span>
+                        <span class="badge badge-success">Admin</span>
                     </td>
                     <td class="text-right">
                         <a class="btn btn-sm btn-default" href="@Url.Action("SetPassword", "Usuarios", new { id = item.Id,  userName = item.UserName})">
@@ -55,7 +55,6 @@
                             </i>
                         </a>
                             <form class="form-inline d-inline" asp-action="Delete" asp-route-returnurl="@item.Id">
-                                @*@Html.Hidden("id", "hola")*@
                                 <button type="submit"
                                         class="btn btn-sm btn-default js-sweetalert  @(User.Identity.Name == item.UserName ? "shadow-none" : "") " 
                                         @(User.Identity.Name == item.UserName ? "disabled" : "")
