@@ -20,16 +20,28 @@ namespace SARH___JMéndez_Constructora.Data
         {
         }
 
+        public virtual DbSet<Deducciones> Deducciones { get; set; }
         public virtual DbSet<Empleados> Empleados { get; set; }
         public virtual DbSet<Fincontrato> Fincontrato { get; set; }
-        public virtual DbSet<Deducciones> Deducciones { get; set; }
         public virtual DbSet<Ingresocontrato> Ingresocontrato { get; set; }
+        public virtual DbSet<Pagos> Pagos { get; set; }
         public virtual DbSet<Puestos> Puestos { get; set; }
         public virtual DbSet<Vacaciones> Vacaciones { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
+
+            modelBuilder.Entity<Deducciones>(entity =>
+            {
+                entity.Property(e => e.Grupo).IsFixedLength();
+
+                entity.Property(e => e.Patrono).HasDefaultValueSql("'0.000'");
+
+                entity.Property(e => e.Trabajador).HasDefaultValueSql("'0.000'");
+            });
+
             modelBuilder.Entity<Empleados>(entity =>
             {
                 entity.HasIndex(e => e.Cedula)
@@ -64,8 +76,7 @@ namespace SARH___JMéndez_Constructora.Data
                     .HasName("PRIMARY");
 
                 entity.HasIndex(e => e.IdInicioContrato)
-                    .HasName("idInicioContrato_UNIQUE")
-                    .IsUnique();
+                    .HasName("idInicioContratoFN_idx");
 
                 entity.Property(e => e.DiasPendientesPreaviso).HasDefaultValueSql("'0'");
 
@@ -125,11 +136,8 @@ namespace SARH___JMéndez_Constructora.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("idPuestoIC");
             });
-
             modelBuilder.Entity<Tiempo>(entity =>
             {
-                entity.HasIndex(e => e.IdContrato)
-                    .HasName("idContratoT_idx");
 
                 entity.HasIndex(e => e.IdEmpleado)
                     .HasName("idEmpeladoT_idx");

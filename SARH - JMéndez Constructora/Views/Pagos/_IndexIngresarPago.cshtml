@@ -1,0 +1,243 @@
+@model IngresoPagoFormViewModel
+@{
+    IEnumerable<SelectListItem> empleados = (IEnumerable<SelectListItem>)ViewData["empleados"];
+}
+<form id="partialIngresarPago" asp-action="Index">
+    
+    <input id="IdContrato" type="hidden" asp-for="IdContrato">
+    
+    <input id="SalarioHora" type="hidden">
+    
+    <input id="SalarioBruto" type="hidden" asp-for="SalarioBruto">
+    
+    <input id="SalarioNeto" type="hidden" asp-for="SalarioNeto">
+    
+    <input id="TotalDeduccionesPatrono" type="hidden" asp-for="TotalDeduccionesPatrono">
+    
+    
+    <div class="header">
+        <h2>Basico</h2>
+    </div>
+    <div class="body">
+        <div class="row clearfix">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-md-4 col-sm-6">
+                <div class="form-group">
+                    <label asp-for="IdEmpleado" class="control-label"></label>
+                    <select id="selectEmpleado" asp-for="IdEmpleado" class="form-control show-tick"
+                        asp-items="@(new SelectList(empleados, "Value", "Text"))">
+                    </select>
+                    <span asp-validation-for="IdEmpleado" class="text-danger"></span>
+                </div>
+            </div>
+        
+            <div class="col-md-12 col-sm-12">
+                <h6>Periodo de Pago</h6>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="form-group">
+                    <label asp-for="Inicio" class="control-label"></label>
+                    <input asp-for="Inicio" class="form-control" />
+                    <span asp-validation-for="Inicio" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="form-group">
+                    <label asp-for="Fin" class="control-label"></label>
+                    <input asp-for="Fin" class="form-control" />
+                    <span asp-validation-for="Fin" class="text-danger"></span>
+                </div>
+            </div>
+            <!-- --------------------------------------------------------------------- -->
+            <div class="col-md-12 col-sm-12">
+                <small class="form-text mb-2 mt-0 text-warning">Los siguientes campos se calculan a partir del intervalo anterior definido:</small>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="form-group">
+                    <label asp-for="HorasNormal" class="control-label"></label>
+                    <input asp-for="HorasNormal" class="form-control" type="number" placeholder="0.00" />
+                    <span asp-validation-for="HorasNormal" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="form-group">
+                    <label asp-for="HorasExtra" class="control-label"></label>
+                    <input asp-for="HorasExtra" class="form-control" type="number" placeholder="0.00" />
+                    <span asp-validation-for="HorasExtra" class="text-danger"></span>
+                </div>
+            </div>
+            <!-- --------------------- FALTA ESTE CAMPO --------------------- -->
+            <div class="col-md-4 col-sm-6">
+                <div class="form-group">
+                    <label class="control-label">Día de descanso</label>
+                    <input asp-for="DiaDescanso" class="form-control" 
+                    type="number" placeholder="0"/>
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+            <!-- --------------------- FALTA ESTE CAMPO --------------------- -->
+            <div class="col-12">
+                <!-- Sumit -->
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col-md-12">
+            <div class="card mb-0">
+                <div class="header pt-3">
+                    <h2>Deducciones (Patrono)</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-hover table-custom spacing5">
+                    <thead>
+                        <tr>
+                            <th class="w60">#</th>
+                            <th>Rubro</th>
+                            <th class="w100">Deducciones</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01</td>
+                            <td>
+                                <span>CCSS</span>
+                            </td>
+                            <td id="patronoCCSS">¢0</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>02</td>
+                            <td>
+                                <span>Aporte Otras Instituciones</span>
+                            </td>
+                            <td id="patronoOtrasInstituciones">¢0</td>
+                        </tr>
+                        <tr>
+                            <td>03</td>
+                            <td>
+                                <span>Ley de Protección al Trabajador</span>
+                            </td>
+                            <td id="patronoLTP">¢0</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="text-right" colspan="2">Total de Deducciones:</td>
+                            <td class="text-info"><strong id="patronoTotal">¢0</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-12">
+            <div class="card mb-0">
+                <div class="header">
+                    <h2>Desgloce Salario</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-hover table-custom spacing5">
+                    <thead>
+                        <tr>
+                            <th class="w60">#</th>
+                            <th>Rubro</th>
+                            <th class="w100">Ingresos</th>
+                            <th class="w100">Deducciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01</td>
+                            <td>
+                                <span>Horas Salario Normal</span>
+                            </td>
+                            <td id="trabajadorSalarioNormal">¢0</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>02</td>
+                            <td>
+                                <span>Horas Extra</span>
+                            </td>
+                            <td id="trabajadorSalarioExtra">¢0</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>03</td>
+                            <td>
+                                <span>Dias de descanso</span>
+                            </td>
+                            <td id="trabajadorDiasDescanso">¢0</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>04</td>
+                            <td>
+                                <span>CCSS y Aporte al Banco Popular</span>
+                            </td>
+                            <td>-</td>
+                            <td id="deduccionesTrabajador">¢0</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="text-right" colspan="2">Salario Bruto / <span class="text-danger">Deducciones</span>:
+                            </td>
+                            <td><strong id="trabajadorSalarioBruto">¢0</strong></td>
+                            <td><strong class="text-danger" id="trabajadorDeducciones">¢0</strong></td>
+                        </tr>
+                        <tr class="lead">
+                            <td class="text-right" colspan="2">Salario Neto:
+                            </td>
+                            <td class="text-right"><strong class="text-primary" id="trabajadorSalarioNeto">¢0</strong></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-12 col-sm-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Otros</h2>
+                </div>
+                <div class="body">
+                    <div class="form-group">
+                        <label asp-for="Observaciones" class="control-label"></label>
+                        <textarea asp-for="Observaciones" class="form-control" rows="2"></textarea>
+                        <span asp-validation-for="Observaciones" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+    <div>
+        <span asp-validation-for="IdEmpleado" class="text-danger"></span>
+        <span asp-validation-for="IdContrato" class="text-danger"></span>
+        <span asp-validation-for="Inicio" class="text-danger"></span>
+        <span asp-validation-for="Fin" class="text-danger"></span>
+        <span asp-validation-for="HorasNormal" class="text-danger"></span>
+        <span asp-validation-for="HorasExtra" class="text-danger"></span>
+        <span asp-validation-for="DiaDescanso" class="text-danger"></span>
+        <span asp-validation-for="SalarioBruto" class="text-danger"></span>
+        <span asp-validation-for="SalarioNeto" class="text-danger"></span>
+        <span asp-validation-for="TotalDeduccionesPatrono" class="text-danger"></span>
+        <span asp-validation-for="Observaciones" class="text-danger"></span>        
+    </div>
+    -->
+</form>

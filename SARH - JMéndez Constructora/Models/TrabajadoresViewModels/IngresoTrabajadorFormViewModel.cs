@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SARH___JMéndez_Constructora.Models;
 
-namespace SARH___JMéndez_Constructora.ViewModels
+namespace SARH___JMéndez_Constructora.Models.TrabajadoresViewModels
 {
     public class IngresoTrabajadorFormViewModel
     {

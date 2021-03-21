@@ -1,0 +1,116 @@
+@model Edcn_n_LicncFormViewModel
+@{
+    Layout = "_DetailsLayout.cshtml"; 
+}
+
+<form asp-action="EdccnLicncs" method="POST">
+    <input type="hidden" asp-for="IdEmpleado">
+
+    <div class="card">
+        <div asp-validation-summary="ModelOnly" class="col-md-12 col-sm-6 text-danger"></div>
+    </div>
+    <div class="card">
+        <div class="header">
+            <h2>Educacion</h2>
+        </div>
+        <div class="body">
+            <fieldset>
+                <div class="row clearfix">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group fancy-checkbox">
+                            <label class="">
+                                <input class="" asp-for="TieneBachiller" />
+                                <span>@Html.DisplayNameFor(model => model.TieneBachiller)</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group fancy-checkbox">
+                            <label class="">
+                                <input class="" asp-for="TieneLicenciatura" />
+                                <span>@Html.DisplayNameFor(model => model.TieneLicenciatura)</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group fancy-checkbox">
+                            <label class="">
+                                <input class="" asp-for="TieneTecnico" />
+                                <span>@Html.DisplayNameFor(model => model.TieneTecnico)</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="card">
+        <div class="header">
+            <h2>Licencias</h2>
+        </div>
+        <div class="body">
+            <div class="row clearfix">
+                <div asp-validation-summary="ModelOnly" class="col-md-12 col-sm-6 text-danger"></div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="form-group fancy-checkbox">
+                        <label class="">
+                            <input class="" asp-for="TieneLicenciaA3" />
+                            <span>@Html.DisplayNameFor(model => model.TieneLicenciaA3)</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="form-group fancy-checkbox">
+                        <label class="">
+                            <input class="" asp-for="TieneLicenciaB1" />
+                            <span>@Html.DisplayNameFor(model => model.TieneLicenciaB1)</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="form-group fancy-checkbox">
+                        <label class="">
+                            <input class="" asp-for="TieneLicenciaB2" />
+                            <span>@Html.DisplayNameFor(model => model.TieneLicenciaB2)</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="form-group fancy-checkbox">
+                        <label class="">
+                            <input class="" asp-for="TieneLicenciaB3" />
+                            <span>@Html.DisplayNameFor(model => model.TieneLicenciaB3)</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="form-group fancy-checkbox">
+                        <label class="">
+                            <input class="" asp-for="TieneLicenciaD" />
+                            <span>@Html.DisplayNameFor(model => model.TieneLicenciaD)</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="form-group fancy-checkbox">
+                        <label class="">
+                            <input class="" asp-for="TieneLicenciaE" />
+                            <span>@Html.DisplayNameFor(model => model.TieneLicenciaE)</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-12">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="body">
+            <input type="submit" value="Actualizar" class="btn btn-round btn-primary" />
+        </div>
+    </div>
+</form>
