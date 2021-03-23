@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SARH___JMéndez_Constructora.Models.Vacaciones>
+﻿@model IEnumerable<TableViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -11,19 +11,26 @@
 <table class="table">
     <thead>
         <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cedula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Desde)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hasta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Observaciones)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.FueronAprobadas)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Notas)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdEmpleadoNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdTiempoNavigation)
-            </th>
-            <th></th>
+            
         </tr>
     </thead>
     <tbody>
@@ -31,22 +38,42 @@
         {
             <tr>
                 <td>
+                    <div class="avtar-pic w35 bg-red"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Avatar Name">
+                        @{
+                            string iniciales = (item.Nombre.Substring(0,1)
+                                + item.Apellido1.Substring(0,1)).ToUpper();
+                        }
+                        <span>@iniciales</span>
+                    </div>
+                </td>
+                <td>
+                    <span>@Html.DisplayFor(modelItem => item.Cedula)</span>
+                </td>
+                 <td>
+                    <div class="font-15">
+                        @Html.DisplayFor(modelItem => item.Nombre) 
+                        @Html.DisplayFor(modelItem => item.Apellido1) 
+                        @Html.DisplayFor(modelItem => item.Apellido2) 
+                    </div>
+                </td>
+                <td>
+                    <div class="font-15">
+                        @Html.DisplayFor(modelItem => item.Desde)
+                    </div>
+                </td>
+                <td>
+                    <span>@Html.DisplayFor(modelItem => item.Hasta)</span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Observaciones)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.FueronAprobadas)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Notas)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdEmpleadoNavigation.Apellido1)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdTiempoNavigation.Id)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
-                </td>
+                
             </tr>
         }
     </tbody>

@@ -21,10 +21,13 @@ namespace SARH___JMéndez_Constructora.Controllers
         }
 
         // GET: Vacaciones
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(VacacionesMessageId? message = null)
         {
-            var applicationDbContext = _context.Vacaciones.Include(v => v.IdEmpleadoNavigation).Include(v => v.IdTiempoNavigation);
-            return View(await applicationDbContext.ToListAsync());
+            ViewData["StatusMessage"] =
+                message == VacacionesMessageId.AddVacationsSuccess ? "Se ha agregado el reporte de vacaciones."
+                : message == VacacionesMessageId.Error ? "Ha ocurrido un error."
+                : "";
+            return View(GetVacacionesList());
         }
 
         // GET: Vacaciones/Details/5
@@ -50,7 +53,7 @@ namespace SARH___JMéndez_Constructora.Controllers
         // GET: Vacaciones/Create
         public IActionResult Create()
         {
-            ViewData["IdEmpleado"] = new SelectList(_context.Empleados, "Id", "Apellido1");
+            ViewData["IdEmpleado"] = GetTrabajadoresToSelect();
             ViewData["IdTiempo"] = new SelectList(_context.Tiempo, "Id", "Id");
             ViewData["IdContrato"] = new SelectList(_context.Ingresocontrato, "Id", "Id");
             return View();
@@ -80,9 +83,9 @@ namespace SARH___JMéndez_Constructora.Controllers
             if (InsertVacations(BindModel(model)
                 , BindTiempoModel(model)) == 1)
 
-                return RedirectToAction(nameof(Index), new { Message = PagosMessageId.AddVacationsSuccess });
+                return RedirectToAction(nameof(Index), new { Message = VacacionesMessageId.AddVacationsSuccess });
 
-            return RedirectToAction(nameof(Index), new { Message = PagosMessageId.Error });
+            return RedirectToAction(nameof(Index), new { Message = VacacionesMessageId.Error });
 
         }
 
@@ -243,7 +246,67 @@ namespace SARH___JMéndez_Constructora.Controllers
                 FechaFin = model.FechaFin
             };
         }
-        public enum PagosMessageId
+
+        private IEnumerable<SelectListItem> GetTrabajadoresToSelect ()
+        {
+            IEnumerable<SelectListItem> trababajoresSelectList;
+            List<SelectListItem> trabajadoresSelectItem = new List<SelectListItem>();
+            trabajadoresSelectItem.Add(new SelectListItem()
+            {
+                Text = "Seleccione un trabajador",
+                Selected = true,
+                Disabled = true
+            });
+            
+            // ACTIVOS:
+            var auxEmpleadosActivos = _context.Empleados
+                .Where(e => (e.Ingresocontrato != null && e.Ingresocontrato.Any(i => i.Fincontrato == null)))
+                .Include(e =>  e.Ingresocontrato)
+                    .ThenInclude(p =>  p.IdPuestoNavigation)
+                .Include(f =>  f.Ingresocontrato)
+                .OrderBy(e => e.Apellido1)
+                .ToList();
+
+            foreach (Empleados empleado in auxEmpleadosActivos)
+            {
+                trabajadoresSelectItem.Add(new SelectListItem()
+                {
+                    Value = empleado.Id.ToString(),
+                    Text = empleado.Cedula + " - " 
+                        + empleado.Apellido1 + " " 
+                        + empleado.Apellido2 + " "
+                        + empleado.Nombre
+                });
+            }
+
+            trababajoresSelectList = trabajadoresSelectItem;
+            return trababajoresSelectList;
+        }
+        private IEnumerable<TableViewModel> GetVacacionesList()
+        {
+            List<TableViewModel> list = new List<TableViewModel>();
+            var queryResult = _context.Vacaciones
+                .Include(v => v.IdEmpleadoNavigation)
+                .Include(v => v.IdTiempoNavigation)
+                .ToList();
+
+            foreach (var vacaciones in queryResult)
+            {
+                list.Add(new TableViewModel
+                {
+                    Cedula = vacaciones.IdEmpleadoNavigation.Cedula,
+                    Nombre = vacaciones.IdEmpleadoNavigation.Nombre,
+                    Apellido1 = vacaciones.IdEmpleadoNavigation.Apellido1,
+                    Apellido2 = vacaciones.IdEmpleadoNavigation.Apellido2,
+                    Desde = vacaciones.IdTiempoNavigation.FechaInicio,
+                    Hasta = vacaciones.IdTiempoNavigation.FechaFin,
+                    Observaciones = vacaciones.Notas,
+                    FueronAprobadas = vacaciones.FueronAprobadas
+                });
+            }
+            return list;
+        }
+        public enum VacacionesMessageId
         {
             AddVacationsSuccess,
             Error
