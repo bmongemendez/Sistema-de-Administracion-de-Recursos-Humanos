@@ -1,0 +1,86 @@
+﻿@model SARH___JMéndez_Constructora.Models.Deducciones
+
+@{
+    ViewData["Title"] = "Eliminar Deducción";
+    ViewData["sidebarActive"] = "Deducciones";
+
+}
+
+
+
+
+
+<div class="container-fluid">
+    <div class="block-header">
+
+        <div class="row clearfix">
+            <div class="col-md-6 col-sm-12">
+                <h1>Inicio</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="../home/dashboard.html">
+                                <i class="icon-home"></i>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            Deducciones
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="row clearfix">
+            <div class="col-12">
+                <div class="card">
+                    <div class="tab-pane show active" id="addUser">
+                        <div class="body mt-2">
+                            <div class="row clearfix">
+                                <div class="col-12">
+                                    <h3>Seguro que deseas eliminar esta dedicción??</h3>
+                                    <div>
+                                        <hr />
+                                        <dl class="row">
+                                            <dt class="col-sm-2">
+                                                @Html.DisplayNameFor(model => model.Grupo)
+                                            </dt>
+                                            <dd class="col-sm-10">
+                                                @Html.DisplayFor(model => model.Grupo)
+                                            </dd>
+                                            <dt class="col-sm-2">
+                                                @Html.DisplayNameFor(model => model.Concepto)
+                                            </dt>
+                                            <dd class="col-sm-10">
+                                                @Html.DisplayFor(model => model.Concepto)
+                                            </dd>
+                                            <dt class="col-sm-2">
+                                                @Html.DisplayNameFor(model => model.Patrono)
+                                            </dt>
+                                            <dd class="col-sm-10">
+                                                @Html.DisplayFor(model => model.Patrono)
+                                            </dd>
+                                            <dt class="col-sm-2">
+                                                @Html.DisplayNameFor(model => model.Trabajador)
+                                            </dt>
+                                            <dd class="col-sm-10">
+                                                @Html.DisplayFor(model => model.Trabajador)
+                                            </dd>
+                                        </dl>
+
+                                        <form asp-action="Delete">
+                                            <input type="hidden" asp-for="Id" />
+                                            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+                                            <a asp-action="Index" class="btn btn-outline-primary">Volver a la lista</a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

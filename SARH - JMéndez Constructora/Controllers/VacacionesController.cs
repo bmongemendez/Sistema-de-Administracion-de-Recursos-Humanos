@@ -1,35 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SARH___JMéndez_Constructora.Data;
 using SARH___JMéndez_Constructora.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using SARH___JMéndez_Constructora.Models.VacacionesViewModels;
 
 namespace SARH___JMéndez_Constructora.Controllers
 {
-    public class ReportesController : Controller
+    public class VacacionesController : Controller
     {
-
         private readonly ApplicationDbContext _context;
 
-        public ReportesController(ApplicationDbContext context)
+        public VacacionesController(ApplicationDbContext context)
         {
             _context = context;
         }
-        //public async Task<IActionResult> Index()
-        //{
-        //    ViewData["IdEmpleado"] = new SelectList(_context.Empleados, "Id", "Apellido1");
-        //    return View();
-        //}
 
-
-        // GET: Reportes
+        // GET: Vacaciones
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Vacaciones.Include(v => v.IdEmpleadoNavigation);
+            var applicationDbContext = _context.Vacaciones.Include(v => v.IdEmpleadoNavigation).Include(v => v.IdTiempoNavigation);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -43,6 +37,7 @@ namespace SARH___JMéndez_Constructora.Controllers
 
             var vacaciones = await _context.Vacaciones
                 .Include(v => v.IdEmpleadoNavigation)
+                .Include(v => v.IdTiempoNavigation)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (vacaciones == null)
             {
@@ -56,8 +51,8 @@ namespace SARH___JMéndez_Constructora.Controllers
         public IActionResult Create()
         {
             ViewData["IdEmpleado"] = new SelectList(_context.Empleados, "Id", "Apellido1");
+            ViewData["IdTiempo"] = new SelectList(_context.Tiempo, "Id", "Id");
             ViewData["IdContrato"] = new SelectList(_context.Ingresocontrato, "Id", "Id");
-
             return View();
         }
 
@@ -66,16 +61,29 @@ namespace SARH___JMéndez_Constructora.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IdEmpleado,FueronAprobadas,Notas")] Vacaciones vacaciones)
+        public IActionResult Create(VacacionesFormViewModel model)
         {
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
+            //{
+            //    _context.Add(vacaciones);
+            //    await _context.SaveChangesAsync();
+            //    return RedirectToAction(nameof(Index));
+            //}
+            if (!ModelState.IsValid)
             {
-                _context.Add(vacaciones);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewData["IdEmpleado"] = new SelectList(_context.Empleados, "Id", "Apellido1", model.IdEmpleado);
+                ViewData["IdTiempo"] = new SelectList(_context.Tiempo, "Id", "Id", model.IdTiempo);
+                ViewData["IdContrato"] = new SelectList(_context.Ingresocontrato, "Id", "Id");
+                return View(model);
             }
-            ViewData["IdEmpleado"] = new SelectList(_context.Empleados, "Id", "Apellido1", vacaciones.IdEmpleado);
-            return RedirectToAction(nameof(Index));
+
+            if (InsertVacations(BindModel(model)
+                , BindTiempoModel(model)) == 1)
+
+                return RedirectToAction(nameof(Index), new { Message = PagosMessageId.AddVacationsSuccess });
+
+            return RedirectToAction(nameof(Index), new { Message = PagosMessageId.Error });
+
         }
 
         // GET: Vacaciones/Edit/5
@@ -92,6 +100,7 @@ namespace SARH___JMéndez_Constructora.Controllers
                 return NotFound();
             }
             ViewData["IdEmpleado"] = new SelectList(_context.Empleados, "Id", "Apellido1", vacaciones.IdEmpleado);
+            ViewData["IdTiempo"] = new SelectList(_context.Tiempo, "Id", "Id", vacaciones.IdTiempo);
             return View(vacaciones);
         }
 
@@ -100,7 +109,7 @@ namespace SARH___JMéndez_Constructora.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IdEmpleado,FueronAprobadas,Notas")] Vacaciones vacaciones)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,IdEmpleado,FueronAprobadas,Notas,IdTiempo")] Vacaciones vacaciones)
         {
             if (id != vacaciones.Id)
             {
@@ -128,6 +137,7 @@ namespace SARH___JMéndez_Constructora.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdEmpleado"] = new SelectList(_context.Empleados, "Id", "Apellido1", vacaciones.IdEmpleado);
+            ViewData["IdTiempo"] = new SelectList(_context.Tiempo, "Id", "Id", vacaciones.IdTiempo);
             return View(vacaciones);
         }
 
@@ -141,6 +151,7 @@ namespace SARH___JMéndez_Constructora.Controllers
 
             var vacaciones = await _context.Vacaciones
                 .Include(v => v.IdEmpleadoNavigation)
+                .Include(v => v.IdTiempoNavigation)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (vacaciones == null)
             {
@@ -166,26 +177,77 @@ namespace SARH___JMéndez_Constructora.Controllers
             return _context.Vacaciones.Any(e => e.Id == id);
         }
 
-
-        //TIEMPO--------------------------------------------------------------------------------------------
-
-
-        // POST: Reportes/CreateTiempo
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateTiempo([Bind("Id,IdEmpleado,FechaInicio,FechaFin,IdContrato,EsLaborado,EsInjustificado,EsVacaciones,EsIncapacidad")] Tiempo tiempo)
+        [HttpGet]
+        public IActionResult GetIdContrato(string idEmpleado)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(tiempo);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["IdContrato"] = new SelectList(_context.Ingresocontrato, "Id", "Id", tiempo.IdContrato);
-            ViewData["IdEmpleado"] = new SelectList(_context.Empleados, "Id", "Apellido1", tiempo.IdEmpleado);
-            return RedirectToAction(nameof(Index));
+            if (string.IsNullOrEmpty(idEmpleado))
+                return Json(new { idContrato = 0, salarioHora = 0 });
+
+            int id = int.Parse(idEmpleado);
+            int idContrato = GetContrato(id);
+            return Json(new { idContrato = idContrato});
         }
+
+        private int GetContrato(int idEmpleado)
+        {
+            return _context.Ingresocontrato.SingleOrDefault(
+                i => (i.IdEmpleado == idEmpleado && i.Fincontrato == null)
+            ).Id;
+        }
+
+        private int InsertVacations(Vacaciones model, Tiempo modelTiempo)
+        {
+            using var transaction = _context.Database.BeginTransaction();
+
+            try
+            {
+                _context.Tiempo.Add(modelTiempo);
+                _context.SaveChanges();
+
+                // Agregar el id tiempo registrado
+                //Se le asigna el id aquí porque hasta hacer el SaveChanges() se le crea el ID
+                model.IdTiempo = modelTiempo.Id;
+
+                _context.Vacaciones.Add(model);
+                _context.SaveChanges();
+
+                transaction.Commit();
+
+                return 1;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+        }
+
+
+        private Vacaciones BindModel(VacacionesFormViewModel model)
+        {
+            Vacaciones vacacionesModel = new Vacaciones();
+            vacacionesModel.IdEmpleado = model.IdEmpleado;
+            vacacionesModel.FueronAprobadas = model.FueronAprobadas;
+            vacacionesModel.Notas = model.Notas;
+
+            return vacacionesModel;
+        }
+
+        private Tiempo BindTiempoModel(VacacionesFormViewModel model)
+        {
+            return new Tiempo
+            {
+                IdEmpleado = model.IdEmpleado,
+                IdContrato = model.IdContrato,
+                EsVacaciones = true,
+                FechaInicio = model.FechaInicio,
+                FechaFin = model.FechaFin
+            };
+        }
+        public enum PagosMessageId
+        {
+            AddVacationsSuccess,
+            Error
+        }
+
     }
 }

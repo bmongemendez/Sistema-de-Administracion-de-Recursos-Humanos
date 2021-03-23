@@ -11,8 +11,6 @@ namespace SARH___JMéndez_Constructora.Models
     {
         [DefaultValue(false)]
         public bool isDeleted { get; set; }
-
         public string nombre { get; set; }
-
     }
 }

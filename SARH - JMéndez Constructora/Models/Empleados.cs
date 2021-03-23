@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,7 +17,6 @@ namespace SARH___JMéndez_Constructora.Models
         {
             Ingresocontrato = new HashSet<Ingresocontrato>();
          }
-
         [Key]
         [Column("id")]
         public int Id { get; set; }
@@ -92,8 +92,11 @@ namespace SARH___JMéndez_Constructora.Models
         [InverseProperty("IdEmpleadoNavigation")]
         public virtual ICollection<Ingresocontrato> Ingresocontrato { get; set; }
         [InverseProperty("IdEmpleadoNavigation")]
-        public virtual ICollection<Pagos> Pagos { get; set; }
+        public virtual ICollection<Vacaciones> Vacaciones { get; set; }
         [InverseProperty("IdEmpleadoNavigation")]
         public virtual ICollection<Tiempo> Tiempo { get; set; }
+        
+        [InverseProperty("IdEmpleadoNavigation")]
+        public virtual ICollection<Pagos> Pagos { get; set; }
     }
 }

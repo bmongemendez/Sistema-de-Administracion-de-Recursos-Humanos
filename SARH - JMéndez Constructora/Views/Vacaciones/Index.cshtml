@@ -1,10 +1,23 @@
 ﻿@{
     ViewData["Title"] = "Reportes";
     ViewData["sidebarActive"] = "Reportes";
+    var statusMessage = ViewData["StatusMessage"];
 }
 
 <div class="container-fluid">
     <div class="block-header">
+        @if (statusMessage != null)
+        {
+            if (!statusMessage.ToString().Equals(""))
+            {
+                <div class="alert alert-dismissible bg-info text-white" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <i class="fa fa-info-circle"></i> Informacion: @ViewData["StatusMessage"]
+                </div>
+            }
+        }
         <div class="row clearfix">
             <div class="col-md-6 col-sm-12">
                 <h1>Inicio</h1>
@@ -15,7 +28,7 @@
                                 <i class="icon-home"></i>
                             </a>
                         </li>
-                        <li class="breadcrumb-item">Reporte de Aguinaldos</li>
+                        <li class="breadcrumb-item">Reporte de vacaciones</li>
                     </ol>
                 </nav>
             </div>
@@ -42,7 +55,7 @@
                     </ul>
                     <div class="tab-content mt-3">
                         <div class="tab-pane show active" id="Vacaciones">
-                            <partial name="_VacacionesPartial" />
+                            <partial name="_vacacionesIndexPartial" />
                         </div>
                     </div>
                 </div>

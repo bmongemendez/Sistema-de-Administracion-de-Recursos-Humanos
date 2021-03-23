@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using SARH___JMéndez_Constructora.Models;
+using SARH___JMéndez_Constructora.Models.VacacionesViewModels;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
@@ -28,8 +29,9 @@ namespace SARH___JMéndez_Constructora.Data
         public virtual DbSet<Ingresocontrato> Ingresocontrato { get; set; }
         public virtual DbSet<Pagos> Pagos { get; set; }
         public virtual DbSet<Puestos> Puestos { get; set; }
-        public virtual DbSet<Tiempo> Tiempo { get; set; }
-        
+        public virtual DbSet<Vacaciones> Vacaciones { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             
@@ -107,6 +109,28 @@ namespace SARH___JMéndez_Constructora.Data
                     .HasConstraintName("idInicioContratoFN");
             });
 
+
+            modelBuilder.Entity<Deducciones>(entity =>
+            {
+                entity.Property(e => e.Grupo).IsFixedLength();
+
+                entity.Property(e => e.Patrono).HasDefaultValueSql("'0.000'");
+
+                entity.Property(e => e.Trabajador).HasDefaultValueSql("'0.000'");
+            });
+
+            modelBuilder.Entity<Vacaciones>(entity =>
+            {
+                entity.HasIndex(e => e.IdEmpleado)
+                    .HasName("idEmpleadoVacaciones_idx");
+
+                entity.HasOne(d => d.IdEmpleadoNavigation)
+                    .WithMany(p => p.Vacaciones)
+                    .HasForeignKey(d => d.IdEmpleado)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("idEmpleadoVacaciones");
+            });
+
             modelBuilder.Entity<Incapacidades>(entity =>
             {
                 entity.HasIndex(e => e.IdTiempo)
@@ -140,57 +164,8 @@ namespace SARH___JMéndez_Constructora.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("idPuestoIC");
             });
-
-            modelBuilder.Entity<Pagos>(entity =>
-            {
-                entity.HasIndex(e => e.IdContrato)
-                    .HasName("idContratoP_idx");
-
-                entity.HasIndex(e => e.IdEmpleado)
-                    .HasName("idEmpleadoP_idx");
-
-                entity.HasIndex(e => e.IdTiempo)
-                    .HasName("idTiempoPagos_idx");
-
-                entity.HasIndex(e => e.UserName)
-                    .HasName("idUserPagos_idx");
-
-                entity.Property(e => e.CuentasPorPagar).HasDefaultValueSql("'0.000'");
-
-                entity.Property(e => e.Deducciones).HasDefaultValueSql("'0.000'");
-
-                entity.Property(e => e.DiaDescanso).HasDefaultValueSql("'0.000'");
-
-                entity.Property(e => e.HorasExtra).HasDefaultValueSql("'0.000'");
-
-                entity.Property(e => e.SalarioDiaDescanso).HasDefaultValueSql("'0.000'");
-
-                entity.Property(e => e.SalarioExtras).HasDefaultValueSql("'0.000'");
-
-                entity.HasOne(d => d.IdContratoNavigation)
-                    .WithMany(p => p.Pagos)
-                    .HasForeignKey(d => d.IdContrato)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("idContratoPagos");
-
-                entity.HasOne(d => d.IdEmpleadoNavigation)
-                    .WithMany(p => p.Pagos)
-                    .HasForeignKey(d => d.IdEmpleado)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("idEmpleadoPagos");
-
-                entity.HasOne(d => d.IdTiempoNavigation)
-                    .WithMany(p => p.Pagos)
-                    .HasForeignKey(d => d.IdTiempo)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("idTiempoPagos");
-                    
-            });
-
             modelBuilder.Entity<Tiempo>(entity =>
             {
-                entity.HasIndex(e => e.IdContrato)
-                    .HasName("idContratoT_idx");
 
                 entity.HasIndex(e => e.IdEmpleado)
                     .HasName("idEmpeladoT_idx");
@@ -216,9 +191,15 @@ namespace SARH___JMéndez_Constructora.Data
                     .HasConstraintName("idEmpeladoT");
             });
 
+
             OnModelCreatingPartial(modelBuilder);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        public DbSet<SARH___JMéndez_Constructora.Models.Tiempo> Tiempo { get; set; }
+
+        public DbSet<SARH___JMéndez_Constructora.Models.VacacionesViewModels.VacacionesFormViewModel> VacacionesFormViewModel { get; set; }
+
     }
 }

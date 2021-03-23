@@ -136,7 +136,7 @@
                                 <div class="d-inline-block navbar-right__image"></div>
                             </li>
                             <li>
-                                <form class="form-inline h-100" asp-controller="Account" asp-action="Logout" >
+                                <form class="form-inline h-100" asp-controller="Account" asp-action="Logout">
                                     <button type="submit" class="btn icon-menu">
                                         <i class="icon-power"></i>
                                         <span>Logout</span>
@@ -152,7 +152,7 @@
             </div>
         </nav>
         @* Sidebar *@
-    <div id="left-sidebar" class="sidebar">
+    <div id="left-sidebar" class="sidebar" style="overflow-y: scroll; overflow-x: hidden !important">
         <div class="navbar-brand">
             <button type="button"
                     class="btn-toggle-offcanvas btn btn-sm float-right">
@@ -189,11 +189,13 @@
             {
                 string[] actionsAllowed = new string[] { "tablero", "trabajadores", "pagos", "calendario", "rendimiento", "usuarios", "reportes" };
 
-            } else if (User.IsInRole("RRHH"))
+            }
+            else if (User.IsInRole("RRHH"))
             {
                 string[] actionsAllowed = new string[] { "trabajadores", "pagos" };
 
-            } else if (User.IsInRole("Gerencia"))
+            }
+            else if (User.IsInRole("Gerencia"))
             {
                 string[] actionsAllowed = new string[] { "tablero", "rendimiento", "reportes" };
 
@@ -216,37 +218,43 @@
                     </a>
                 </li>
                 <li class="sidebar__item @((string)ViewData["sidebarActive"] == "Pagos" ? "active" : "")">
-                    <a class="btn text-left sidebar__link " 
+                    <a class="btn text-left sidebar__link "
                        asp-area="" asp-controller="Pagos" asp-action="Index">
                         <i class="icon-credit-card sidebar__icon"></i><span class="left-sidebar__span">Pagos</span>
                     </a>
                 </li>
                 <li class="sidebar__item @((string)ViewData["sidebarActive"] == "Calendario" ? "active" : "")">
-                    <a class="btn text-left sidebar__link" 
+                    <a class="btn text-left sidebar__link"
                        asp-area="" asp-controller="Calendario" asp-action="Index">
                         <i class="icon-clock sidebar__icon"></i><span class="left-sidebar__span">Calendario</span>
                     </a>
                 </li>
+                <li class="sidebar__item @((string)ViewData["sidebarActive"] == "Deducciones" ? "active" : "")">
+                    <a class="btn text-left sidebar__link "
+                       asp-area="" asp-controller="Deducciones" asp-action="Index">
+                        <i class="icon-credit-card sidebar__icon"></i><span class="left-sidebar__span">Deducciones</span>
+                    </a>
+                </li>
                 <li class="sidebar__item  @((string)ViewData["sidebarActive"] == "Rendimiento" ? "active" : "")">
-                    <a class="btn text-left sidebar__link" 
+                    <a class="btn text-left sidebar__link"
                        asp-area="" asp-controller="Rendimiento" asp-action="Index">
                         <i class="icon-docs sidebar__icon"></i><span class="left-sidebar__span">Rendimiento</span>
                     </a>
                 </li>
                 <li class="sidebar__item  @((string)ViewData["sidebarActive"] == "Usuarios" ? "active" : "")">
-                    <a class="btn text-left sidebar__link" 
+                    <a class="btn text-left sidebar__link"
                        asp-area="" asp-controller="Usuarios" asp-action="Index">
                         <i class="icon-users sidebar__icon"></i><span class="left-sidebar__span">Usuarios</span>
                     </a>
                 </li>
                 <li class="sidebar__item   @((string)ViewData["sidebarActive"] == "Reportes" ? "active" : "")">
-                    <a class="btn text-left  sidebar__link" 
-                       asp-area="" asp-controller="Reportes" asp-action="Index">
+                    <a class="btn text-left  sidebar__link"
+                       asp-area="" asp-controller="Vacaciones" asp-action="Index">
                         <i class="icon-folder sidebar__icon"></i><span class="left-sidebar__span">Reportes</span>
                     </a>
                 </li>
                 <li class="sidebar__item   @((string)ViewData["sidebarActive"] == "Incapacidades" ? "active" : "")">
-                    <a class="btn text-left  sidebar__link" 
+                    <a class="btn text-left  sidebar__link"
                        asp-area="" asp-controller="Incapacidades" asp-action="Index">
                         <i class="icon-folder sidebar__icon"></i><span class="left-sidebar__span">Incapacidades</span>
                     </a>
@@ -254,11 +262,14 @@
             </ul>
         </nav>
     </div>
+        <div class="slimScrollBar" style="background: rgb(28, 34, 44); width: 2px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 3px; z-index: 99; right: 1px; height: 314.868px;"></div><div class="slimScrollRail" style="width: 2px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+
         @* Main Content *@
         <div id="main-content">
             @RenderBody()
         </div>
     </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="~/lib/jquery/jquery-3.3.1.min.js"></script>
     <script src="~/lib/bootstrap/js/popper.min.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>

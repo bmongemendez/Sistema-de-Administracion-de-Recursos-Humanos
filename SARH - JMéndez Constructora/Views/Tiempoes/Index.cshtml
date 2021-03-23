@@ -27,11 +27,11 @@
                 <div class="card">
                     <ul class="nav nav-tabs3 table-nav">
                         <li class="nav-item">
-                            <a class="nav-link active show"
+                            <a class="nav-link"
                                asp-action="Index" asp-controller="Vacaciones">Vacaciones</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-action="Index" asp-controller="Tiempoes">Tiempo</a>
+                            <a class="nav-link  active show" asp-action="Index" asp-controller="Tiempoes">Tiempo</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#Invoice">Pagos</a>
@@ -39,10 +39,11 @@
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#Invoice">Ocupaciones</a>
                         </li>
+
                     </ul>
                     <div class="tab-content mt-3">
                         <div class="tab-pane show active" id="Vacaciones">
-                            <partial name="_VacacionesPartial" />
+                            <partial name="_tiempoesIndexPartial" />
                         </div>
                     </div>
                 </div>

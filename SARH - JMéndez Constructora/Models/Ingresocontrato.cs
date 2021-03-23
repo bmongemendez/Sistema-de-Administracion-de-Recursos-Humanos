@@ -49,6 +49,7 @@ namespace SARH___JMéndez_Constructora.Models
         
         [InverseProperty("IdContratoNavigation")]
         public virtual ICollection<Pagos> Pagos { get; set; }
+
         [InverseProperty("IdContratoNavigation")]
         public virtual ICollection<Tiempo> Tiempo { get; set; }
     }
