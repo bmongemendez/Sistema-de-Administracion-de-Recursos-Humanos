@@ -30,42 +30,46 @@
         <tbody>
             @foreach (var item in ViewBag.Users)
             {
-                <tr>
-                    <td>
-                        <div class="avtar-pic w35 bg-blue"
-                             data-toggle="tooltip"
-                             data-placement="top"
-                             title="Avatar Name">
-                            <span>@( 
+<tr>
+    <td>
+        <div class="avtar-pic w35 bg-blue"
+             data-toggle="tooltip"
+             data-placement="top"
+             title="Avatar Name">
+            <span>
+                @(
                                 item.UserName.Length >= 2
                                 ? item.UserName.Substring(0, 2)
                                 : item.UserName
-                            )</span>
-                        </div>
-                    </td>
-                    <td>
-                        <h6 class="mb-0">@item.UserName</h6>
-                    </td>
-                    <td>
-                        <span class="badge badge-success">Admin</span>
-                    </td>
-                    <td class="text-right">
-                        <a class="btn btn-sm btn-default" href="@Url.Action("SetPassword", "Usuarios", new { id = item.Id,  userName = item.UserName})">
-                            <i class="fa fa-edit">
-                            </i>
-                        </a>
-                            <form class="form-inline d-inline" asp-action="Delete" asp-route-returnurl="@item.Id">
-                                <button type="submit"
-                                        class="btn btn-sm btn-default js-sweetalert  @(User.Identity.Name == item.UserName ? "shadow-none" : "") " 
-                                        @(User.Identity.Name == item.UserName ? "disabled" : "")
-                                                title="Delete"
-                                        data-type="confirm">
-                                    <i class="fa fa-trash-o text-danger"></i>
-                                </button>
-                            </form> 
-                    </td>
-                </tr>
-            }
+                            )
+            </span>
+        </div>
+    </td>
+    <td>
+        <h6 class="mb-0">@item.UserName</h6>
+    </td>
+    <td>
+        <span class="badge badge-success">Admin</span>
+    </td>
+    <td class="text-right">
+        <a class="btn btn-sm btn-default" href="@Url.Action("SetPassword", "Usuarios", new { id = item.Id,  userName = item.UserName})">
+            <i class="fa fa-edit">
+            </i>
+        </a>
+        <form id="formEliminarUsuario" class="form-inline d-inline" asp-action="Delete" asp-route-returnurl="@item.Id">
+            <button 
+                    class="btn btn-default deleteUserButton  @(User.Identity.Name == item.UserName ? "shadow-none" : "") "
+                    @(User.Identity.Name == item.UserName ? "disabled" : "")
+                    title="Eliminar">
+                <i class="fa fa-trash-o text-danger"></i>
+            </button>
+        </form>
+       
+    </td>
+</tr>}
         </tbody>
     </table>
+
+
 </div>
+

@@ -19,14 +19,14 @@ namespace SARH___JMéndez_Constructora.Controllers
             _context = context;
         }
 
-        // GET: Tiempoes
+        // GET: Tiempoes1
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Tiempo.Include(t => t.IdContratoNavigation).Include(t => t.IdEmpleadoNavigation);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Tiempoes/Details/5
+        // GET: Tiempoes1/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,7 +46,7 @@ namespace SARH___JMéndez_Constructora.Controllers
             return View(tiempo);
         }
 
-        // GET: Tiempoes/Create
+        // GET: Tiempoes1/Create
         public IActionResult Create()
         {
             ViewData["IdContrato"] = new SelectList(_context.Ingresocontrato, "Id", "Id");
@@ -54,7 +54,7 @@ namespace SARH___JMéndez_Constructora.Controllers
             return View();
         }
 
-        // POST: Tiempoes/Create
+        // POST: Tiempoes1/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -72,7 +72,7 @@ namespace SARH___JMéndez_Constructora.Controllers
             return View(tiempo);
         }
 
-        // GET: Tiempoes/Edit/5
+        // GET: Tiempoes1/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -90,7 +90,7 @@ namespace SARH___JMéndez_Constructora.Controllers
             return View(tiempo);
         }
 
-        // POST: Tiempoes/Edit/5
+        // POST: Tiempoes1/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -127,7 +127,7 @@ namespace SARH___JMéndez_Constructora.Controllers
             return View(tiempo);
         }
 
-        // GET: Tiempoes/Delete/5
+        // GET: Tiempoes1/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -147,7 +147,7 @@ namespace SARH___JMéndez_Constructora.Controllers
             return View(tiempo);
         }
 
-        // POST: Tiempoes/Delete/5
+        // POST: Tiempoes1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

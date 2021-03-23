@@ -48,6 +48,7 @@ namespace MvcMovie.Controllers
 
             if (InsertPago(BindModel(model.ingresoPago)
                 , BindTiempoModel(model.ingresoPago)) == 1)
+
             return RedirectToAction(nameof(Index), new { Message = PagosMessageId.AddPaymentSuccess });                
             
             return RedirectToAction(nameof(Index), new { Message = PagosMessageId.Error });
@@ -140,6 +141,7 @@ namespace MvcMovie.Controllers
                 _appContext.SaveChanges();
                 
                 // Agregar el id tiempo registrado
+                //Se le asigna el id aquí porque hasta hacer el SaveChanges() se le crea el ID
                 model.IdTiempo = modelTiempo.Id;
 
                 _appContext.Pagos.Add(model);

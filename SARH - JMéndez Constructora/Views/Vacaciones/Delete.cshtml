@@ -1,0 +1,94 @@
+﻿@model SARH___JMéndez_Constructora.Models.Vacaciones
+
+@{
+    ViewData["Title"] = "Delete";
+    ViewData["sidebarActive"] = "Reportes";
+
+}
+<div class="container-fluid">
+    <div class="block-header">
+        <div class="row clearfix">
+            <div class="col-md-6 col-sm-12">
+                <h1>Inicio</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="../home/dashboard.html">
+                                <i class="icon-home"></i>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">Eliminar reporte de vacaciones</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="row clearfix">
+            <div class="col-lg-12">
+                <div class="card">
+                    <ul class="nav nav-tabs3 table-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active show"
+                               asp-action="Index" asp-controller="Vacaciones">Vacaciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Index" asp-controller="Tiempoes">Tiempo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#Invoice">Pagos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#Invoice">Ocupaciones</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-3">
+                        <div class="tab-pane show active" id="Vacaciones">
+                            <div class="row p-5">
+                                <div class="col-12  p-3 bg-light rounded-sm">
+                                    <h3>Seguro que desea eliminar este reporte de vacaciones?</h3>
+                                    <div>
+                                        <h4>Vacaciones</h4>
+                                        <hr />
+                                        <dl class="row">
+                                            <dt class="col-sm-2">
+                                                @Html.DisplayNameFor(model => model.FueronAprobadas)
+                                            </dt>
+                                            <dd class="col-sm-10">
+                                                @Html.DisplayFor(model => model.FueronAprobadas)
+                                            </dd>
+                                            <dt class="col-sm-2">
+                                                @Html.DisplayNameFor(model => model.Notas)
+                                            </dt>
+                                            <dd class="col-sm-10">
+                                                @Html.DisplayFor(model => model.Notas)
+                                            </dd>
+                                            <dt class="col-sm-2">
+                                                @Html.DisplayNameFor(model => model.IdEmpleadoNavigation)
+                                            </dt>
+                                            <dd class="col-sm-10">
+                                                @Html.DisplayFor(model => model.IdEmpleadoNavigation.Apellido1)
+                                            </dd>
+                                            <dt class="col-sm-2">
+                                                @Html.DisplayNameFor(model => model.IdTiempoNavigation)
+                                            </dt>
+                                            <dd class="col-sm-10">
+                                                @Html.DisplayFor(model => model.IdTiempoNavigation.Id)
+                                            </dd>
+                                        </dl>
+
+                                        <form asp-action="Delete">
+                                            <input type="hidden" asp-for="Id" />
+                                            <input type="submit" value="Delete" class="btn btn-danger" /> |
+                                            <a asp-action="Index">Back to List</a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

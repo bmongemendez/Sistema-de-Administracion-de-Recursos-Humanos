@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using SARH___JMéndez_Constructora.Models;
+using SARH___JMéndez_Constructora.Models.VacacionesViewModels;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
@@ -170,6 +171,8 @@ namespace SARH___JMéndez_Constructora.Data
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
         public DbSet<SARH___JMéndez_Constructora.Models.Tiempo> Tiempo { get; set; }
+
+        public DbSet<SARH___JMéndez_Constructora.Models.VacacionesViewModels.VacacionesFormViewModel> VacacionesFormViewModel { get; set; }
 
     }
 }

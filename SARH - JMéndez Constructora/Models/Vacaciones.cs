@@ -18,13 +18,22 @@ namespace SARH___JMéndez_Constructora.Models
         [Column("idEmpleado")]
         public int IdEmpleado { get; set; }
         [Column("fueronAprobadas")]
+        [Display(Name = "Aprobadas")]
         public bool FueronAprobadas { get; set; }
         [Column("notas")]
+        [DataType(DataType.MultilineText)]
+        [Display(Name = "Observaciones")]
         [StringLength(128)]
         public string Notas { get; set; }
-
+        [Column("idTiempo")]
+        public int IdTiempo { get; set; }
         [ForeignKey(nameof(IdEmpleado))]
         [InverseProperty(nameof(Empleados.Vacaciones))]
+        [Display(Name = "Empleado")]
         public virtual Empleados IdEmpleadoNavigation { get; set; }
+        [ForeignKey(nameof(IdTiempo))]
+        [InverseProperty(nameof(Tiempo.Vacaciones))]
+        [Display(Name = "# de reporte de tiempo")]
+        public virtual Tiempo IdTiempoNavigation { get; set; }
     }
 }
