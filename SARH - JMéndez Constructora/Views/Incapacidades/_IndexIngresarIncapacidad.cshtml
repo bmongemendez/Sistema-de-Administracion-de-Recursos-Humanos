@@ -1,0 +1,64 @@
+@model IncapacidadesFormViewModel
+@{
+    IEnumerable<SelectListItem> empleados = (IEnumerable<SelectListItem>)ViewData["empleados"];
+    IEnumerable<SelectListItem> tipos = (IEnumerable<SelectListItem>)ViewData["tipos"];
+}
+ <form asp-action="Index" enctype="multipart/form-data" method="POST" class="dropzone">
+    <div class="row clear-fix">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group">
+                <label asp-for="IdEmpleado" class="control-label"></label>
+                <select asp-for="IdEmpleado" class="form-control show-tick"
+                    asp-items="@(new SelectList(empleados, "Value", "Text"))">
+                </select>
+                <span asp-validation-for="IdEmpleado" class="text-danger"></span>
+            </div>
+        </div>    
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group">
+                <label asp-for="Tipo" class="control-label"></label>
+               <select asp-for="Tipo" class="form-control show-tick"
+                    asp-items="@(new SelectList(tipos, "Value", "Text"))">
+                </select>
+                <span asp-validation-for="Tipo" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-6">
+            <h6>Intervalo</h6>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group">
+                <label asp-for="Desde" class="control-label"></label>
+                <input asp-for="Desde" class="form-control" />
+                <span asp-validation-for="Desde" class="text-danger"></span>
+            </div>
+        </div>    
+        <div class="col-md-4 col-sm-6">
+            <div class="form-group">
+                <label asp-for="Hasta" class="control-label"></label>
+                <input asp-for="Hasta" class="form-control" />
+                <span asp-validation-for="Hasta" class="text-danger"></span>
+            </div>
+        </div> 
+        <div class="col-md-12 col-sm-6">
+            <small id="fileHelp" class="form-text mb-2 mt-0 text-danger">** Campos requeridos.</small>
+        </div>   
+        <div class="col-md-12 col-sm-6">
+            <div class="form-group">
+                <label asp-for="Evidencias" class="control-label"></label>
+                <div class="file-loading">
+                    <input id="input-ke-2" type="file" multiple asp-for="Evidencias"
+                    data-show-preview="true" data-show-upload="false"
+                    accept="image/*,application/pdf">
+                </div>
+            </div>
+            
+        </div>
+         
+        <div class="col-12">
+            <input id="submit" type="submit" value="Agregar" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+

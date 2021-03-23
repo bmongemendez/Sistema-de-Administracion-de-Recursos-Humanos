@@ -325,6 +325,41 @@ CREATE TABLE IF NOT EXISTS `sahr.application`.`PagosRegistroAuditoria` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `sahr.application`.`Incapacidades`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sahr.application`.`Incapacidades` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `tipo` INT NOT NULL,
+  `idTiempo` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `idTiempo_UNIQUE` (`idTiempo` ASC) VISIBLE,
+  CONSTRAINT `idTiempoIncapacidades`
+    FOREIGN KEY (`idTiempo`)
+    REFERENCES `sahr.application`.`Tiempo` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sahr.application`.`Evidencias`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sahr.application`.`Evidencias` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `idIncapacidad` INT NOT NULL,
+  `evidencia` MEDIUMBLOB NOT NULL,
+  `tipo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `idIncapacidadEvidencias_idx` (`idIncapacidad` ASC) VISIBLE,
+  CONSTRAINT `idIncapacidadEvidencias`
+    FOREIGN KEY (`idIncapacidad`)
+    REFERENCES `sahr.application`.`Incapacidades` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 USE `sahr.application`;
 
 DELIMITER $$

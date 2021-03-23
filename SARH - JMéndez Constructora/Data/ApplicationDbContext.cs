@@ -22,7 +22,9 @@ namespace SARH___JMéndez_Constructora.Data
 
         public virtual DbSet<Deducciones> Deducciones { get; set; }
         public virtual DbSet<Empleados> Empleados { get; set; }
+        public virtual DbSet<Evidencias> Evidencias { get; set; }
         public virtual DbSet<Fincontrato> Fincontrato { get; set; }
+        public virtual DbSet<Incapacidades> Incapacidades { get; set; }
         public virtual DbSet<Ingresocontrato> Ingresocontrato { get; set; }
         public virtual DbSet<Pagos> Pagos { get; set; }
         public virtual DbSet<Puestos> Puestos { get; set; }
@@ -69,6 +71,18 @@ namespace SARH___JMéndez_Constructora.Data
                 entity.Property(e => e.TieneTecnico).HasDefaultValueSql("'0'");
             });
 
+            modelBuilder.Entity<Evidencias>(entity =>
+            {
+                entity.HasIndex(e => e.IdIncapacidad)
+                    .HasName("idIncapacidadEvidencias_idx");
+
+                entity.HasOne(d => d.IdIncapacidadNavigation)
+                    .WithMany(p => p.Evidencias)
+                    .HasForeignKey(d => d.IdIncapacidad)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("idIncapacidadEvidencias");
+            });
+
             modelBuilder.Entity<Fincontrato>(entity =>
             {
                 entity.HasKey(e => e.IdInicioContrato)
@@ -91,6 +105,19 @@ namespace SARH___JMéndez_Constructora.Data
                     .HasForeignKey<Fincontrato>(d => d.IdInicioContrato)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("idInicioContratoFN");
+            });
+
+            modelBuilder.Entity<Incapacidades>(entity =>
+            {
+                entity.HasIndex(e => e.IdTiempo)
+                    .HasName("idTiempo_UNIQUE")
+                    .IsUnique();
+
+                entity.HasOne(d => d.IdTiempoNavigation)
+                    .WithOne(p => p.Incapacidades)
+                    .HasForeignKey<Incapacidades>(d => d.IdTiempo)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("idTiempoIncapacidades");
             });
 
             modelBuilder.Entity<Ingresocontrato>(entity =>

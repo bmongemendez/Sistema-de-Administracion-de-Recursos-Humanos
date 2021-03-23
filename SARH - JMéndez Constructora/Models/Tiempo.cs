@@ -44,6 +44,8 @@ namespace SARH___JMéndez_Constructora.Models
         [InverseProperty(nameof(Empleados.Tiempo))]
         public virtual Empleados IdEmpleadoNavigation { get; set; }
         [InverseProperty("IdTiempoNavigation")]
+        public virtual Incapacidades Incapacidades { get; set; }
+        [InverseProperty("IdTiempoNavigation")]
         public virtual ICollection<Pagos> Pagos { get; set; }
     }
 }
