@@ -46,6 +46,7 @@ namespace SARH___JMéndez_Constructora.Controllers
             {
                 model.Empleados = GetTrabajadoresToSelect();
                 model.Tipo = GetTipos();
+                model.Incapacidades = GetIncapacidades();
                 return View(model);
             }
 
