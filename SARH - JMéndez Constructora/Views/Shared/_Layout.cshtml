@@ -2,6 +2,17 @@
 @using SARH___JMéndez_Constructora.Models 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@*https://docs.microsoft.com/es-es/aspnet/core/mvc/views/dependency-injection?view=aspnetcore-3.1*@
+@inject UserPageSettingsService pageSettings
+@{
+    string theme = string.Empty;
+    string themeChecked = "checked";
+    string rtl = string.Empty;
+    string rtlChecked = string.Empty;
+    var userPageSettings = pageSettings.GetUserPageSettings(User.Identity.Name);
+    if(userPageSettings.LightVersionEnabled){theme="light_version"; themeChecked="";} 
+    if(userPageSettings.RightToLeftEnabled){rtl="rtl"; rtlChecked = "checked";}  
+}
 
 
 
@@ -31,7 +42,7 @@
 
 </head>
 
-<body class="theme-blue-primary font-raleway light_version">
+<body class="theme-blue-primary font-raleway @theme @rtl">
     <div class="page-loader-wrapper">
         <div class="loader">
             <div class="bar1"></div>
@@ -80,7 +91,7 @@
                     Modo Oscuro
                     <div class="float-right">
                         <label class="switch">
-                            <input type="checkbox" class="lv-btn" />
+                            <input type="checkbox" class="lv-btn" @themeChecked />
                             <span class="slider round"></span>
                         </label>
                     </div>
@@ -89,11 +100,12 @@
                     Menú a la izquierda
                     <div class="float-right">
                         <label class="switch">
-                            <input type="checkbox" class="rtl-btn" />
+                            <input type="checkbox" class="rtl-btn" @rtlChecked />
                             <span class="slider round"></span>
                         </label>
                     </div>
                 </li>
+                <!--
                 <li class="list-group-item">
                     Menú Horizontal
                     <div class="float-right">
@@ -112,6 +124,7 @@
                         </label>
                     </div>
                 </li>
+                -->
             </ul>
         </div>
     </div>
@@ -281,6 +294,16 @@
     <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js"
             data-cf-settings="c3cdcb1f54af327e782883c8-|49"
             defer=""></script>
+    <script>
+        $('.setting_switch .lv-btn').on('change', function () {
+            $.ajax({type: "GET", url: "../UserPageSettings/SetTheme",
+                data: { LightVersionEnabled: !this.checked }
+		})});
+        $('.setting_switch .rtl-btn').on('change', function () {
+            $.ajax({type: "GET", url: "../UserPageSettings/SetRTL",
+                data: { RightToLeftEnabled: this.checked }
+		})});
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

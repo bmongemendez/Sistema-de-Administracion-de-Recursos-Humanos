@@ -44,6 +44,7 @@ namespace SARH___JMéndez_Constructora
                             _ => "El campo no es valido.");
                     })
                 .AddRazorRuntimeCompilation();
+            services.AddTransient<UserPageSettingsService>();
             services.AddProgressiveWebApp();
         }
 

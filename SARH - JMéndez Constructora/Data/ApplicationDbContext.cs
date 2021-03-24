@@ -21,6 +21,7 @@ namespace SARH___JMéndez_Constructora.Data
         {
         }
 
+        public virtual DbSet<Aspnetusersref> Aspnetusersref { get; set; }
         public virtual DbSet<Deducciones> Deducciones { get; set; }
         public virtual DbSet<Empleados> Empleados { get; set; }
         public virtual DbSet<Evidencias> Evidencias { get; set; }
@@ -35,6 +36,16 @@ namespace SARH___JMéndez_Constructora.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             
+
+            modelBuilder.Entity<Aspnetusersref>(entity =>
+            {
+                entity.HasKey(e => e.UserName)
+                    .HasName("PRIMARY");
+
+                entity.Property(e => e.LightVersionEnabled).HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.RightToLeftEnabled).HasDefaultValueSql("'0'");
+            });
 
             modelBuilder.Entity<Deducciones>(entity =>
             {
