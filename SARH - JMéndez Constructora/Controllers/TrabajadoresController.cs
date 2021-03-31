@@ -244,7 +244,7 @@ namespace SARH___JMéndez_Constructora.Controllers
                         TieneLicenciaA3 = model.TieneLicenciaA3,
                         TieneLicenciaB1 = model.TieneLicenciaB1,
                         //Falta B2,B3,D,E
-                        UserName = "rrhh"
+                        UserName = User.Identity.Name
                     };
                 
                 _appContext.Empleados.Add(empleado);
@@ -393,6 +393,7 @@ namespace SARH___JMéndez_Constructora.Controllers
                 aux.Telefono = model.Telefono;
                 aux.TelefonoEmergencia = model.TelefonoEmergencia;
                 aux.ContactoEmergencia = model.ContactoEmergencia;
+                aux.UserName = User.Identity.Name;
                 
                 _appContext.Update(aux);
                 
@@ -420,7 +421,7 @@ namespace SARH___JMéndez_Constructora.Controllers
                 aux.TieneLicenciaB3 = (bool)model.TieneLicenciaB3;
                 aux.TieneLicenciaD = (bool)model.TieneLicenciaD;
                 aux.TieneLicenciaE = (bool)model.TieneLicenciaE;
-            
+                aux.UserName = User.Identity.Name;
                 
                 _appContext.Update(aux);
                 
