@@ -370,14 +370,40 @@ CREATE DEFINER = CURRENT_USER TRIGGER `sahr.application`.`Empleados_AFTER_INSERT
 AFTER INSERT ON `Empleados` 
 FOR EACH ROW
 BEGIN
-	INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName)
-		VALUES (NEW.id, 'cedula', NEW.cedula, NEW.userName);
-    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName)
-		VALUES (NEW.id, 'cedula', NEW.nombre, NEW.userName);
-    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName)
-		VALUES (NEW.id, 'cedula', NEW.apellido1, NEW.userName);
-    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName)
-		VALUES (NEW.id, 'cedula', NEW.apellido2, NEW.userName);
+	INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'cedula', OLD.cedula, NEW.cedula, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'nombre', OLD.nombre, NEW.nombre, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'apellido1', OLD.apellido1, NEW.apellido1, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'apellido2', OLD.apellido2, NEW.apellido2, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'fechaNacimiento', OLD.fechaNacimiento, NEW.fechaNacimiento, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'telefono', OLD.telefono, NEW.telefono, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'telefonoEmergencia', OLD.telefonoEmergencia, NEW.telefonoEmergencia, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'contactoEmergencia', OLD.contactoEmergencia, NEW.contactoEmergencia, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneBachiller', OLD.tieneBachiller, NEW.tieneBachiller, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciatura', OLD.tieneLicenciatura, NEW.tieneLicenciatura, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneTecnico', OLD.tieneTecnico, NEW.tieneTecnico, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciaA3', OLD.tieneLicenciaA3, NEW.tieneLicenciaA3, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciaB1', OLD.tieneLicenciaB1, NEW.tieneLicenciaB1, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciaB2', OLD.tieneLicenciaB2, NEW.tieneLicenciaB2, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciaB3', OLD.tieneLicenciaB3, NEW.tieneLicenciaB3, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciaD', OLD.tieneLicenciaD, NEW.tieneLicenciaD, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciaE', OLD.tieneLicenciaE, NEW.tieneLicenciaE, NEW.userName);
 END$$
 
 USE `sahr.application`$$
@@ -385,10 +411,78 @@ CREATE DEFINER = CURRENT_USER TRIGGER `sahr.application`.`Empleados_AFTER_UPDATE
 AFTER UPDATE ON `Empleados` 
 FOR EACH ROW
 BEGIN
-	IF OLD.seElimino <> new.seElimino THEN
-        INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
-			VALUES (NEW.id, 'seElimino', OLD.seElimino, NEW.seElimino, NEW.userName);
-    END IF;
+	IF OLD.seElimino <> NEW.seElimino THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'seElimino', OLD.seElimino, NEW.seElimino, NEW.userName);
+  END IF;
+  IF OLD.cedula <> NEW.cedula THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'cedula', OLD.cedula, NEW.cedula, NEW.userName);
+  END IF;
+  IF OLD.nombre <> NEW.nombre THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'nombre', OLD.nombre, NEW.nombre, NEW.userName);
+  END IF;
+  IF OLD.apellido1 <> NEW.apellido1 THEN
+      INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'apellido1', OLD.apellido1, NEW.apellido1, NEW.userName);
+  END IF;
+  IF IFNULL(OLD.apellido2, '') <> IFNULL(NEW.apellido2, '') THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'apellido2', OLD.apellido2, NEW.apellido2, NEW.userName);
+  END IF;
+  IF OLD.fechaNacimiento <> NEW.fechaNacimiento THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'fechaNacimiento', OLD.fechaNacimiento, NEW.fechaNacimiento, NEW.userName);
+  END IF;
+  IF OLD.telefono <> NEW.telefono THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'telefono', OLD.telefono, NEW.telefono, NEW.userName);
+  END IF;
+  IF IFNULL(OLD.telefonoEmergencia, '') <> IFNULL(NEW.telefonoEmergencia, '') THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'telefonoEmergencia', OLD.telefonoEmergencia, NEW.telefonoEmergencia, NEW.userName);
+  END IF;
+  IF IFNULL(OLD.contactoEmergencia, '') <> IFNULL(NEW.contactoEmergencia, '') THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'contactoEmergencia', OLD.contactoEmergencia, NEW.contactoEmergencia, NEW.userName);
+  END IF;
+  IF OLD.tieneBachiller <> NEW.tieneBachiller THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'tieneBachiller', OLD.tieneBachiller, NEW.tieneBachiller, NEW.userName);
+  END IF;
+  IF OLD.tieneLicenciatura <> NEW.tieneLicenciatura THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'tieneLicenciatura', OLD.tieneLicenciatura, NEW.tieneLicenciatura, NEW.userName);
+  END IF;
+  IF OLD.tieneTecnico <> NEW.tieneTecnico THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'tieneTecnico', OLD.tieneTecnico, NEW.tieneTecnico, NEW.userName);
+  END IF;
+  IF OLD.tieneLicenciaA3 <> NEW.tieneLicenciaA3 THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'tieneLicenciaA3', OLD.tieneLicenciaA3, NEW.tieneLicenciaA3, NEW.userName);
+  END IF;
+  IF OLD.tieneLicenciaB1 <> NEW.tieneLicenciaB1 THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'tieneLicenciaB1', OLD.tieneLicenciaB1, NEW.tieneLicenciaB1, NEW.userName);
+  END IF;
+  IF OLD.tieneLicenciaB2 <> NEW.tieneLicenciaB2 THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'tieneLicenciaB2', OLD.tieneLicenciaB2, NEW.tieneLicenciaB2, NEW.userName);
+  END IF;
+  IF OLD.tieneLicenciaB3 <> NEW.tieneLicenciaB3 THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'tieneLicenciaB3', OLD.tieneLicenciaB3, NEW.tieneLicenciaB3, NEW.userName);
+  END IF;
+  IF OLD.tieneLicenciaD <> NEW.tieneLicenciaD THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'tieneLicenciaD', OLD.tieneLicenciaD, NEW.tieneLicenciaD, NEW.userName);
+  END IF;
+  IF OLD.tieneLicenciaE <> NEW.tieneLicenciaE THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'tieneLicenciaE', OLD.tieneLicenciaE, NEW.tieneLicenciaE, NEW.userName);
+  END IF;
 END$$
 
 
