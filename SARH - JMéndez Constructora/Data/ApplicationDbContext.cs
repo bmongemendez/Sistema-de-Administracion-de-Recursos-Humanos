@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using SARH___JMéndez_Constructora.Models;
@@ -23,11 +23,13 @@ namespace SARH___JMéndez_Constructora.Data
         public virtual DbSet<Aspnetusersref> Aspnetusersref { get; set; }
         public virtual DbSet<Deducciones> Deducciones { get; set; }
         public virtual DbSet<Empleados> Empleados { get; set; }
+        public virtual DbSet<Empleadosregistroauditoria> Empleadosregistroauditoria { get; set; }
         public virtual DbSet<Evidencias> Evidencias { get; set; }
         public virtual DbSet<Fincontrato> Fincontrato { get; set; }
         public virtual DbSet<Incapacidades> Incapacidades { get; set; }
         public virtual DbSet<Ingresocontrato> Ingresocontrato { get; set; }
         public virtual DbSet<Pagos> Pagos { get; set; }
+        public virtual DbSet<Pagosregistroauditoria> Pagosregistroauditoria { get; set; }
         public virtual DbSet<Puestos> Puestos { get; set; }
         public virtual DbSet<Tiempo> Tiempo { get; set; }
         public virtual DbSet<Vacaciones> Vacaciones { get; set; }
