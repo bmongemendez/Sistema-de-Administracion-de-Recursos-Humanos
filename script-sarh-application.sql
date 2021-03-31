@@ -485,6 +485,44 @@ BEGIN
   END IF;
 END$$
 
+USE `sahr.application`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `sahr.application`.`Pagos_AFTER_INSERT` AFTER INSERT ON `Pagos` FOR EACH ROW
+BEGIN
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'idEmpleado', NEW.idEmpleado, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'idContrato', NEW.idContrato, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'idTiempo', NEW.idTiempo, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'horasNormal', NEW.horasNormal, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'horasExtra', NEW.horasExtra, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'diaDescanso', NEW.diaDescanso, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'salarioNormal', NEW.salarioNormal, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'salarioExtras', NEW.salarioExtras, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'salarioDiaDescanso', NEW.salarioDiaDescanso, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'salarioBruto', NEW.salarioBruto, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'deducciones', NEW.deducciones, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'cuentasPorPagar', NEW.cuentasPorPagar, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'salarioNeto', NEW.salarioNeto, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'patronoCCSS', NEW.patronoCCSS, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'patronoROtrasInstituciones', NEW.patronoROtrasInstituciones, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'patronoLPT', NEW.patronoLPT, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'observaciones', NEW.observaciones, NEW.userName);
+END$$
 
 DELIMITER ;
 
