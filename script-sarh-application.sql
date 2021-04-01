@@ -110,6 +110,35 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `sahr.application`.`Tiempo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sahr.application`.`Tiempo` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `idEmpleado` INT NOT NULL,
+  `fechaInicio` DATE NOT NULL,
+  `fechaFin` DATE NOT NULL,
+  `idContrato` INT NOT NULL,
+  `esLaborado` TINYINT(1) NULL DEFAULT 0,
+  `esInjustificado` TINYINT(1) NULL DEFAULT 0,
+  `esVacaciones` TINYINT(1) NULL DEFAULT 0,
+  `esIncapacidad` TINYINT(1) NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  INDEX `idEmpeladoT_idx` (`idEmpleado` ASC) VISIBLE,
+  INDEX `idContratoT_idx` (`idContrato` ASC) VISIBLE,
+  CONSTRAINT `idEmpeladoT`
+    FOREIGN KEY (`idEmpleado`)
+    REFERENCES `sahr.application`.`Empleados` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `idContratoT`
+    FOREIGN KEY (`idContrato`)
+    REFERENCES `sahr.application`.`IngresoContrato` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `sahr.application`.`Vacaciones`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sahr.application`.`Vacaciones` (
@@ -153,35 +182,6 @@ CREATE TABLE IF NOT EXISTS `sahr.application`.`FinContrato` (
   INDEX `idInicioContratoFN_idx` (`idInicioContrato` ASC) VISIBLE,
   CONSTRAINT `idInicioContratoFN`
     FOREIGN KEY (`idInicioContrato`)
-    REFERENCES `sahr.application`.`IngresoContrato` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `sahr.application`.`Tiempo`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sahr.application`.`Tiempo` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `idEmpleado` INT NOT NULL,
-  `fechaInicio` DATE NOT NULL,
-  `fechaFin` DATE NOT NULL,
-  `idContrato` INT NOT NULL,
-  `esLaborado` TINYINT(1) NULL DEFAULT 0,
-  `esInjustificado` TINYINT(1) NULL DEFAULT 0,
-  `esVacaciones` TINYINT(1) NULL DEFAULT 0,
-  `esIncapacidad` TINYINT(1) NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  INDEX `idEmpeladoT_idx` (`idEmpleado` ASC) VISIBLE,
-  INDEX `idContratoT_idx` (`idContrato` ASC) VISIBLE,
-  CONSTRAINT `idEmpeladoT`
-    FOREIGN KEY (`idEmpleado`)
-    REFERENCES `sahr.application`.`Empleados` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `idContratoT`
-    FOREIGN KEY (`idContrato`)
     REFERENCES `sahr.application`.`IngresoContrato` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -264,6 +264,7 @@ CREATE TABLE IF NOT EXISTS `sahr.application`.`Aguinaldos` (
   `fechaFin` DATE NOT NULL,
   `sumatoriaSalarioBrutos` DECIMAL(10,3) NOT NULL,
   `montoAguinaldo` DECIMAL(10,3) NOT NULL,
+  `anotaciones` VARCHAR(128) NULL,
   PRIMARY KEY (`id`),
   INDEX `idContratoP_idx` (`idContrato` ASC) VISIBLE,
   INDEX `idEmpleadoA_idx` (`idEmpleado` ASC) VISIBLE,
