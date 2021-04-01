@@ -25,7 +25,7 @@ USE `sahr.application` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sahr.application`.`AspNetUsersRef` (
   `userName` VARCHAR(256) NOT NULL,
-  `ligthVersionEnabled` TINYINT(1) NOT NULL DEFAULT 0,
+  `lightVersionEnabled` TINYINT(1) NOT NULL DEFAULT 0,
   `rightToLeftEnabled` TINYINT(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`userName`))
 ENGINE = InnoDB;
