@@ -20,6 +20,7 @@ namespace SARH___JMéndez_Constructora.Data
         {
         }
 
+        public virtual DbSet<Aguinaldos> Aguinaldos { get; set; }
         public virtual DbSet<Aspnetusersref> Aspnetusersref { get; set; }
         public virtual DbSet<Deducciones> Deducciones { get; set; }
         public virtual DbSet<Empleados> Empleados { get; set; }
@@ -37,7 +38,26 @@ namespace SARH___JMéndez_Constructora.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Aguinaldos>(entity =>
+            {
+                entity.HasIndex(e => e.IdContrato)
+                    .HasName("idContratoP_idx");
+
+                entity.HasIndex(e => e.IdEmpleado)
+                    .HasName("idEmpleadoA_idx");
+
+                entity.HasOne(d => d.IdContratoNavigation)
+                    .WithMany(p => p.Aguinaldos)
+                    .HasForeignKey(d => d.IdContrato)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("idContratoA");
             
+                entity.HasOne(d => d.IdEmpleadoNavigation)
+                    .WithMany(p => p.Aguinaldos)
+                    .HasForeignKey(d => d.IdEmpleado)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("idEmpleadoA");
+            });
 
             modelBuilder.Entity<Aspnetusersref>(entity =>
             {

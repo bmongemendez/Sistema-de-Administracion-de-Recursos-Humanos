@@ -280,6 +280,12 @@
                         <i class="icon-notebook sidebar__icon"></i><span class="left-sidebar__span">Bitacoras</span>
                     </a>
                 </li>
+                <li class="sidebar__item   @((string)ViewData["sidebarActive"] == "Aguinaldos" ? "active" : "")">
+                    <a class="btn text-left  sidebar__link"
+                       asp-area="" asp-controller="Aguinaldos" asp-action="Index">
+                        <i class="icon-credit-card sidebar__icon"></i><span class="left-sidebar__span">Aguinaldos</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

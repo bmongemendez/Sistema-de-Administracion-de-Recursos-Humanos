@@ -1,0 +1,80 @@
+@model IEnumerable<AguinaldosListViewModel>
+<div class="table-responsive">
+    <table class="table table-hover table-custom spacing5 mb-0">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cedula)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaInicio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaFin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MontoAguinaldo)
+                </th>
+                <th class="text-center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    <div class="avtar-pic w35 bg-red"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Avatar Name">
+                        @{
+                            string iniciales = (item.Nombre.Substring(0,1)
+                                + item.Apellido1.Substring(0,1)).ToUpper();
+                        }
+                        <span>@iniciales</span>
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cedula)
+                </td>
+                <td>
+                    <div class="font-15">
+                        <a class="text-secondary" asp-controller="Trabajadores" 
+                            asp-action="Details" asp-route-id="@item.IdEmpleado" >
+                            @Html.DisplayFor(modelItem => item.Nombre) 
+                            @Html.DisplayFor(modelItem => item.Apellido1) 
+                            @Html.DisplayFor(modelItem => item.Apellido2) 
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaFin)
+                </td>
+                <td>
+                    ¢@Html.DisplayFor(modelItem => item.MontoAguinaldo)
+                </td>
+                <td class="text-center">
+                    <a type="button" asp-action="BoletaAguinaldo"
+                        asp-route-id="@item.Id"
+                        class="btn btn-sm btn-dark disabled"
+                        title="Imprimir">
+                        <i class="fa fa-print"></i>
+                    </a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+</div>

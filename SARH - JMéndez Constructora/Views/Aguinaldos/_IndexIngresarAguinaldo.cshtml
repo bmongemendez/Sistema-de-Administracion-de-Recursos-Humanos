@@ -1,0 +1,104 @@
+@model Aguinaldos
+@{
+    IEnumerable<SelectListItem> empleados = (IEnumerable<SelectListItem>)ViewData["empleados"];
+}
+<form id="PartialIngresarAguinaldo" asp-action="Index">
+    <div class="header">
+        <h2>Básico</h2>
+    </div>
+    <div class="body">
+        <div class="row clearfix">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label asp-for="IdEmpleado" class="control-label"></label>
+                    <select id="selectEmpleado" asp-for="IdEmpleado" class="form-control show-tick"
+                        asp-items="@(new SelectList(empleados, "Value", "Text"))">
+                    </select>
+                    <span asp-validation-for="IdEmpleado" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-12">
+            <div class="card mb-0">
+                <div class="header pt-3">
+                    <h2>Contrato</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-hover table-custom spacing5">
+                    <tbody>
+                        <tr>
+                            <td>Fecha Actual</td>
+                            <td id="FechaActual">-</td>
+                        </tr>
+                        <tr>
+                            <td>Inicio de Labores</td>
+                            <td id="InicioContrato">-</td>
+                        </tr>
+                        <tr>
+                            <td>Dias desde contrato</td>
+                            <td id="DiasContrato">-</td>
+                        </tr>
+                        <tr>
+                            <td>Puesto (Codigo de trabajo)</td>
+                            <td id="PuestoTrabajo">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-12">
+            <div class="card mb-0">
+                <div class="header pt-3">
+                    <h2>Detalles del Pago</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-hover table-custom spacing5">
+                    <tbody>
+                        <tr>
+                            <td>Meses Laborados</td>
+                            <td id="MesesContrato">-</td>
+                        </tr>
+                        <tr>
+                            <td>Sumatoria Salarios Brutos</td>
+                            <td id="SumatoriaSalariosBrutos">-</td>
+                        </tr>
+                        <tr>
+                            <td>Calculo de Aguinaldo</td>
+                            <td id="MontoAguinaldo">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-12 col-sm-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Otros</h2>
+                </div>
+                <div class="body">
+                    <div class="form-group">
+                        <label asp-for="Anotaciones" class="control-label"></label>
+                        <textarea asp-for="Anotaciones" class="form-control" rows="2"></textarea>
+                        <span asp-validation-for="Anotaciones" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Añadir" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
