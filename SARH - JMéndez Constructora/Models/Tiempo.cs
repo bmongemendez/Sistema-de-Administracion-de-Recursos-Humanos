@@ -14,6 +14,7 @@ namespace SARH___JMéndez_Constructora.Models
     {
         public Tiempo()
         {
+            Ausenciasinjustificadas = new HashSet<Ausenciasinjustificadas>();
             Pagos = new HashSet<Pagos>();
             Vacaciones = new HashSet<Vacaciones>();
         }
@@ -68,5 +69,7 @@ namespace SARH___JMéndez_Constructora.Models
         public virtual ICollection<Pagos> Pagos { get; set; }
         [InverseProperty("IdTiempoNavigation")]
         public virtual ICollection<Vacaciones> Vacaciones { get; set; }
+        [InverseProperty("IdTiempoNavigation")]
+        public virtual ICollection<Ausenciasinjustificadas> Ausenciasinjustificadas { get; set; }
     }
 }

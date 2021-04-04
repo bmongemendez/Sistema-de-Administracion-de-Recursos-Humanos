@@ -16,7 +16,8 @@ namespace SARH___JMéndez_Constructora.Models
         public Empleados() 
         {
             Ingresocontrato = new HashSet<Ingresocontrato>();
-         }
+            Ausenciasinjustificadas = new HashSet<Ausenciasinjustificadas>();
+        }
         [Key]
         [Column("id")]
         public int Id { get; set; }
@@ -95,8 +96,12 @@ namespace SARH___JMéndez_Constructora.Models
         public virtual ICollection<Vacaciones> Vacaciones { get; set; }
         [InverseProperty("IdEmpleadoNavigation")]
         public virtual ICollection<Tiempo> Tiempo { get; set; }
-        
+        [InverseProperty("IdEmpleadoNavigation")]
+        public virtual ICollection<Evaluaciones> Evaluaciones { get; set; }
+
         [InverseProperty("IdEmpleadoNavigation")]
         public virtual ICollection<Pagos> Pagos { get; set; }
+        [InverseProperty("IdEmpleadoNavigation")]
+        public virtual ICollection<Ausenciasinjustificadas> Ausenciasinjustificadas { get; set; }
     }
 }
