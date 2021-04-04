@@ -1,0 +1,343 @@
+@model BoletaPagoAguinaldoViewModel
+@{
+    ViewData["Title"] = "Boleta de Aguinaldo";
+    ViewData["sidebarActive"] = "Aguinaldos";
+    var statusMessage = ViewData["StatusMessage"];
+}
+<div class="container-fluid">
+	<div class="block-header">
+        <div class="row clearfix">
+            <div class="col-md-6 col-sm-12">
+                <h1>Inicio</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="../home/dashboard.html">
+                                <i class="icon-home"></i>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+							<a asp-action="Index"> Aguinaldos</a>
+						</li>
+						<li class="breadcrumb-item">Boleta de Aguinaldo</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+	<div class="body">
+		<div class="row clearfix">
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="row clearfix">
+						<div class="col-md-12 col-sm-12">
+							<div class="card">
+								<div class="header">
+									<h2>Opciones de Formato</h2>
+								</div>
+								<div class="body">
+									<div class="form-group">
+										<h5>Tamaño del Papel</h5>
+										<select id="paper" class="form-control show-tick" style="width: 30%;">
+											<option value="size-a4" selected>A4</option>
+											<option value="size-letter">Carta</option>
+											<option value="size-executive">Ejecutivo</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row clearfix">
+			<div class="col-md-12 col-sm-12">
+				<div class="card">
+					<div class="header">
+						<h2>Vista Previa</h2>
+						<ul class="header-dropdown dropdown">
+							<li>
+								<a href="javascript:void(0);" class="full-screen" >
+									<i class="icon-frame"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="body overflow-auto">
+						<div class="page-container hidden-on-narrow" id="formConfirmation">
+							<div class="pdf-page size-a4">
+								<div class="inner-page">
+									<div class="pdf-header">
+										<span class="company-logo text-primary">
+											<img src="~/img/JMLogoMini.png"
+											width="30"
+											height="30" /> JMendez Constructora S.A.
+										</span>
+										<span class="invoice-number">@Html.DisplayNameFor(model => model.IdPago) @Html.DisplayFor(model => model.IdPago)</span>
+									</div>
+									<div class="row clearfix information">
+										<div class="col-6">
+											<h6>Empleado</h6>
+											@{
+												string nombreCompleto = Model.Nombre + " "
+													+ Model.Apellido1 + " "
+													+ Model.Apellido2;
+											}
+											<p>
+												@Html.Raw("Nombre: ") @Html.Raw(nombreCompleto)<br />
+												@Html.DisplayNameFor(model => model.Cedula) @Html.DisplayFor(model => model.Cedula)<br />
+												@Html.DisplayNameFor(model => model.NombrePuesto) @Html.DisplayFor(model => model.NombrePuesto)
+											</p>
+										</div>
+										<div class="col-6">
+											<h6>Pago</h6>
+                                            <p>
+                                                Fecha Actual: <span class="text-black-50">
+													@System.DateTime.Now.ToShortDateString()
+												</span><br />
+                                                Lapso de pago:<br />
+                                                &#183 Inicio de Contrato: @Html.DisplayFor(model => model.FechaInicioContrato)<br />
+                                                &#183 Fecha Ingreso Aguinaldo: @Html.DisplayFor(model => model.FechaActual)<br />
+                                                Total Dias: @Html.DisplayFor(model => model.DiasContrato)
+                                            </p>
+										</div>
+									</div>
+									<div class="pdf-body">
+										<div id="grid">
+											<div class="row clearfix">
+												<div class="col-md-12">
+													<div class="card mb-0">
+														<div class="header">
+															<h6>Desgloce del Salario</h6>
+														</div>
+													</div>
+												</div>
+												<div class="col-12">
+													<div class="table-responsive">
+														<table class="table-secondary table-sm">
+															<thead></thead>
+															<tbody>
+																<tr>
+																	<td>Meses Laborados</td>
+																	<td>@Math.Round(Model.MesesContrato, 3)</td>
+																</tr>
+																<tr>
+																	<td>Sumatoria Salarios Brutos</td>
+																	<td>¢@Html.DisplayFor(model => model.SumatoriaSalarioBrutos)</td>
+																</tr>
+																<tr>
+																	<td class="bg-blue text-light">Calculo de Aguinaldo</td>
+																	<td class="bg-primary text-light">¢@Html.DisplayFor(model => model.MontoAguinaldo)</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+											
+										</div>
+										<hr>
+										<p class="">
+											Observaciones: @Html.DisplayFor(model => model.Anotaciones)
+										</p>
+										<hr>
+										<hr>
+										<p class="signature">
+											Recibo Conforme: ___________________ <br/>
+											Fecha: @System.DateTime.Now.ToShortDateString()
+										</p>
+									</div>
+									<div class="pdf-footer">Fin del documento</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row clearfix">
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="row clearfix">
+						<div class="col-md-12 col-sm-12">
+							<div class="card">
+								<div class="body">
+									<div class="form-group">
+										<h5>Imprimir u obtener PDF</h5>
+										<button class="btn btn-primary" onclick="generatePDF()">
+											<i class="fa fa-print"></i> Imprimir</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>
+
+@section Scripts{
+	<script src="~/js/printThis.js"></script>
+
+    <script>
+		//(function() {
+        //    'use strict';
+
+			var generatePDF = function() {
+				//kendo.drawing.drawDOM($("#formConfirmation")).then(function(group) {
+				//	kendo.drawing.pdf.saveAs(group, "BoletaPago.pdf");
+				//});
+				$('#formConfirmation').printThis({
+					debug: false,               // show the iframe for debugging
+					importCSS: true,            // import parent page css
+					importStyle: true,          // import style tags
+					printContainer: true,       // print outer container/$.selector
+					//loadCSS: "/../../css/mainn.css",                // path to additional css file - use an array [] for multiple
+					//pageTitle: "BoletaPago",    // add title to print page
+					removeInline: true,         // remove inline styles from print elements
+					removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
+					//printDelay: 333,          // variable print delay
+					//header: null,             // prefix to html
+					//footer: null,             // postfix to html
+					//base: true,               // preserve the BASE tag or accept a string for the URL
+					//formValues: true,         // preserve input/form values
+					canvas: true,               // copy canvas content
+					//doctypeString: '...',     // enter a different doctype for older markup
+					//removeScripts: false,     // remove script tags from print content
+					copyTagClasses: true,       // copy classes from the html & body tag
+					//beforePrintEvent: null,   // function for printEvent in iframe
+					//beforePrint: null,        // function called before iframe is filled
+					//afterPrint: null          // function called before iframe is removed
+				});
+			}
+
+			document.querySelector('#paper')
+                .addEventListener('change', cambiarTamanio);
+
+			function cambiarTamanio(e){
+				let selectedVal = $('#paper').val();
+
+				$(".pdf-page")
+				.removeClass("size-a4")
+				.removeClass("size-letter")
+				.removeClass("size-executive")
+				.addClass(selectedVal);
+			}
+		//})();
+    </script>
+}
+
+<style>
+	.pdf-page {
+		font-family: "Montserrat",sans-serif;
+	}
+
+	.pdf-header span.company-logo {
+		font-size: 1.2em!important;
+	}
+	
+</style>
+<style>
+	.pdf-page {
+		position: relative;
+		margin: 0 auto;
+		/*padding: .4in .3in;*/
+		/* Margen Moderado*/
+		padding: 2.54cm 1.91cm;
+		color: #333;
+		background-color: #fff;
+		box-shadow: 0 5px 10px 0 rgba(0,0,0,.3);
+		box-sizing: border-box;
+		/*font-size: .7rem;*/
+		font-size: 1.2rem;
+	}
+	.pdf-page h6 {
+		/*font-size: .8rem;*/
+		font-size: 1.2rem;
+	}
+
+	.pdf-page .header {
+		padding-bottom: 0;
+	}
+	.pdf-header {
+		padding-bottom: .2in;
+		margin-bottom: .3in;
+		border-bottom: 1px solid #e5e5e5;
+	}
+
+	.invoice-number {
+		padding-top: .1in;
+		float: right;
+	}
+
+	.pdf-footer {
+		position: absolute;
+		bottom: .25in;
+		left: .3in;
+		right: .3in;
+		padding-top: 0.05in;
+		border-top: 1px solid #e5e5e5;
+		/*font-size: 0.7em!important;*/
+		font-size: 1em!important;
+		text-align: left;
+		color: #787878;
+	}
+
+	
+	.pdf-body table {
+		/*font-size: .7rem;*/
+		font-size: 1.2rem;
+	}
+	.information p {
+		color: #787878;
+		padding: .05in 0;
+		border-top: 1px solid #e5e5e5;
+		margin-bottom: .5rem;
+	}
+
+	.addresses p:first-of-type {
+		border-top: 0;
+	}
+
+	.company-logo {
+		/*font-size: 1.6em!important;*/
+		font-size: 1.9em!important;
+		font-weight: bold;
+		color: #3aabf0;
+	}
+
+	.signature {
+		padding-top: .1in;
+	}
+
+	/* Dimensions other than px and em should be divided by 1.33 for the proper PDF output */
+	.size-a4 {
+		/*width: 6.2in;
+		height: 8.7in;*/
+		width: 24.82cm;
+		height: 34.68cm;
+	}
+
+	.size-letter {
+		/* 8.5in + 0.752 */
+		width: 9.252in;
+		/* 11in + 1*/
+		height: 12in;
+	}
+
+	.size-executive {
+		width: 8.004in;
+		height: 11.5in;
+		font-size: 12px;
+	}
+
+	.size-executive .pdf-header {
+		margin-bottom: .1in;
+	}
+
+	.size-executive table {
+		font-size: 12px;
+	}
+</style>

@@ -64,7 +64,11 @@ namespace SARH___JMéndez_Constructora.Controllers
             
             return Json(new{ Puesto = GetPuesto(int.Parse(IdEmpleado)) });
         }
-        
+        [HttpGet]
+        public IActionResult BoletaPagoAguinaldo(int id)
+        {
+            return View(GenerateBoletaPagoAguinaldo(id));
+        }
         #region Helpers
         private int InserAguinaldo (Aguinaldos model)
         {
@@ -194,6 +198,40 @@ namespace SARH___JMéndez_Constructora.Controllers
                 .SingleOrDefault(i => 
                     (i.IdEmpleado == idEmpleado && i.Fincontrato == null))
                 .IdPuestoNavigation.Nombre;
+        }
+        private BoletaPagoAguinaldoViewModel GenerateBoletaPagoAguinaldo(int id)
+        {
+            try
+            {
+                var result  = _appContext.Aguinaldos
+                    .Include(p => p.IdEmpleadoNavigation)
+                    .Include(p => p.IdContratoNavigation)
+                        .ThenInclude(c => c.IdPuestoNavigation)
+                    .SingleOrDefault(p => p.Id == id);
+
+                BoletaPagoAguinaldoViewModel aux = new BoletaPagoAguinaldoViewModel
+                {
+                    IdPago = result.Id,
+                    FechaInicioContrato = result.FechaInicio,
+                    FechaActual = result.FechaFin,
+                    DiasContrato = TotalDaysWorked(result), 
+                    MesesContrato = TotalDaysWorked(result) / 30, 
+                    Cedula = result.IdEmpleadoNavigation.Cedula,
+                    Nombre = result.IdEmpleadoNavigation.Nombre,
+                    Apellido1 = result.IdEmpleadoNavigation.Apellido1,
+                    Apellido2 = result.IdEmpleadoNavigation.Apellido2,
+                    NombrePuesto = result.IdContratoNavigation.IdPuestoNavigation.Nombre,
+                    SumatoriaSalarioBrutos = result.SumatoriaSalarioBrutos,
+                    MontoAguinaldo = result.MontoAguinaldo,
+                    Anotaciones = result.Anotaciones
+                };
+                
+                return aux;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
         #endregion
     }
