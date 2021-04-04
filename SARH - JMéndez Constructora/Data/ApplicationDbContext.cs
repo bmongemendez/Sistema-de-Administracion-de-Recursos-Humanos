@@ -25,10 +25,13 @@ namespace SARH___JMéndez_Constructora.Data
         public virtual DbSet<Deducciones> Deducciones { get; set; }
         public virtual DbSet<Empleados> Empleados { get; set; }
         public virtual DbSet<Evidencias> Evidencias { get; set; }
+        public virtual DbSet<Ausenciasinjustificadas> Ausenciasinjustificadas { get; set; }
+
         public virtual DbSet<Fincontrato> Fincontrato { get; set; }
         public virtual DbSet<Incapacidades> Incapacidades { get; set; }
         public virtual DbSet<Ingresocontrato> Ingresocontrato { get; set; }
         public virtual DbSet<Pagos> Pagos { get; set; }
+        public virtual DbSet<Evaluaciones> Evaluaciones { get; set; }
         public virtual DbSet<Puestos> Puestos { get; set; }
         public virtual DbSet<Vacaciones> Vacaciones { get; set; }
 
@@ -84,6 +87,18 @@ namespace SARH___JMéndez_Constructora.Data
                 entity.Property(e => e.TieneTecnico).HasDefaultValueSql("'0'");
             });
 
+            modelBuilder.Entity<Evaluaciones>(entity =>
+            {
+                entity.HasIndex(e => e.IdEmpleado)
+                    .HasName("idEmpleado_Eval_idx");
+
+                entity.HasOne(d => d.IdEmpleadoNavigation)
+                    .WithMany(p => p.Evaluaciones)
+                    .HasForeignKey(d => d.IdEmpleado)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("idEmpleadoEval");
+            });
+
             modelBuilder.Entity<Evidencias>(entity =>
             {
                 entity.HasIndex(e => e.IdIncapacidad)
@@ -118,6 +133,28 @@ namespace SARH___JMéndez_Constructora.Data
                     .HasForeignKey<Fincontrato>(d => d.IdInicioContrato)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("idInicioContratoFN");
+            });
+
+
+            modelBuilder.Entity<Ausenciasinjustificadas>(entity =>
+            {
+                entity.HasIndex(e => e.IdEmpleado)
+                    .HasName("idEmpleadoT_idx");
+
+                entity.HasIndex(e => e.IdTiempo)
+                    .HasName("idTiempoT_idx");
+
+                entity.HasOne(d => d.IdEmpleadoNavigation)
+                    .WithMany(p => p.Ausenciasinjustificadas)
+                    .HasForeignKey(d => d.IdEmpleado)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("idEmpleadoAI");
+
+                entity.HasOne(d => d.IdTiempoNavigation)
+                    .WithMany(p => p.Ausenciasinjustificadas)
+                    .HasForeignKey(d => d.IdTiempo)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("idTiempoAI");
             });
 
 
