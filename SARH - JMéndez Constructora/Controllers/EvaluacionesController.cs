@@ -86,7 +86,7 @@ namespace SARH___JMéndez_Constructora.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdEmpleado"] = new SelectList(_context.Empleados, "Id", "Apellido1", evaluaciones.IdEmpleado);
+            ViewData["IdEmpleado"] = GetTrabajadoresToSelect();
             return View(evaluaciones);
         }
 

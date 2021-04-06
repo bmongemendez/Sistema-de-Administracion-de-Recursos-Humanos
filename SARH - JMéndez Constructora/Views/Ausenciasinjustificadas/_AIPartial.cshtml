@@ -25,7 +25,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Notas)
             </th>
-            <th></th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -33,10 +33,9 @@
         {
             <tr>
                 <td>
-                    <div class="avtar-pic w35 bg-red"
+                    <div class="avtar-pic w35 bg-primary"
                          data-toggle="tooltip"
-                         data-placement="top"
-                         title="Avatar Name">
+                         data-placement="top">
                         @{
                             string iniciales = (item.Nombre.Substring(0, 1)
                                 + item.Apellido1.Substring(0, 1)).ToUpper();
@@ -66,11 +65,18 @@
                     @Html.DisplayFor(modelItem => item.Notas)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                    @*<a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+        <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                    *@
+                    <form id="formEliminarAI" asp-action="Delete" asp-route-id="@item.Id" asp-route-idTiempo="@item.IdTiempo"> 
+                        @*<input type="hidden" asp-for="@item.Id" />
+                        <input type="hidden" asp-for="@item.IdTiempo" />*@
+                        <button type="submit" class="btn deleteAIButton" title="Eliminar"> <i class="fa fa-trash-o text-danger"></i> </button>
+                    </form>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+

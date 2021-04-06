@@ -27,7 +27,7 @@ namespace SARH___JMéndez_Constructora.Controllers
                   message == AIMessageId.AddAISuccess ? "Se ha agregado el reporte de ausencias injustificadas."
                   : message == AIMessageId.Error ? "Ha ocurrido un error."
                   : "";
-            return View(GetVacacionesList());
+            return View(GetAIList());
         }
 
         // GET: Ausenciasinjustificadas/Details/5
@@ -94,7 +94,7 @@ namespace SARH___JMéndez_Constructora.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdEmpleado"] = new SelectList(_context.Empleados, "Id", "Apellido1", ausenciasinjustificadas.IdEmpleado);
+            ViewData["IdEmpleado"] = GetTrabajadoresToSelect();
             ViewData["IdTiempo"] = new SelectList(_context.Tiempo, "Id", "Id", ausenciasinjustificadas.IdTiempo);
             return View(ausenciasinjustificadas);
         }
@@ -159,10 +159,12 @@ namespace SARH___JMéndez_Constructora.Controllers
         // POST: Ausenciasinjustificadas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id, int idTiempo)
         {
             var ausenciasinjustificadas = await _context.Ausenciasinjustificadas.FindAsync(id);
+            var ausenciasinjustificadasTiempo = await _context.Tiempo.FindAsync(idTiempo);
             _context.Ausenciasinjustificadas.Remove(ausenciasinjustificadas);
+            _context.Tiempo.Remove(ausenciasinjustificadasTiempo);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -270,7 +272,7 @@ namespace SARH___JMéndez_Constructora.Controllers
             };
         }
 
-        private IEnumerable<AITableViewModel> GetVacacionesList()
+        private IEnumerable<AITableViewModel> GetAIList()
         {
             List<AITableViewModel> list = new List<AITableViewModel>();
             var queryResult = _context.Ausenciasinjustificadas
@@ -290,6 +292,7 @@ namespace SARH___JMéndez_Constructora.Controllers
                     Desde = AI.IdTiempoNavigation.FechaInicio,
                     Hasta = AI.IdTiempoNavigation.FechaFin,
                     Notas = AI.Notas,
+                    IdTiempo = AI.IdTiempo
                 });
             }
             return list;
