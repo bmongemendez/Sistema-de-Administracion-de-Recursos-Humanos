@@ -363,6 +363,21 @@ CREATE TABLE IF NOT EXISTS `sahr.application`.`Evidencias` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `sahr.application`.`ausenciasinjustificadas`
+-- -----------------------------------------------------
+CREATE TABLE `ausenciasinjustificadas` (
+`id` int NOT NULL AUTO_INCREMENT,
+`idEmpleado` int NOT NULL,
+`idTiempo` int NOT NULL,
+`notas` varchar(128) DEFAULT NULL,
+PRIMARY KEY (`id`),
+KEY `idEmpleadoT_idx` (`idEmpleado`),
+KEY `idTiempoT_idx` (`idTiempo`),
+CONSTRAINT `idEmpleadoAI` FOREIGN KEY (`idEmpleado`) REFERENCES `empleados` (`id`),
+CONSTRAINT `idTiempoAI` FOREIGN KEY (`idTiempo`) REFERENCES `tiempo` (`id`)) 
+ENGINE = InnoDB;
+
 USE `sahr.application`;
 
 DELIMITER $$
