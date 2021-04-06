@@ -248,7 +248,7 @@ namespace MvcMovie.Controllers
             pagoModel.IdEmpleado = model.IdEmpleado;
             pagoModel.IdContrato = model.IdContrato;
             pagoModel.Observaciones = model.Observaciones;
-            pagoModel.UserName = "rrhh";
+            pagoModel.UserName = User.Identity.Name;
             // Pago por hora
             decimal pagoHora = GetPagoHora(model.IdContrato);
             // Calculo Horas

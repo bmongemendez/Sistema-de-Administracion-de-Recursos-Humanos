@@ -1,0 +1,68 @@
+@model IEnumerable<SARH___JMéndez_Constructora.Models.Pagosregistroauditoria>
+
+<div class="table-responsive">
+    <table class="table table-hover table-custom spacing5 mb-0 dataTable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdPago)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Columna)
+                </th>
+                <th class="bg-warning text-white">
+                    @Html.DisplayNameFor(model => model.FechaHoraTransaccion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ValorAnterior)
+                </th>
+                <th class="bg-warning text-white">
+                    @Html.DisplayNameFor(model => model.ValorNuevo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdPago)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Columna)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaHoraTransaccion)
+                </td>
+                @{ 
+                    string oldValue = (!string.IsNullOrEmpty(item.ValorAnterior)) 
+                    ? item.ValorAnterior : "-"; 
+                    string newValue = (!string.IsNullOrEmpty(item.ValorNuevo)) 
+                    ? item.ValorNuevo: "-"; 
+                }
+                <td>
+                    @oldValue
+                </td>
+                <td>
+                    @newValue
+                </td>
+                <td>
+                    <span class="badge badge-default">
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </span>
+                </td>
+                
+            </tr>
+    }
+        </tbody>
+    </table>
+</div>

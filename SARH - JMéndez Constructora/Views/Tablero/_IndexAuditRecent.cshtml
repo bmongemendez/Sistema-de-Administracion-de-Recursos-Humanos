@@ -1,0 +1,68 @@
+@model IEnumerable<SARH___JMéndez_Constructora.Models.TableroViewModels.AuditRecentViewModel>
+
+<div class="table-responsive">
+    <table class="table table-hover table-custom spacing5 mb-0">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tabla)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdTabla)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Columna)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaHoraTransaccion)
+                    <i class="ml-4 fa fa-sort-amount-desc"></i>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ValorAnterior)
+                </th>
+                <th class="bg-info text-white">
+                    @Html.DisplayNameFor(model => model.ValorNuevo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tabla)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdTabla)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Columna)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaHoraTransaccion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorAnterior)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorNuevo)
+                </td>
+                <td>
+                    <span class="badge badge-default">
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </span>
+                </td>
+            </tr>
+    }
+            <tr>
+                <td colspan="7" class="p-0 text-center">
+                    <a asp-controller="Bitacoras" asp-action="Index"
+                        class="btn btn-block btn-outline-info ">Ver más..
+                    </a> 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -25,6 +25,7 @@ namespace SARH___JMéndez_Constructora.Controllers
         {
             ViewData["StatusMessage"] =
                 message == TrabajadoresMessageId.AddEmployeeSuccess ? "Se ha agregado al empleado."
+                : message == TrabajadoresMessageId.EndContractSuccess ? "Se ha finalizado el contrato."
                 : message == TrabajadoresMessageId.Error ? "Ha ocurrido un error."
                 : "";
 
@@ -160,6 +161,7 @@ namespace SARH___JMéndez_Constructora.Controllers
                     if (modelC != null)
                     {
                         ViewData["puestos"] = PuestosToSelectList();
+                        ViewData["puesto"] = GetContratoByEId(id);
                         return View(nameof(Contract), modelC);
                     }
                     break;
@@ -244,7 +246,7 @@ namespace SARH___JMéndez_Constructora.Controllers
                         TieneLicenciaA3 = model.TieneLicenciaA3,
                         TieneLicenciaB1 = model.TieneLicenciaB1,
                         //Falta B2,B3,D,E
-                        UserName = "rrhh"
+                        UserName = User.Identity.Name
                     };
                 
                 _appContext.Empleados.Add(empleado);
@@ -393,6 +395,7 @@ namespace SARH___JMéndez_Constructora.Controllers
                 aux.Telefono = model.Telefono;
                 aux.TelefonoEmergencia = model.TelefonoEmergencia;
                 aux.ContactoEmergencia = model.ContactoEmergencia;
+                aux.UserName = User.Identity.Name;
                 
                 _appContext.Update(aux);
                 
@@ -420,7 +423,7 @@ namespace SARH___JMéndez_Constructora.Controllers
                 aux.TieneLicenciaB3 = (bool)model.TieneLicenciaB3;
                 aux.TieneLicenciaD = (bool)model.TieneLicenciaD;
                 aux.TieneLicenciaE = (bool)model.TieneLicenciaE;
-            
+                aux.UserName = User.Identity.Name;
                 
                 _appContext.Update(aux);
                 
@@ -481,11 +484,18 @@ namespace SARH___JMéndez_Constructora.Controllers
                     .SingleOrDefault(i => (i.IdEmpleado == idEmpleado 
                         && i.Fincontrato == null)) != null);
         }
+        private int GetContratoByEId(int id)
+        {
+            return _appContext.Ingresocontrato
+                .SingleOrDefault(i => (i.IdEmpleado == id && i.Fincontrato == null))
+                .Id;
+        }
         #endregion
         public enum TrabajadoresMessageId
         {
             AddEmployeeSuccess,
             UpdateEmployeeSuccess,
+            EndContractSuccess,
             Error
         }
     }

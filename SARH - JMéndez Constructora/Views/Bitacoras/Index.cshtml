@@ -1,0 +1,66 @@
+@{
+    ViewData["Title"] = "Bitacoras";
+    ViewData["sidebarActive"] = "Bitacoras";
+}
+@model IndexViewModel
+<div class="container-fluid">
+    <div class="block-header">
+        <div class="row clearfix">
+            <div class="col-md-6 col-sm-12">
+                <h1>Inicio</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a asp-controller="Tablero" asp-action="Index">
+                                <i class="icon-home"></i>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">Bitacoras</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="row clearfix">
+            <div class="col-lg-12">
+                <div class="card">
+                    <ul class="nav nav-tabs2">
+                        <li class="nav-item">
+                            <a class="nav-link active show"
+                               data-toggle="tab"
+                               href="#e_add">Bitacora de Empleados</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" 
+                            data-toggle="tab" 
+                            href="#e_list">Bitacora de Pagos</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane show active" id="e_add">
+                            <!-- Formulario: ANIADIR EMPLEADO -->
+                            <partial name="_IndexEmpleadosBitacora" for="BitacoraEmpleados" />
+                        </div>
+                        <div class="tab-pane" id="e_list">
+                            <!-- Tabla: Empleados ACTIVOS -->
+                            <partial name="_IndexPagosBitacora" for="BitacoraPagos" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/lib/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="~/lib/jquery-datatable/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+        $('.dataTable').dataTable({
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json"
+            },
+            "order": [[ 3, "desc" ]]
+        });
+    </script>
+}

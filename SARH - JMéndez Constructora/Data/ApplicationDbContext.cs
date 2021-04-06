@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using SARH___JMéndez_Constructora.Models;
-using SARH___JMéndez_Constructora.Models.VacacionesViewModels;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
@@ -21,9 +20,11 @@ namespace SARH___JMéndez_Constructora.Data
         {
         }
 
+        public virtual DbSet<Aguinaldos> Aguinaldos { get; set; }
         public virtual DbSet<Aspnetusersref> Aspnetusersref { get; set; }
         public virtual DbSet<Deducciones> Deducciones { get; set; }
         public virtual DbSet<Empleados> Empleados { get; set; }
+        public virtual DbSet<Empleadosregistroauditoria> Empleadosregistroauditoria { get; set; }
         public virtual DbSet<Evidencias> Evidencias { get; set; }
         public virtual DbSet<Ausenciasinjustificadas> Ausenciasinjustificadas { get; set; }
 
@@ -31,14 +32,35 @@ namespace SARH___JMéndez_Constructora.Data
         public virtual DbSet<Incapacidades> Incapacidades { get; set; }
         public virtual DbSet<Ingresocontrato> Ingresocontrato { get; set; }
         public virtual DbSet<Pagos> Pagos { get; set; }
+        public virtual DbSet<Pagosregistroauditoria> Pagosregistroauditoria { get; set; }
         public virtual DbSet<Evaluaciones> Evaluaciones { get; set; }
         public virtual DbSet<Puestos> Puestos { get; set; }
+        public virtual DbSet<Tiempo> Tiempo { get; set; }
         public virtual DbSet<Vacaciones> Vacaciones { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Aguinaldos>(entity =>
+            {
+                entity.HasIndex(e => e.IdContrato)
+                    .HasName("idContratoP_idx");
+
+                entity.HasIndex(e => e.IdEmpleado)
+                    .HasName("idEmpleadoA_idx");
+
+                entity.HasOne(d => d.IdContratoNavigation)
+                    .WithMany(p => p.Aguinaldos)
+                    .HasForeignKey(d => d.IdContrato)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("idContratoA");
             
+                entity.HasOne(d => d.IdEmpleadoNavigation)
+                    .WithMany(p => p.Aguinaldos)
+                    .HasForeignKey(d => d.IdEmpleado)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("idEmpleadoA");
+            });
 
             modelBuilder.Entity<Aspnetusersref>(entity =>
             {
@@ -244,10 +266,6 @@ namespace SARH___JMéndez_Constructora.Data
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
-        public DbSet<SARH___JMéndez_Constructora.Models.Tiempo> Tiempo { get; set; }
-
-        public DbSet<SARH___JMéndez_Constructora.Models.VacacionesViewModels.VacacionesFormViewModel> VacacionesFormViewModel { get; set; }
 
     }
 }

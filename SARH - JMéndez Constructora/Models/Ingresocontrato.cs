@@ -12,7 +12,10 @@ namespace SARH___JMéndez_Constructora.Models
     [Table("ingresocontrato")]
     public partial class Ingresocontrato
     {
-        public Ingresocontrato() { }
+        public Ingresocontrato()
+        {
+            Aguinaldos = new HashSet<Aguinaldos>();
+        }
 
         [Key]
         [Column("id")]
@@ -46,10 +49,10 @@ namespace SARH___JMéndez_Constructora.Models
         public virtual Puestos IdPuestoNavigation { get; set; }
         [InverseProperty("IdInicioContratoNavigation")]
         public virtual Fincontrato Fincontrato { get; set; }
-        
+        [InverseProperty("IdContratoNavigation")]
+        public virtual ICollection<Aguinaldos> Aguinaldos { get; set; }
         [InverseProperty("IdContratoNavigation")]
         public virtual ICollection<Pagos> Pagos { get; set; }
-
         [InverseProperty("IdContratoNavigation")]
         public virtual ICollection<Tiempo> Tiempo { get; set; }
     }

@@ -15,6 +15,7 @@ namespace SARH___JMéndez_Constructora.Models
     {
         public Empleados() 
         {
+            Aguinaldos = new HashSet<Aguinaldos>();
             Ingresocontrato = new HashSet<Ingresocontrato>();
             Ausenciasinjustificadas = new HashSet<Ausenciasinjustificadas>();
         }
@@ -90,6 +91,8 @@ namespace SARH___JMéndez_Constructora.Models
         [StringLength(256)]
         public string UserName { get; set; }
         
+        [InverseProperty("IdEmpleadoNavigation")]
+        public virtual ICollection<Aguinaldos> Aguinaldos { get; set; }
         [InverseProperty("IdEmpleadoNavigation")]
         public virtual ICollection<Ingresocontrato> Ingresocontrato { get; set; }
         [InverseProperty("IdEmpleadoNavigation")]

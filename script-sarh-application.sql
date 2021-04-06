@@ -25,7 +25,7 @@ USE `sahr.application` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sahr.application`.`AspNetUsersRef` (
   `userName` VARCHAR(256) NOT NULL,
-  `ligthVersionEnabled` TINYINT(1) NOT NULL DEFAULT 0,
+  `lightVersionEnabled` TINYINT(1) NOT NULL DEFAULT 0,
   `rightToLeftEnabled` TINYINT(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`userName`))
 ENGINE = InnoDB;
@@ -110,6 +110,35 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `sahr.application`.`Tiempo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sahr.application`.`Tiempo` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `idEmpleado` INT NOT NULL,
+  `fechaInicio` DATE NOT NULL,
+  `fechaFin` DATE NOT NULL,
+  `idContrato` INT NOT NULL,
+  `esLaborado` TINYINT(1) NULL DEFAULT 0,
+  `esInjustificado` TINYINT(1) NULL DEFAULT 0,
+  `esVacaciones` TINYINT(1) NULL DEFAULT 0,
+  `esIncapacidad` TINYINT(1) NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  INDEX `idEmpeladoT_idx` (`idEmpleado` ASC) VISIBLE,
+  INDEX `idContratoT_idx` (`idContrato` ASC) VISIBLE,
+  CONSTRAINT `idEmpeladoT`
+    FOREIGN KEY (`idEmpleado`)
+    REFERENCES `sahr.application`.`Empleados` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `idContratoT`
+    FOREIGN KEY (`idContrato`)
+    REFERENCES `sahr.application`.`IngresoContrato` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `sahr.application`.`Vacaciones`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sahr.application`.`Vacaciones` (
@@ -153,35 +182,6 @@ CREATE TABLE IF NOT EXISTS `sahr.application`.`FinContrato` (
   INDEX `idInicioContratoFN_idx` (`idInicioContrato` ASC) VISIBLE,
   CONSTRAINT `idInicioContratoFN`
     FOREIGN KEY (`idInicioContrato`)
-    REFERENCES `sahr.application`.`IngresoContrato` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `sahr.application`.`Tiempo`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sahr.application`.`Tiempo` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `idEmpleado` INT NOT NULL,
-  `fechaInicio` DATE NOT NULL,
-  `fechaFin` DATE NOT NULL,
-  `idContrato` INT NOT NULL,
-  `esLaborado` TINYINT(1) NULL DEFAULT 0,
-  `esInjustificado` TINYINT(1) NULL DEFAULT 0,
-  `esVacaciones` TINYINT(1) NULL DEFAULT 0,
-  `esIncapacidad` TINYINT(1) NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  INDEX `idEmpeladoT_idx` (`idEmpleado` ASC) VISIBLE,
-  INDEX `idContratoT_idx` (`idContrato` ASC) VISIBLE,
-  CONSTRAINT `idEmpeladoT`
-    FOREIGN KEY (`idEmpleado`)
-    REFERENCES `sahr.application`.`Empleados` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `idContratoT`
-    FOREIGN KEY (`idContrato`)
     REFERENCES `sahr.application`.`IngresoContrato` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -264,6 +264,7 @@ CREATE TABLE IF NOT EXISTS `sahr.application`.`Aguinaldos` (
   `fechaFin` DATE NOT NULL,
   `sumatoriaSalarioBrutos` DECIMAL(10,3) NOT NULL,
   `montoAguinaldo` DECIMAL(10,3) NOT NULL,
+  `anotaciones` VARCHAR(128) NULL,
   PRIMARY KEY (`id`),
   INDEX `idContratoP_idx` (`idContrato` ASC) VISIBLE,
   INDEX `idEmpleadoA_idx` (`idEmpleado` ASC) VISIBLE,
@@ -370,14 +371,40 @@ CREATE DEFINER = CURRENT_USER TRIGGER `sahr.application`.`Empleados_AFTER_INSERT
 AFTER INSERT ON `Empleados` 
 FOR EACH ROW
 BEGIN
-	INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName)
-		VALUES (NEW.id, 'cedula', NEW.cedula, NEW.userName);
-    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName)
-		VALUES (NEW.id, 'cedula', NEW.nombre, NEW.userName);
-    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName)
-		VALUES (NEW.id, 'cedula', NEW.apellido1, NEW.userName);
-    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName)
-		VALUES (NEW.id, 'cedula', NEW.apellido2, NEW.userName);
+	INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'cedula', OLD.cedula, NEW.cedula, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'nombre', OLD.nombre, NEW.nombre, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'apellido1', OLD.apellido1, NEW.apellido1, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'apellido2', OLD.apellido2, NEW.apellido2, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'fechaNacimiento', OLD.fechaNacimiento, NEW.fechaNacimiento, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'telefono', OLD.telefono, NEW.telefono, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'telefonoEmergencia', OLD.telefonoEmergencia, NEW.telefonoEmergencia, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'contactoEmergencia', OLD.contactoEmergencia, NEW.contactoEmergencia, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneBachiller', OLD.tieneBachiller, NEW.tieneBachiller, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciatura', OLD.tieneLicenciatura, NEW.tieneLicenciatura, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneTecnico', OLD.tieneTecnico, NEW.tieneTecnico, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciaA3', OLD.tieneLicenciaA3, NEW.tieneLicenciaA3, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciaB1', OLD.tieneLicenciaB1, NEW.tieneLicenciaB1, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciaB2', OLD.tieneLicenciaB2, NEW.tieneLicenciaB2, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciaB3', OLD.tieneLicenciaB3, NEW.tieneLicenciaB3, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciaD', OLD.tieneLicenciaD, NEW.tieneLicenciaD, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciaE', OLD.tieneLicenciaE, NEW.tieneLicenciaE, NEW.userName);
 END$$
 
 USE `sahr.application`$$
@@ -385,12 +412,118 @@ CREATE DEFINER = CURRENT_USER TRIGGER `sahr.application`.`Empleados_AFTER_UPDATE
 AFTER UPDATE ON `Empleados` 
 FOR EACH ROW
 BEGIN
-	IF OLD.seElimino <> new.seElimino THEN
-        INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
-			VALUES (NEW.id, 'seElimino', OLD.seElimino, NEW.seElimino, NEW.userName);
-    END IF;
+	IF OLD.seElimino <> NEW.seElimino THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'seElimino', OLD.seElimino, NEW.seElimino, NEW.userName);
+  END IF;
+  IF OLD.cedula <> NEW.cedula THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'cedula', OLD.cedula, NEW.cedula, NEW.userName);
+  END IF;
+  IF OLD.nombre <> NEW.nombre THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'nombre', OLD.nombre, NEW.nombre, NEW.userName);
+  END IF;
+  IF OLD.apellido1 <> NEW.apellido1 THEN
+      INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'apellido1', OLD.apellido1, NEW.apellido1, NEW.userName);
+  END IF;
+  IF IFNULL(OLD.apellido2, '') <> IFNULL(NEW.apellido2, '') THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'apellido2', OLD.apellido2, NEW.apellido2, NEW.userName);
+  END IF;
+  IF OLD.fechaNacimiento <> NEW.fechaNacimiento THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'fechaNacimiento', OLD.fechaNacimiento, NEW.fechaNacimiento, NEW.userName);
+  END IF;
+  IF OLD.telefono <> NEW.telefono THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'telefono', OLD.telefono, NEW.telefono, NEW.userName);
+  END IF;
+  IF IFNULL(OLD.telefonoEmergencia, '') <> IFNULL(NEW.telefonoEmergencia, '') THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'telefonoEmergencia', OLD.telefonoEmergencia, NEW.telefonoEmergencia, NEW.userName);
+  END IF;
+  IF IFNULL(OLD.contactoEmergencia, '') <> IFNULL(NEW.contactoEmergencia, '') THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'contactoEmergencia', OLD.contactoEmergencia, NEW.contactoEmergencia, NEW.userName);
+  END IF;
+  IF OLD.tieneBachiller <> NEW.tieneBachiller THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'tieneBachiller', OLD.tieneBachiller, NEW.tieneBachiller, NEW.userName);
+  END IF;
+  IF OLD.tieneLicenciatura <> NEW.tieneLicenciatura THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'tieneLicenciatura', OLD.tieneLicenciatura, NEW.tieneLicenciatura, NEW.userName);
+  END IF;
+  IF OLD.tieneTecnico <> NEW.tieneTecnico THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'tieneTecnico', OLD.tieneTecnico, NEW.tieneTecnico, NEW.userName);
+  END IF;
+  IF OLD.tieneLicenciaA3 <> NEW.tieneLicenciaA3 THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'tieneLicenciaA3', OLD.tieneLicenciaA3, NEW.tieneLicenciaA3, NEW.userName);
+  END IF;
+  IF OLD.tieneLicenciaB1 <> NEW.tieneLicenciaB1 THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'tieneLicenciaB1', OLD.tieneLicenciaB1, NEW.tieneLicenciaB1, NEW.userName);
+  END IF;
+  IF OLD.tieneLicenciaB2 <> NEW.tieneLicenciaB2 THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'tieneLicenciaB2', OLD.tieneLicenciaB2, NEW.tieneLicenciaB2, NEW.userName);
+  END IF;
+  IF OLD.tieneLicenciaB3 <> NEW.tieneLicenciaB3 THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'tieneLicenciaB3', OLD.tieneLicenciaB3, NEW.tieneLicenciaB3, NEW.userName);
+  END IF;
+  IF OLD.tieneLicenciaD <> NEW.tieneLicenciaD THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'tieneLicenciaD', OLD.tieneLicenciaD, NEW.tieneLicenciaD, NEW.userName);
+  END IF;
+  IF OLD.tieneLicenciaE <> NEW.tieneLicenciaE THEN
+    INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
+		VALUES (NEW.id, 'tieneLicenciaE', OLD.tieneLicenciaE, NEW.tieneLicenciaE, NEW.userName);
+  END IF;
 END$$
 
+USE `sahr.application`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `sahr.application`.`Pagos_AFTER_INSERT` AFTER INSERT ON `Pagos` FOR EACH ROW
+BEGIN
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'idEmpleado', NEW.idEmpleado, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'idContrato', NEW.idContrato, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'idTiempo', NEW.idTiempo, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'horasNormal', NEW.horasNormal, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'horasExtra', NEW.horasExtra, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'diaDescanso', NEW.diaDescanso, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'salarioNormal', NEW.salarioNormal, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'salarioExtras', NEW.salarioExtras, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'salarioDiaDescanso', NEW.salarioDiaDescanso, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'salarioBruto', NEW.salarioBruto, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'deducciones', NEW.deducciones, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'cuentasPorPagar', NEW.cuentasPorPagar, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'salarioNeto', NEW.salarioNeto, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'patronoCCSS', NEW.patronoCCSS, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'patronoROtrasInstituciones', NEW.patronoROtrasInstituciones, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'patronoLPT', NEW.patronoLPT, NEW.userName);
+  INSERT INTO `PagosRegistroAuditoria`(idPago, columna, valorNuevo, userName)
+  VALUES (NEW.id, 'observaciones', NEW.observaciones, NEW.userName);
+END$$
 
 DELIMITER ;
 
