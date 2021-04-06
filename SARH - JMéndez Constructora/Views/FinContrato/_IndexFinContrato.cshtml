@@ -1,0 +1,64 @@
+@using SARH___JMéndez_Constructora.Models.FinContratoViewModels
+@model FinContratoFormViewModel
+@{
+    IEnumerable<SelectListItem> motivos = (IEnumerable<SelectListItem>) ViewData["motivo"];
+    IEnumerable<SelectListItem> preavisos = (IEnumerable<SelectListItem>) ViewData["preaviso"];
+}
+
+<form id="partialFinContrato" action="Index" method="post">
+    <input type="hidden" asp-for="IdInicioContrato" >
+    <div class="row clearfix">
+        <div class="body col-12 border border-danger">
+            <i class="fa fa-times-circle text-danger"></i> Estas a punto de realizar una accion irreversible, si decides continuar, especifica los siguientes detalles:
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="header mt-3">
+            <h2>Detalles de finalización</h2>
+        </div>
+        <div class="body">
+            <div class="row clearfix">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <label asp-for="MotivoSalida" class="control-label"></label>
+                        <select id="selectMotivo" asp-for="MotivoSalida" class="form-control show-tick"
+                            asp-items="@motivos" >
+                        </select>
+                        <span asp-validation-for="MotivoSalida" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6"></div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <label asp-for="PreavisoEjercido" class="control-label"></label>
+                        <select id="selectPreaviso" class="form-control show-tick" 
+                            asp-for="PreavisoEjercido" asp-items="@preavisos">
+                            
+                        </select>
+                        <span asp-validation-for="PreavisoEjercido" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div id="inputDiasPendientes" class="form-group" style="display: none;">
+                        <label asp-for="DiasPendientesPreaviso" class="control-label"></label>
+                        <input asp-for="DiasPendientesPreaviso" class="form-control" />
+                        <span asp-validation-for="DiasPendientesPreaviso" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <label asp-for="SaldoVacaciones" class="control-label"></label>
+                        <input asp-for="SaldoVacaciones" class="form-control" />
+                        <span asp-validation-for="SaldoVacaciones" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="submit" value="Finalizar Contrato" class="btn btn-danger">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

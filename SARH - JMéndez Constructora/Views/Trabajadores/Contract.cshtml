@@ -3,6 +3,7 @@
     Layout = "_DetailsLayout.cshtml"; 
     IEnumerable<SelectListItem> puestos = 
         (IEnumerable<SelectListItem>)ViewData["puestos"];
+    int idPuesto = (int) ViewData["puesto"];
 }
 <div class="card">
     <div class="header">
@@ -53,6 +54,10 @@
                     <!-- -------------------------------------------------------------------------- -->
                     <div class="col-12">
                         <input type="submit" value="Actualizar" class="btn btn-round btn-primary" />
+                        <a asp-controller="FinContrato" asp-action="Index" asp-route-id="@idPuesto"
+                            class="btn btn-round btn-danger" >
+                            Finalizar Contrato
+                        </a>
                     </div>
                 </div>
             </form>

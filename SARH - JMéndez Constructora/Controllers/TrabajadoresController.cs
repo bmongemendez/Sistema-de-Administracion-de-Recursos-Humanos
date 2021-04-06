@@ -25,6 +25,7 @@ namespace SARH___JMéndez_Constructora.Controllers
         {
             ViewData["StatusMessage"] =
                 message == TrabajadoresMessageId.AddEmployeeSuccess ? "Se ha agregado al empleado."
+                : message == TrabajadoresMessageId.EndContractSuccess ? "Se ha finalizado el contrato."
                 : message == TrabajadoresMessageId.Error ? "Ha ocurrido un error."
                 : "";
 
@@ -160,6 +161,7 @@ namespace SARH___JMéndez_Constructora.Controllers
                     if (modelC != null)
                     {
                         ViewData["puestos"] = PuestosToSelectList();
+                        ViewData["puesto"] = GetContratoByEId(id);
                         return View(nameof(Contract), modelC);
                     }
                     break;
@@ -482,11 +484,18 @@ namespace SARH___JMéndez_Constructora.Controllers
                     .SingleOrDefault(i => (i.IdEmpleado == idEmpleado 
                         && i.Fincontrato == null)) != null);
         }
+        private int GetContratoByEId(int id)
+        {
+            return _appContext.Ingresocontrato
+                .SingleOrDefault(i => (i.IdEmpleado == id && i.Fincontrato == null))
+                .Id;
+        }
         #endregion
         public enum TrabajadoresMessageId
         {
             AddEmployeeSuccess,
             UpdateEmployeeSuccess,
+            EndContractSuccess,
             Error
         }
     }

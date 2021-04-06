@@ -17,14 +17,19 @@ namespace SARH___JMéndez_Constructora.Models
         public int IdInicioContrato { get; set; }
         [Column("fechaFin", TypeName = "date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MMMM-yyyy}")]
+        [Display (Name = "Fecha de Finalización")]
         public DateTime FechaFin { get; set; }
         [Column("preavisoEjercido")]
+        [Display (Name = "Se ha ejercido preaviso")]
         public int? PreavisoEjercido { get; set; }
         [Column("diasPendientesPreaviso")]
+        [Display (Name = "Dias Pendientes Preaviso")]
         public int? DiasPendientesPreaviso { get; set; }
         [Column("motivoSalida")]
+        [Display (Name = "Motivo de Salida")]
         public int MotivoSalida { get; set; }
         [Column("saldoVacaciones")]
+        [Display (Name = "Saldo de Vacaciones")]
         public int SaldoVacaciones { get; set; }
         [Column("aguinaldo", TypeName = "decimal(13,3)")]
         public decimal? Aguinaldo { get; set; }

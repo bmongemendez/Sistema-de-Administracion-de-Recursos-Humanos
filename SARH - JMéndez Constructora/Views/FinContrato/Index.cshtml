@@ -1,0 +1,58 @@
+@using SARH___JMéndez_Constructora.Models.FinContratoViewModels
+@{
+    ViewData["Title"] = "Finalizar Contrato";
+    ViewData["sidebarActive"] = "Trabajadores";
+}
+@model FinContratoViewModel
+@{
+    ViewData["motivo"] = Model.MotivoSalida;
+    ViewData["preaviso"] = Model.PreavisoEjercido;
+    var statusMessage = ViewData["StatusMessage"];
+} 
+
+<div class="container-fluid">
+    <div class="block-header">
+        @if (statusMessage != null)
+        {
+            if (!statusMessage.ToString().Equals(""))
+            {
+                <div class="alert alert-dismissible bg-info text-white" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <i class="fa fa-info-circle"></i> Informacion: @ViewData["StatusMessage"]
+                </div>
+            }
+        }
+    </div>
+    <div class="card">
+        <partial name="_IndexFinContrato" for="FinContratoForm" view-data="ViewData"/>
+    </div>
+    
+</div>
+@section Scripts
+{
+    <script>
+        (function() {
+            'use strict';
+            // Hidden Fields:
+            let inputIdContrato;
+            // Input Fields
+            let selectPreaviso;
+            let inputDiasPreaviso;
+
+            if($('#partialFinContrato')){
+                $('#selectMotivo').val("-1");
+                selectPreaviso = $('#selectPreaviso');
+                inputDiasPreaviso = $('#inputDiasPendientes');
+                inputDiasPreaviso.hide();
+                selectPreaviso.on("change", function () {
+                    if(this.value == 3){
+                        inputDiasPreaviso.show();
+                    } else {
+                        inputDiasPreaviso.hide();
+                    }
+                });
+            }
+        })();
+    </script>
+}

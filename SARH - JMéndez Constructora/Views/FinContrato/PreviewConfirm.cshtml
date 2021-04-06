@@ -1,0 +1,157 @@
+@model SARH___JMéndez_Constructora.Models.Fincontrato
+@{
+    ViewData["Title"] = "Confirmar";
+    ViewData["sidebarActive"] = "Trabajadores";
+}
+<div class="container-fluid">
+    <div class="block-header">
+        <div class="row clearfix">
+            <div class="col-md-6 col-sm-12">
+                <h1>Inicio</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="../home/dashboard.html">
+                                <i class="icon-home"></i>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a asp-controller="Trabajadores" asp-action="Index">
+                                Trabajadores
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active">Finalizar Contrato</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <form action="Confirm" method="post">
+        <input type="hidden" asp-for="IdInicioContrato" >
+        <input type="hidden" asp-for="FechaFin" value="@System.DateTime.Now">
+        <input type="hidden" asp-for="PreavisoEjercido" >
+        <input type="hidden" asp-for="DiasPendientesPreaviso" >
+        <input type="hidden" asp-for="MotivoSalida" >
+        <input type="hidden" asp-for="SaldoVacaciones" >
+        
+        <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="header"><h2>Resumen</h2></div>
+                        <div class="body">
+                            <dt class = "col-sm-6">
+                                @Html.DisplayNameFor(model => model.FechaFin)
+                            </dt>
+                            <dd class = "col-sm-6 col-md-6">
+                                @System.DateTime.Now.ToShortDateString()
+                            </dd>
+                            <dt class = "col-sm-6 col-md-6">
+                                @Html.DisplayNameFor(model => model.MotivoSalida)
+                            </dt>
+                            <dd class = "col-sm-6 col-md-6">
+                                @{
+                                    string motivo = string.Empty;
+                                    switch (Model.MotivoSalida)
+                                    {
+                                        case 0:
+                                            motivo="Renuncia";
+                                            break;
+                                        case 5:
+                                            motivo="Se acoje a pensión";
+                                            break;
+                                        case 2:
+                                            motivo="Despido sin Responsabilidad Patronal";
+                                            break;
+                                        case 3:
+                                            motivo="Despído con Responsabilidad Patronal";
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                                @motivo
+                            </dd>
+                            <dt class = "col-sm-6">
+                                @Html.DisplayNameFor(model => model.PreavisoEjercido)
+                            </dt>
+                            <dd class = "col-sm-6 col-md-6">
+                                 @{
+                                    string preaviso = string.Empty;
+                                    switch (Model.PreavisoEjercido)
+                                    {
+                                        case 0:
+                                            preaviso="Preaviso trabajo total";
+                                            break;
+                                        case 1:
+                                            preaviso="";
+                                            break;
+                                        case 2:
+                                            preaviso="Preaviso a pagar total";
+                                            break;
+                                        case 3:
+                                            preaviso="Días pendientes de preaviso: " + Model.DiasPendientesPreaviso;
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                                @preaviso
+                            </dd>
+                            
+                            <dt class = "col-sm-6 col-md-6">
+                                @Html.DisplayNameFor(model => model.SaldoVacaciones)
+                            </dt>
+                            <dd class = "col-sm-6 col-md-6">
+                                @Html.DisplayFor(model => model.SaldoVacaciones)
+                            </dd>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-md-12">
+                                <div class="card mb-0">
+                                    <div class="header pt-3">
+                                        <h2>Desgloce Pago</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-custom spacing5">
+                                        <tbody>
+                                            <tr>
+                                                <td>Aguinaldo</td>
+                                                <td>¢@Html.DisplayFor(model => model.Aguinaldo)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Preaviso</td>
+                                                <td>¢@Html.DisplayFor(model => model.Preaviso)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Cesantía</td>
+                                                <td>¢@Html.DisplayFor(model => model.Cesantia)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Vacaciones</td>
+                                                <td>¢@Html.DisplayFor(model => model.Vacaciones)</td>
+                                            </tr>
+                                            <tr class="bg-primary text-white">
+                                                <td>Total</td>
+                                                @{ decimal? total = Model.Aguinaldo + Model.Cesantia + Model.Vacaciones + Model.Preaviso; }
+                                                <td>¢@Math.Round(total.GetValueOrDefault(),2)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-12">
+                                <input type="submit" value="Confirmar" class="btn btn-outline-danger" >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+    </form>
+</div>
