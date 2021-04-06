@@ -16,6 +16,8 @@ namespace SARH___JMéndez_Constructora.Models
         [Column("id")]
         public int Id { get; set; }
         [Column("idEmpleado")]
+        [Required(ErrorMessage = "Seleccione un empleado**")]
+        [Display(Name = "Empleado**")]
         public int IdEmpleado { get; set; }
         [Column("idTiempo")]
         public int IdTiempo { get; set; }
@@ -25,6 +27,7 @@ namespace SARH___JMéndez_Constructora.Models
 
         [ForeignKey(nameof(IdEmpleado))]
         [InverseProperty(nameof(Empleados.Ausenciasinjustificadas))]
+        [Display(Name = "Empleado")]
         public virtual Empleados IdEmpleadoNavigation { get; set; }
         [ForeignKey(nameof(IdTiempo))]
         [InverseProperty(nameof(Tiempo.Ausenciasinjustificadas))]

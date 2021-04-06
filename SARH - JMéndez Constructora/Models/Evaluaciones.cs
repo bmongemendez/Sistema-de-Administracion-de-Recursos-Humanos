@@ -21,7 +21,7 @@ namespace SARH___JMéndez_Constructora.Models
         public int IdEmpleado { get; set; }
         [Column("calificacion")]
         [Required(ErrorMessage = "Digite una calificación**")]
-        [Display(Name = "Calificación (1-10)")]
+        [Display(Name = "Calificación actuál (1-10)")]
         public int Calificacion { get; set; }
         [Column("observaciones")]
         [StringLength(128)]

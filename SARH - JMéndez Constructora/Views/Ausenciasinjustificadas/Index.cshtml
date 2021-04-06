@@ -28,7 +28,7 @@
                                 <i class="icon-home"></i>
                             </a>
                         </li>
-                        <li class="breadcrumb-item">Reporte de vacaciones</li>
+                        <li class="breadcrumb-item">Reporte de ausencias injustificadas</li>
                     </ol>
                 </nav>
             </div>
@@ -63,3 +63,28 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(".deleteAIButton").click((e) => {
+            console.log('botón clickeado!!')
+        e.preventDefault();
+        Swal.fire({
+            title: '¿Seguro que desea eliminar el reporte de ausencia injustificada seleccionado?',
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: `Cancelar`,
+            denyButtonText: `Eliminar`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isDenied) {
+                $("#formEliminarAI").submit();
+                //Swal.fire('Usuario Eliminado!', '', 'success')
+            } else if ( result.isConfirmed) {
+                //Swal.fire('Cancelado!', '', 'info')
+            }
+        })
+    })
+    </script>
+
+}

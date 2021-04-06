@@ -9,6 +9,7 @@ namespace SARH___JMéndez_Constructora.Models.AusenciasInjustificadasViewModels
     public class AITableViewModel
     {
         public int Id { get; set; }
+        [Display(Name = "Cédula")]
         public int Cedula { get; set; }
         [Display(Name = "Empleado")]
         public string Nombre { get; set; }
@@ -24,5 +25,6 @@ namespace SARH___JMéndez_Constructora.Models.AusenciasInjustificadasViewModels
         [Display(Name = "Hasta")]
         public DateTime Hasta { get; set; }
         public string Notas { get; set; }
+        public int IdTiempo { get; set; }
     }
 }
