@@ -21,7 +21,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.IdEmpleadoNavigation)
             </th>
-            <th></th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -48,9 +48,9 @@
                 @Html.DisplayFor(modelItem => item.IdEmpleadoNavigation.Apellido1)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" title="Editar"><i class="fa fa-edit text-info"></i></a> |
+                <a asp-action="Details" asp-route-id="@item.Id" title="Detalles"><i class="fa fa-eye text-success"></i></a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" title="Eliminar"><i class="fa fa-trash-o text-danger"></i></a>
             </td>
         </tr>
         }
