@@ -93,16 +93,18 @@
                 MontoAguinaldo = $('#MontoAguinaldo');
             }
 
-            function GetCalcularMonto (e) {
+            function GetCalcularMonto(e) {
                 var idEmpleado = $('#selectEmpleado').val();
-                $.ajax({
-                    type: "GET",
-                    url: "GetAguinaldo",
-                    data: { "idEmpleado": idEmpleado},
-                    success: function(data) {
-                        DisplayData(data);
-                    }
-                });
+                if (idEmpleado !== '') {
+                    $.ajax({
+                        type: "GET",
+                        url: "GetAguinaldo",
+                        data: { "idEmpleado": idEmpleado },
+                        success: function (data) {
+                            DisplayData(data);
+                        }
+                    });
+                }
             }
 
             function DisplayData(data){

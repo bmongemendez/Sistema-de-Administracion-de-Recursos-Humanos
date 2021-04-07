@@ -386,40 +386,40 @@ CREATE DEFINER = CURRENT_USER TRIGGER `sahr.application`.`Empleados_AFTER_INSERT
 AFTER INSERT ON `Empleados` 
 FOR EACH ROW
 BEGIN
-	INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
-  VALUES (NEW.id, 'cedula', OLD.cedula, NEW.cedula, NEW.userName);
-  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
-  VALUES (NEW.id, 'nombre', OLD.nombre, NEW.nombre, NEW.userName);
-  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
-  VALUES (NEW.id, 'apellido1', OLD.apellido1, NEW.apellido1, NEW.userName);
-  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
-  VALUES (NEW.id, 'apellido2', OLD.apellido2, NEW.apellido2, NEW.userName);
-  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
-  VALUES (NEW.id, 'fechaNacimiento', OLD.fechaNacimiento, NEW.fechaNacimiento, NEW.userName);
-  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
-  VALUES (NEW.id, 'telefono', OLD.telefono, NEW.telefono, NEW.userName);
-  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
-  VALUES (NEW.id, 'telefonoEmergencia', OLD.telefonoEmergencia, NEW.telefonoEmergencia, NEW.userName);
-  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
-  VALUES (NEW.id, 'contactoEmergencia', OLD.contactoEmergencia, NEW.contactoEmergencia, NEW.userName);
-  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
-  VALUES (NEW.id, 'tieneBachiller', OLD.tieneBachiller, NEW.tieneBachiller, NEW.userName);
-  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
-  VALUES (NEW.id, 'tieneLicenciatura', OLD.tieneLicenciatura, NEW.tieneLicenciatura, NEW.userName);
-  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
-  VALUES (NEW.id, 'tieneTecnico', OLD.tieneTecnico, NEW.tieneTecnico, NEW.userName);
-  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
-  VALUES (NEW.id, 'tieneLicenciaA3', OLD.tieneLicenciaA3, NEW.tieneLicenciaA3, NEW.userName);
-  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
-  VALUES (NEW.id, 'tieneLicenciaB1', OLD.tieneLicenciaB1, NEW.tieneLicenciaB1, NEW.userName);
-  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
-  VALUES (NEW.id, 'tieneLicenciaB2', OLD.tieneLicenciaB2, NEW.tieneLicenciaB2, NEW.userName);
-  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
-  VALUES (NEW.id, 'tieneLicenciaB3', OLD.tieneLicenciaB3, NEW.tieneLicenciaB3, NEW.userName);
-  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
-  VALUES (NEW.id, 'tieneLicenciaD', OLD.tieneLicenciaD, NEW.tieneLicenciaD, NEW.userName);
-  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorAnterior, valorNuevo, userName) 
-  VALUES (NEW.id, 'tieneLicenciaE', OLD.tieneLicenciaE, NEW.tieneLicenciaE, NEW.userName);
+	INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName) 
+  VALUES (NEW.id, 'cedula', NEW.cedula, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName) 
+  VALUES (NEW.id, 'nombre', NEW.nombre, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName) 
+  VALUES (NEW.id, 'apellido1', NEW.apellido1, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName) 
+  VALUES (NEW.id, 'apellido2', NEW.apellido2, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName) 
+  VALUES (NEW.id, 'fechaNacimiento', NEW.fechaNacimiento, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName) 
+  VALUES (NEW.id, 'telefono', NEW.telefono, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName) 
+  VALUES (NEW.id, 'telefonoEmergencia', NEW.telefonoEmergencia, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName) 
+  VALUES (NEW.id, 'contactoEmergencia', NEW.contactoEmergencia, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneBachiller', NEW.tieneBachiller, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciatura', NEW.tieneLicenciatura, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneTecnico', NEW.tieneTecnico, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciaA3', NEW.tieneLicenciaA3, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciaB1', NEW.tieneLicenciaB1, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciaB2', NEW.tieneLicenciaB2, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciaB3', NEW.tieneLicenciaB3, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciaD', NEW.tieneLicenciaD, NEW.userName);
+  INSERT INTO `EmpleadosRegistroAuditoria`(idEmpleado, columna, valorNuevo, userName) 
+  VALUES (NEW.id, 'tieneLicenciaE', NEW.tieneLicenciaE, NEW.userName);
 END$$
 
 USE `sahr.application`$$
@@ -548,7 +548,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 use `sahr.application`;
 
-insert into aspnetusersref values ('rrhh');
+insert into aspnetusersref (userName) values ('rrhh');
+insert into aspnetusersref (userName) values ('admin');
 commit;
 
 use `sahr.application`;
@@ -605,6 +606,25 @@ insert into puestos (siglas, nombre, salarioMes, salarioDia, salarioHora, salari
 insert into puestos (siglas, nombre, salarioMes, salarioDia, salarioHora, salarioHoraJm, salarioDiaJm, salarioMesJm) values ('TOC', 'Vagonetero', 329329.28, 11761.76, 1470.22, 1617.24, 12937.94, 51751.74);
 commit;
 
+INSERT INTO `sahr.application`.`ingresocontrato` (`idEmpleado`, `inicio`, `idPuesto`, `salarioDefinidoDia`) VALUES ('1', '2021-01-07', '2', '23000');
+INSERT INTO `sahr.application`.`ingresocontrato` (`idEmpleado`, `inicio`, `idPuesto`, `salarioDefinidoDia`) VALUES ('2', '2021-01-07', '3', '24000');
+INSERT INTO `sahr.application`.`ingresocontrato` (`idEmpleado`, `inicio`, `idPuesto`, `salarioDefinidoDia`) VALUES ('3', '2021-01-07', '4', '21000');
+INSERT INTO `sahr.application`.`ingresocontrato` (`idEmpleado`, `inicio`, `idPuesto`, `salarioDefinidoDia`) VALUES ('4', '2021-01-07', '5', '22000');
+INSERT INTO `sahr.application`.`ingresocontrato` (`idEmpleado`, `inicio`, `idPuesto`, `salarioDefinidoDia`) VALUES ('5', '2020-06-01', '6', '25000');
+INSERT INTO `sahr.application`.`ingresocontrato` (`idEmpleado`, `inicio`, `idPuesto`, `salarioDefinidoDia`) VALUES ('6', '2020-06-01', '7', '30000');
+INSERT INTO `sahr.application`.`ingresocontrato` (`idEmpleado`, `inicio`, `idPuesto`, `salarioDefinidoDia`) VALUES ('7', '2020-06-01', '8', '30000');
+INSERT INTO `sahr.application`.`ingresocontrato` (`idEmpleado`, `inicio`, `idPuesto`, `salarioDefinidoDia`) VALUES ('8', '2020-06-01', '9', '29000');
+INSERT INTO `sahr.application`.`ingresocontrato` (`idEmpleado`, `inicio`, `idPuesto`, `salarioDefinidoDia`) VALUES ('9', '2020-06-01', '10', '28000');
+INSERT INTO `sahr.application`.`ingresocontrato` (`idEmpleado`, `inicio`, `idPuesto`, `salarioDefinidoDia`) VALUES ('10', '2020-06-01', '11', '27000');
+COMMIT;
+
+INSERT INTO `sahr.application`.`fincontrato` (`idInicioContrato`, `fechaFin`, `motivoSalida`, `saldoVacaciones`) VALUES ('6', '2021-02-01', '0', '0');
+INSERT INTO `sahr.application`.`fincontrato` (`idInicioContrato`, `fechaFin`, `motivoSalida`, `saldoVacaciones`) VALUES ('7', '2021-02-01', '0', '0');
+INSERT INTO `sahr.application`.`fincontrato` (`idInicioContrato`, `fechaFin`, `motivoSalida`, `saldoVacaciones`) VALUES ('8', '2021-02-01', '0', '0');
+INSERT INTO `sahr.application`.`fincontrato` (`idInicioContrato`, `fechaFin`, `motivoSalida`, `saldoVacaciones`) VALUES ('9', '2021-02-01', '0', '0');
+INSERT INTO `sahr.application`.`fincontrato` (`idInicioContrato`, `fechaFin`, `motivoSalida`, `saldoVacaciones`) VALUES ('10', '2021-02-01', '0', '0');
+COMMIT;
+
 insert into `sahr.application`.`deducciones` (`grupo`, `concepto`, `patrono`, `trabajador`) values ('A', 'SEM', '9.25', '5.50');
 insert into `sahr.application`.`deducciones` (`grupo`, `concepto`, `patrono`, `trabajador`) values ('A', 'IVM', '5.25', '4');
 insert into `sahr.application`.`deducciones` (`grupo`, `concepto`, `patrono`) values ('B', 'Cuota Banco Popular', '0.25');
@@ -617,6 +637,62 @@ insert into `sahr.application`.`deducciones` (`grupo`, `concepto`, `patrono`) va
 insert into `sahr.application`.`deducciones` (`grupo`, `concepto`, `trabajador`) values ('C', 'Aporte Trabajador Banco Popular', '1');
 insert into `sahr.application`.`deducciones` (`grupo`, `concepto`, `patrono`) values ('C', 'INS', '1');
 commit;
+
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (2,'2021-01-07','2021-01-08',2,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (1,'2021-01-07','2021-01-08',1,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (2,'2021-01-11','2021-01-15',2,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (1,'2021-01-11','2021-01-15',1,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (2,'2021-01-18','2021-01-22',2,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (1,'2021-01-18','2021-01-22',1,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (2,'2021-01-25','2021-01-29',2,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (1,'2021-01-25','2021-01-29',1,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (2,'2021-02-01','2021-02-05',2,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (1,'2021-02-01','2021-02-05',1,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (2,'2021-02-08','2021-02-12',2,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (1,'2021-02-08','2021-02-12',1,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (2,'2021-02-15','2021-02-19',2,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (1,'2021-02-15','2021-02-19',1,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (2,'2021-02-22','2021-02-26',2,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (1,'2021-02-22','2021-02-26',1,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (2,'2021-03-01','2021-03-05',2,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (1,'2021-03-01','2021-03-05',1,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (2,'2021-03-08','2021-03-12',2,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (1,'2021-03-08','2021-03-12',1,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (2,'2021-03-15','2021-03-19',2,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (1,'2021-03-15','2021-03-19',1,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (2,'2021-03-22','2021-03-26',2,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (1,'2021-03-22','2021-03-26',1,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (2,'2021-03-29','2021-04-02',2,1,0,0,0);
+INSERT INTO `sahr.application`.`tiempo` (`idEmpleado`,`fechaInicio`,`fechaFin`,`idContrato`,`esLaborado`,`esInjustificado`,`esVacaciones`,`esIncapacidad`) VALUES (1,'2021-03-29','2021-04-02',1,1,0,0,0);
+COMMIT;
+
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (2,2,1,16.000,0.000,2.667,48000.000,0.000,8000.000,56000.000,5880.000,0.000,50120.000,8120.000,4060.000,2660.000,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (1,1,2,16.000,0.000,2.667,48000.000,0.000,8000.000,56000.000,5880.000,0.000,50120.000,8120.000,4060.000,2660.000,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (2,2,3,40.000,2.000,6.667,120000.000,9000.000,20000.000,149000.000,15645.000,0.000,133355.000,21605.000,10802.500,7077.500,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (1,1,4,40.000,2.000,6.667,120000.000,9000.000,20000.000,149000.000,15645.000,0.000,133355.000,21605.000,10802.500,7077.500,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (2,2,5,40.000,0.000,6.667,120000.000,0.000,20000.000,140000.000,14700.000,0.000,125300.000,20300.000,10150.000,6650.000,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (1,1,6,40.000,0.000,6.667,120000.000,0.000,20000.000,140000.000,14700.000,0.000,125300.000,20300.000,10150.000,6650.000,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (2,2,7,40.000,0.000,6.667,120000.000,0.000,20000.000,140000.000,14700.000,0.000,125300.000,20300.000,10150.000,6650.000,'Si observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (1,1,8,40.000,0.000,6.667,120000.000,0.000,20000.000,140000.000,14700.000,0.000,125300.000,20300.000,10150.000,6650.000,'Si observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (2,2,9,40.000,0.000,6.667,120000.000,0.000,20000.000,140000.000,14700.000,0.000,125300.000,20300.000,10150.000,6650.000,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (1,1,10,40.000,0.000,6.667,120000.000,0.000,20000.000,140000.000,14700.000,0.000,125300.000,20300.000,10150.000,6650.000,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (2,2,11,40.000,0.000,6.667,120000.000,0.000,20000.000,140000.000,14700.000,0.000,125300.000,20300.000,10150.000,6650.000,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (1,1,12,40.000,0.000,6.667,120000.000,0.000,20000.000,140000.000,14700.000,0.000,125300.000,20300.000,10150.000,6650.000,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (2,2,13,40.000,0.000,6.667,120000.000,0.000,20000.000,140000.000,14700.000,0.000,125300.000,20300.000,10150.000,6650.000,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (1,1,14,40.000,0.000,6.667,120000.000,0.000,20000.000,140000.000,14700.000,0.000,125300.000,20300.000,10150.000,6650.000,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (2,2,15,40.000,0.000,6.667,120000.000,0.000,20000.000,140000.000,14700.000,0.000,125300.000,20300.000,10150.000,6650.000,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (1,1,16,40.000,0.000,6.667,120000.000,0.000,20000.000,140000.000,14700.000,0.000,125300.000,20300.000,10150.000,6650.000,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (2,2,17,40.000,0.000,6.667,120000.000,0.000,20000.000,140000.000,14700.000,0.000,125300.000,20300.000,10150.000,6650.000,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (1,1,18,40.000,0.000,6.667,120000.000,0.000,20000.000,140000.000,14700.000,0.000,125300.000,20300.000,10150.000,6650.000,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (2,2,19,40.000,2.000,6.667,120000.000,9000.000,20000.000,149000.000,15645.000,0.000,133355.000,21605.000,10802.500,7077.500,'Horas extra trabajadas el 12/03/2021',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (1,1,20,40.000,2.000,6.667,120000.000,9000.000,20000.000,149000.000,15645.000,0.000,133355.000,21605.000,10802.500,7077.500,'Horas extra trabajadas el 12/03/2021',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (2,2,21,40.000,0.000,6.667,120000.000,0.000,20000.000,140000.000,14700.000,0.000,125300.000,20300.000,10150.000,6650.000,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (1,1,22,40.000,0.000,6.667,120000.000,0.000,20000.000,140000.000,14700.000,0.000,125300.000,20300.000,10150.000,6650.000,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (2,2,23,40.000,1.000,6.667,120000.000,4500.000,20000.000,144500.000,15172.500,0.000,129327.500,20952.500,10476.250,6863.750,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (1,1,24,40.000,1.000,6.667,120000.000,4500.000,20000.000,144500.000,15172.500,0.000,129327.500,20952.500,10476.250,6863.750,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (2,2,25,40.000,0.000,6.667,120000.000,0.000,20000.000,140000.000,14700.000,0.000,125300.000,20300.000,10150.000,6650.000,'Sin observaciones',0,'admin');
+INSERT INTO `sahr.application`.`pagos` (`idEmpleado`,`idContrato`,`idTiempo`,`horasNormal`,`horasExtra`,`diaDescanso`,`salarioNormal`,`salarioExtras`,`salarioDiaDescanso`,`salarioBruto`,`deducciones`,`cuentasPorPagar`,`salarioNeto`,`patronoCCSS`,`patronoROtrasInstituciones`,`patronoLPT`,`observaciones`,`seElimino`,`userName`) VALUES (1,1,26,40.000,0.000,6.667,120000.000,0.000,20000.000,140000.000,14700.000,0.000,125300.000,20300.000,10150.000,6650.000,'Sin observaciones',0,'admin');
+COMMIT;
 
 -- insert into `fincontrato` (`idInicioContrato`,`fechaFin`,`preavisoEjercido`,`diasPendientesPreaviso`,`motivoSalida`,`saldoVacaciones`,`aguinaldo`,`cesantia`,`vacaciones`,`preaviso`) VALUES (7,'2022-12-01',1,0,0,10,30000.000,30000.000,100.000,0.000);
 -- commit;
