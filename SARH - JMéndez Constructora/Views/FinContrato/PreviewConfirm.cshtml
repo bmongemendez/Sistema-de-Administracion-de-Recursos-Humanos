@@ -133,10 +133,21 @@
                                                 <td>Vacaciones</td>
                                                 <td>¢@Html.DisplayFor(model => model.Vacaciones)</td>
                                             </tr>
-                                            <tr class="bg-primary text-white">
-                                                <td>Total</td>
-                                                @{ decimal? total = Model.Aguinaldo + Model.Cesantia + Model.Vacaciones + Model.Preaviso; }
-                                                <td>¢@Math.Round(total.GetValueOrDefault(),2)</td>
+                                            <tr>
+                                                <td colspan="2" style="border-collapse: collapse; padding: 0;" 
+                                                    class="border border-primary">
+                                                    <table class="" style="border-collapse: collapse;margin: 0;width: 100%;padding: 0;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td style="width: 50%;">
+                                                                    Total
+                                                                </td>
+                                                                @{ decimal? total = Model.Aguinaldo + Model.Cesantia + Model.Vacaciones + Model.Preaviso; }
+                                                                <td>¢@Math.Round(total.GetValueOrDefault(), 2)</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
