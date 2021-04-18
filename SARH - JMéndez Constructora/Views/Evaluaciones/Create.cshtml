@@ -1,9 +1,10 @@
 ﻿@model SARH___JMéndez_Constructora.Models.Evaluaciones
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Reporte de Evaluación";
     ViewData["sidebarActive"] = "Reportes";
 }
+<partial name="_IonRangeSliderPartialStyles" />
 <div class="container-fluid">
     <div class="block-header">
 
@@ -44,44 +45,51 @@
                     </ul>
                     <div class="tab-content mt-3">
                         <div class="tab-pane show active" >
-                            <div class="row p-5">
-                                <div class="col-12  p-3 bg-light rounded-sm">
-                                    <h4>Nuevo Reporte de Evaluaciones</h4>
-                                    <hr />
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <form asp-action="Create">
-                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="card">
+                                <form asp-action="Edit">
+                                    <div class="header">
+                                        <h2>Nuevo Reporte de Evaluaciones</h2>
+                                    </div>
+                                    <div class="body">
+                                        <div class="row clearfix">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <div class="col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label asp-for="IdEmpleado" class="control-label"></label>
                                                     <select asp-for="IdEmpleado" class="form-control" asp-items="ViewBag.IdEmpleado"></select>
+                                                    <span asp-validation-for="IdEmpleado" class="text-danger"></span>
                                                 </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label asp-for="Calificacion" class="control-label"></label>
-                                                    <input max="10" asp-for="Calificacion" class="form-control" />
+                                                    <input asp-for="Calificacion" data-skin="modern" class="rangeslider irs-modern" />
                                                     <span asp-validation-for="Calificacion" class="text-danger"></span>
                                                 </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label asp-for="Observaciones" class="control-label"></label>
-                                                    <input asp-for="Observaciones" class="form-control" />
+                                                    <!--<input asp-for="Observaciones" class="form-control" />-->
+                                                    <textarea asp-for="Observaciones" class="form-control" 
+                                                        rows="2"></textarea>
                                                     <span asp-validation-for="Observaciones" class="text-danger"></span>
                                                 </div>
+                                            </div>
+                                            <div class="col-12">
                                                 <div class="form-group">
-                                                    <input type="submit" value="Crear" class="btn btn-primary" />
+                                                    <input type="submit" value="Añadir Evaluación" class="btn btn-primary" />
                                                 </div>
-                                            </form>
-
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <a class="btn btn-outline-primary" asp-action="Index">Volver a la lista</a>
+                                                </div>
+                                            </div>
                                         </div>
-
                                     </div>
-                                    <div>
-                                        <a class="btn btn-outline-primary" asp-action="Index">Volver a la lista</a>
-                                    </div>
-
-                                </div>
-
+                                </form>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -90,7 +98,18 @@
     </div>
 </div>
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+    
+    <script>
+        (function() {
+            'use strict';
+            $('.rangeslider').ionRangeSlider({
+                skin: "modern",
+                min: 0,
+                max: 10,
+                from: 2
+            });
+            $('span.irs.js-irs-0').addClass('irs-modern');
+        })();
+    </script>
 }
-
-

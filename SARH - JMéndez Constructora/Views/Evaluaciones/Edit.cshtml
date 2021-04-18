@@ -4,7 +4,7 @@
     ViewData["Title"] = "Evaluaciones - Editar";
     ViewData["sidebarActive"] = "Reportes";
 }
-
+<partial name="_IonRangeSliderPartialStyles" />
 <div class="container-fluid">
     <div class="block-header">
         <div class="row clearfix">
@@ -39,46 +39,57 @@
                             <a class="nav-link active" asp-action="Index" asp-controller="Evaluaciones">Evaluaciones</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" asp-action="Index" asp-controller="Ausenciasinjustificadas">Ausencias Injustificadas</a>
+                            <a class="nav-link" asp-action="Index" asp-controller="Ausenciasinjustificadas">Ausencias Injustificadas</a>
                         </li>
                     </ul>
                     <div class="tab-content mt-3">
                         <div class="tab-pane show active" id="Vacaciones">
-                            <div class="row p-5">
-                                <div class="col-12  p-3 bg-light rounded-sm">
-                                    <h4>Editar Evaluación</h4>
-                                    <hr />
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <form asp-action="Edit">
-                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                                <input type="hidden" asp-for="Id" />
+                            <div class="card">
+                                <form asp-action="Edit">
+                                    <div class="header">
+                                        <h2>Editar Evaluación</h2>
+                                    </div>
+                                    <div class="body">
+                                        <div class="row clearfix">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <input type="hidden" asp-for="Id" />
+                                            <div class="col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label asp-for="IdEmpleado" class="control-label"></label>
                                                     <select asp-for="IdEmpleado" class="form-control" asp-items="ViewBag.IdEmpleado"></select>
                                                     <span asp-validation-for="IdEmpleado" class="text-danger"></span>
                                                 </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label asp-for="Calificacion" class="control-label"></label>
-                                                    <input asp-for="Calificacion" class="form-control" />
+                                                    <input asp-for="Calificacion" data-skin="modern" 
+                                                        class="rangeslider irs-modern" data-from="@Model.Calificacion" />
                                                     <span asp-validation-for="Calificacion" class="text-danger"></span>
                                                 </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label asp-for="Observaciones" class="control-label"></label>
-                                                    <input asp-for="Observaciones" class="form-control" />
+                                                    <!--<input asp-for="Observaciones" class="form-control" />-->
+                                                    <textarea asp-for="Observaciones" class="form-control" 
+                                                        rows="2"></textarea>
                                                     <span asp-validation-for="Observaciones" class="text-danger"></span>
                                                 </div>
+                                            </div>
+                                            <div class="col-12">
                                                 <div class="form-group">
                                                     <input type="submit" value="Guardar" class="btn btn-primary" />
                                                 </div>
-                                            </form>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <a class="btn btn-outline-primary" asp-action="Index">Volver a la lista</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <div>
-                                        <a class="btn btn-outline-primary" asp-action="Index">Volver a la lista</a>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -87,8 +98,18 @@
         </div>
     </div>
 </div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+    
+    <script>
+        (function() {
+            'use strict';
+            $('.rangeslider').ionRangeSlider({
+                skin: "modern",
+                min: 0,
+                max: 10
+            });
+            $('span.irs.js-irs-0').addClass('irs-modern');
+        })();
+    </script>
 }
-

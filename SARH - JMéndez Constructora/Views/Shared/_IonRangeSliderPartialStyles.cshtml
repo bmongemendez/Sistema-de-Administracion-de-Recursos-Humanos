@@ -1,0 +1,171 @@
+<style>
+    .irs-min, .irs-max {
+        border-radius: 0; 
+    }
+
+    .irs-from, .irs-to, .irs-single {
+        background-color: #007bff;
+        border-radius: 0; 
+    }
+
+    .irs-bar {
+        background-image: none;
+        background-color: #007bff; 
+    }
+
+    .irs-bar-edge {
+        background-image: none;
+        background-color: #007bff;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0; 
+    }
+
+    .irs-line-left {
+        background-image: none;
+        background-color: #cdd4e0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0; 
+    }
+
+    .irs-line-mid {
+        background-image: none;
+        background-color: #cdd4e0; 
+    }
+
+    .irs-line-right {
+        background-image: none;
+        background-color: #cdd4e0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0; 
+    }
+
+    .irs-from::after, .irs-to::after,
+    .irs-single::after {
+        border-top-color: #007bff; 
+    }
+
+    .irs-slider {
+        background-image: none; 
+    }
+    .irs-slider:before {
+        content: '';
+        width: 2px;
+        height: 18px;
+        position: absolute;
+        background-color: #007bff;
+        left: 50%;
+        margin-left: -1px; 
+    }
+    .irs-slider:hover:before, .irs-slider:focus:before {
+            background-color: #004fa5; 
+        }
+
+        /* #################### COLOR VARIANT SKINS #################### */
+    .irs-primary .irs-bar,
+    .irs-primary .irs-bar-edge,
+    .irs-primary .irs-slider::before {
+        background-color: #3366ff; 
+    }
+
+    .irs-primary .irs-from,
+    .irs-primary .irs-to,
+    .irs-primary .irs-single {
+        background-color: #3366ff; 
+    }
+    .irs-primary .irs-from::after,
+    .irs-primary .irs-to::after,
+    .irs-primary .irs-single::after {
+        border-top-color: #3366ff; 
+    }
+
+    .irs-success .irs-bar,
+    .irs-success .irs-bar-edge,
+    .irs-success .irs-slider::before {
+        background-color: #3bb001; 
+    }
+
+    .irs-success .irs-from,
+    .irs-success .irs-to,
+    .irs-success .irs-single {
+        background-color: #3bb001; 
+    }
+    .irs-success .irs-from::after,
+    .irs-success .irs-to::after,
+    .irs-success .irs-single::after {
+        border-top-color: #3bb001; 
+    }
+
+    .irs-dark .irs-bar,
+    .irs-dark .irs-bar-edge,
+    .irs-dark .irs-slider::before {
+        background-color: #3b4863; 
+    }
+
+    .irs-dark .irs-from,
+    .irs-dark .irs-to,
+    .irs-dark .irs-single {
+        background-color: #3b4863; 
+    }
+    .irs-dark .irs-from::after,
+    .irs-dark .irs-to::after,
+    .irs-dark .irs-single::after {
+        border-top-color: #3b4863; 
+    }
+
+    /* #################### MODERN SKIN #################### */
+    .irs-modern .irs-line-left,
+    .irs-modern .irs-line-mid,
+    .irs-modern .irs-line-right {
+        height: 6px;
+        box-shadow: inset -2px 2px 2px 0 rgba(34, 34, 34, 0.1); 
+    }
+
+    .irs-modern .irs-bar,
+    .irs-modern .irs-bar-edge {
+        height: 6px;
+        box-shadow: inset 0 1px 1px 0 rgba(34, 34, 34, 0.1); 
+    }
+
+    .irs-modern .irs-slider {
+        top: 19px;
+        background-color: #fff;
+        border: 1px solid #007bff;
+        border-radius: 0; 
+    }
+    .irs-modern .irs-slider::before {
+        width: 4px;
+        height: 9px;
+        background-color: #fff;
+        border-left: 1px solid #007bff;
+        border-right: 1px solid #007bff;
+        margin-left: -2px;
+        top: 3px; 
+    }
+
+    .irs-modern.irs-primary .irs-slider {
+        border-color: #3366ff; 
+    }
+    .irs-modern.irs-primary .irs-slider::before {
+        border-color: #3366ff; 
+    }
+
+    .irs-modern.irs-success .irs-slider {
+        border-color: #3bb001; 
+    }
+    .irs-modern.irs-success .irs-slider::before {
+        border-color: #3bb001; 
+    }
+
+    .irs-modern.irs-dark .irs-slider {
+        border-color: #1c273c; 
+    }
+    .irs-modern.irs-dark .irs-slider::before {
+        border-color: #1c273c; 
+    }
+    .irs-slider {
+        width: 16px;
+        height: 18px;
+        top: 22px;
+        background-position: 0 -120px;
+    }
+</style>
