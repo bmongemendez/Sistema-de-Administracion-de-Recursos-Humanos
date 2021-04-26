@@ -7,52 +7,58 @@
 <p>
     <a  class="btn btn-primary d-block" asp-action="Create">Crear nuevo reporte de evaluaciones</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Calificacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Observaciones)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdEmpleadoNavigation)
-            </th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                <div class="avtar-pic w35 bg-primary"
-                     >
-                    @{
-                        string iniciales = (item.IdEmpleadoNavigation.Nombre.Substring(0, 1)
-                            + item.IdEmpleadoNavigation.Apellido1.Substring(0, 1)).ToUpper();
-                    }
-                    <span>@iniciales</span>
-                </div>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Calificacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Observaciones)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdEmpleadoNavigation.Apellido1)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id" title="Editar"><i class="fa fa-edit text-info"></i></a> |
-                <a asp-action="Details" asp-route-id="@item.Id" title="Detalles"><i class="fa fa-eye text-success"></i></a> |
-                <a asp-action="Delete" asp-route-id="@item.Id" title="Eliminar"><i class="fa fa-trash-o text-danger"></i></a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table class="table table-hover table-custom spacing5 mb-0">
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdEmpleadoNavigation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Calificacion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Observaciones)
+                </th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    <div class="avtar-pic w35 bg-primary"
+                        >
+                        @{
+                            string iniciales = (item.IdEmpleadoNavigation.Nombre.Substring(0, 1)
+                                + item.IdEmpleadoNavigation.Apellido1.Substring(0, 1)).ToUpper();
+                        }
+                        <span>@iniciales</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="font-15">
+                        <a class="text-secondary" asp-action="Details" asp-route-id="@item.Id" >
+                            @Html.DisplayFor(modelItem => item.IdEmpleadoNavigation.Nombre) 
+                            @Html.DisplayFor(modelItem => item.IdEmpleadoNavigation.Apellido1) 
+                            @Html.DisplayFor(modelItem => item.IdEmpleadoNavigation.Apellido2) 
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Calificacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Observaciones)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" title="Editar" class="btn btn-sm btn-default"><i class="fa fa-edit"></i></a> 
+                    <a asp-action="Delete" asp-route-id="@item.Id" title="Eliminar" class="btn btn-sm btn-default"><i class="fa fa-trash-o text-danger"></i></a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

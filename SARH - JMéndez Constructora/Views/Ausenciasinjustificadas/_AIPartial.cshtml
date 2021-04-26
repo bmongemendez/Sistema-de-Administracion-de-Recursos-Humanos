@@ -6,77 +6,78 @@
 <p>
     <a class="btn btn-primary d-block" asp-action="Create">Crear Nuevo Reporte de Ausencias Injustificadas</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cedula)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Desde)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Hasta)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Notas)
-            </th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="table-responsive">
+    <table class="table table-hover table-custom spacing5 mb-0">
+        <thead>
             <tr>
-                <td>
-                    <div class="avtar-pic w35 bg-primary"
-                         data-toggle="tooltip"
-                         data-placement="top">
-                        @{
-                            string iniciales = (item.Nombre.Substring(0, 1)
-                                + item.Apellido1.Substring(0, 1)).ToUpper();
-                        }
-                        <span>@iniciales</span>
-                    </div>
-                </td>
-                <td>
-                    <span>@Html.DisplayFor(modelItem => item.Cedula)</span>
-                </td>
-                <td>
-                    <div class="font-15">
-                        @Html.DisplayFor(modelItem => item.Nombre)
-                        @Html.DisplayFor(modelItem => item.Apellido1)
-                        @Html.DisplayFor(modelItem => item.Apellido2)
-                    </div>
-                </td>
-                <td>
-                    <div class="font-15">
-                        @Html.DisplayFor(modelItem => item.Desde)
-                    </div>
-                </td>
-                <td>
-                    <span>@Html.DisplayFor(modelItem => item.Hasta)</span>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Notas)
-                </td>
-                <td>
-                    @*<a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-        <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
-                    *@
-                    <form id="formEliminarAI" asp-action="Delete" asp-route-id="@item.Id" asp-route-idTiempo="@item.IdTiempo"> 
-                        @*<input type="hidden" asp-for="@item.Id" />
-                        <input type="hidden" asp-for="@item.IdTiempo" />*@
-                        <button type="submit" class="btn deleteAIButton" title="Eliminar"> <i class="fa fa-trash-o text-danger"></i> </button>
-                    </form>
-                </td>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cedula)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Desde)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Hasta)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Notas)
+                </th>
+                <th>Acciones</th>
             </tr>
-        }
-    </tbody>
-</table>
-
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="avtar-pic w35 bg-primary"
+                            data-toggle="tooltip"
+                            data-placement="top">
+                            @{
+                                string iniciales = (item.Nombre.Substring(0, 1)
+                                    + item.Apellido1.Substring(0, 1)).ToUpper();
+                            }
+                            <span>@iniciales</span>
+                        </div>
+                    </td>
+                    <td>
+                        <span>@Html.DisplayFor(modelItem => item.Cedula)</span>
+                    </td>
+                    <td>
+                        <div class="font-15">
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                            @Html.DisplayFor(modelItem => item.Apellido1)
+                            @Html.DisplayFor(modelItem => item.Apellido2)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="font-15">
+                            @Html.DisplayFor(modelItem => item.Desde)
+                        </div>
+                    </td>
+                    <td>
+                        <span>@Html.DisplayFor(modelItem => item.Hasta)</span>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Notas)
+                    </td>
+                    <td>
+                        @*<a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+            <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                        *@
+                        <form id="formEliminarAI" asp-action="Delete" asp-route-id="@item.Id" asp-route-idTiempo="@item.IdTiempo"> 
+                            @*<input type="hidden" asp-for="@item.Id" />
+                            <input type="hidden" asp-for="@item.IdTiempo" />*@
+                            <button type="submit" class="btn deleteAIButton" title="Eliminar"> <i class="fa fa-trash-o text-danger"></i> </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
