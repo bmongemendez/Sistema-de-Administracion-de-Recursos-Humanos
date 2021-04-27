@@ -24,11 +24,11 @@
         </div>
     </div>
     <div class="body">
+        <!-- Accesos Directos -->
         <div class="row clearfix">
             <div class="col-6 col-md-4 col-xl-2 px-lg-1">
                 <div class="card">
                     <div class="body ribbon">
-                        <div class="ribbon-box green">5</div>
                         <a class="my_sort_cut text-muted" asp-area="" asp-controller="Trabajadores" asp-action="Index">
                             <i class="icon-users"></i>
                             <span>Trabajadores</span>
@@ -39,17 +39,16 @@
             <div class="col-6 col-md-4 col-xl-2 px-lg-1">
                 <div class="card">
                     <div class="body">
-                        <a class="my_sort_cut text-muted" asp-area="" asp-controller="Rendimiento" asp-action="Index">
-                            <i class="icon-like"></i>
-                            <span>Rendimiento</span>
+                        <a class="my_sort_cut text-muted" asp-area="" asp-controller="Pagos" asp-action="Index">
+                            <i class="icon-credit-card"></i>
+                            <span>Pagos</span>
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> 
             <div class="col-6 col-md-4 col-xl-2 px-lg-1">
                 <div class="card">
                     <div class="body ribbon">
-                        <div class="ribbon-box orange">8</div>
                         <a class="my_sort_cut text-muted" asp-area="" asp-controller="Calendario" asp-action="Index">
                             <i class="icon-calendar"></i>
                             <span>Calendario</span>
@@ -59,20 +58,18 @@
             </div>
             <div class="col-6 col-md-4 col-xl-2 px-lg-1">
                 <div class="card">
-                    <div class="body">
-                        <a class="my_sort_cut text-muted" asp-area="" asp-controller="Pagos" asp-action="Index">
-                            
-                            <i class="icon-credit-card"></i>
-                            <span>Pagos</span>
+                    <div class="body ribbon">
+                        <a class="my_sort_cut text-muted" asp-area="" asp-controller="Deducciones" asp-action="Index">
+                            <i class="icon-calendar"></i>
+                            <span>Deducciones</span>
                         </a>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div class="col-6 col-md-4 col-xl-2 px-lg-1">
                 <div class="card">
                     <div class="body">
                         <a class="my_sort_cut text-muted" asp-area="" asp-controller="Usuarios" asp-action="Index">
-                            
                             <i class="icon-users"></i>
                             <span>Usuarios</span>
                         </a>
@@ -82,7 +79,7 @@
             <div class="col-6 col-md-4 col-xl-2 px-lg-1">
                 <div class="card">
                     <div class="body">
-                        <a class="my_sort_cut text-muted" asp-area="" asp-controller="Reportes" asp-action="Index">
+                        <a class="my_sort_cut text-muted" asp-area="" asp-controller="Vacaciones" asp-action="Index">
                             
                             <i class="icon-pie-chart"></i>
                             <span>Reportes</span>
@@ -90,132 +87,33 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row clearfix">
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="header">
-                        <h2>Estructura de los empleados</h2>
-                    </div>
-                    <div class="body text-center">
-                        <div id="chart-bar-stacked" style="height: 130px"></div>
-                        <hr />
-                        <div class="row clearfix">
-                            <div class="col-3">
-                                <h6 class="mb-0">5</h6>
-                                <small class="text-muted">Chofer</small>
-                            </div>
-                            <div class="col-3">
-                                <h6 class="mb-0">8</h6>
-                                <small class="text-muted">Mecánico</small>
-                            </div>
-                            <div class="col-3">
-                                <h6 class="mb-0">2</h6>
-                                <small class="text-muted">RRHH</small>
-                            </div>
-                            <div class="col-3">
-                                <h6 class="mb-0">1</h6>
-                                <small class="text-muted">Contador</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-6 col-md-4 col-xl-2 px-lg-1">
                 <div class="card">
                     <div class="body">
-                        <div class="card-value float-right text-muted">
-                            <i class="icon-user"></i>
-                        </div>
-                        <h3 class="mb-1">16</h3>
-                        <div>Trabajadores Actuales</div>
+                        <a class="my_sort_cut text-muted" asp-area="" asp-controller="Incapacidades" asp-action="Index">
+                            <i class="icon-like"></i>
+                            <span>Incapacidades</span>
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="header">
-                        <h2>Rendimiento de los trabajadores</h2>
-                    </div>
-                    <div class="body text-center">
-                        <div id="chart-area-spline-sracked"
-                             style="height: 130px"></div>
-                        <hr />
-                        <div class="row clearfix">
-                            <div class="col-6">
-                                <h6 class="mb-0">8</h6>
-                                <small class="text-muted">Mes Pasado</small>
-                            </div>
-                            <div class="col-6">
-                                <h6 class="mb-0">10</h6>
-                                <small class="text-muted">Éste mes</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-6 col-md-4 col-xl-2 px-lg-1">
                 <div class="card">
                     <div class="body">
-                        <div id="slider2"
-                             class="carousel vert slide"
-                             data-ride="carousel"
-                             data-interval="1700">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <div class="card-value float-right text-muted">
-                                        <i class="wi wi-fog"></i>
-                                    </div>
-                                    <h3 class="mb-1">12°C</h3>
-                                    <div>San Ramón</div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="card-value float-right text-muted">
-                                        <i class="wi wi-day-cloudy"></i>
-                                    </div>
-                                    <h3 class="mb-1">18°C</h3>
-                                    <div>Alajuela</div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="card-value float-right text-muted">
-                                        <i class="wi wi-sunrise"></i>
-                                    </div>
-                                    <h3 class="mb-1">37°C</h3>
-                                    <div>San José</div>
-                                </div>
-                            </div>
-                        </div>
+                        <a class="my_sort_cut text-muted" asp-area="" asp-controller="Bitacoras" asp-action="Index">
+                            <i class="icon-like"></i>
+                            <span>Bitacoras</span>
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6">
+            <div class="col-6 col-md-4 col-xl-2 px-lg-1">
                 <div class="card">
-                    <div class="header">
-                        <h2>Gastos Generales</h2>
-                        <ul class="header-dropdown dropdown">
-                            <li>
-                                <a href="javascript:void(0);" class="full-screen">
-                                    <i class="icon-frame"></i>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="javascript:void(0);"
-                                   class="dropdown-toggle"
-                                   data-toggle="dropdown"
-                                   role="button"
-                                   aria-haspopup="true"
-                                   aria-expanded="false"></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="javascript:void(0);">Acción</a></li>
-                                    <li>
-                                        <a href="javascript:void(0);">Otra acción</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">Alguna cosa</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
                     <div class="body">
-                        <small class="text-muted">Estadísticas de los gastos generales de la empresa</small>
-                        <div id="flotChart" class="flot-chart"></div>
+                        <a class="my_sort_cut text-muted" asp-area="" asp-controller="Aguinaldos" asp-action="Index">
+                            <i class="icon-like"></i>
+                            <span>Aguinaldos</span>
+                        </a>
                     </div>
                 </div>
             </div>
