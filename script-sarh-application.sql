@@ -548,13 +548,6 @@ commit;
 
 insert into empleados (cedula, nombre, apellido1, fechaNacimiento, telefono, userName) values (390362943, 'Ozzy', 'Selwyn', '2021-01-10', '2613827643', 'rrhh');
 insert into empleados (cedula, nombre, apellido1, fechaNacimiento, telefono, userName) values (254710394, 'Dusty', 'Dils', '2020-08-21', '6757651774', 'rrhh');
-insert into empleados (cedula, nombre, apellido1, fechaNacimiento, telefono, userName) values (338420473, 'Merrili', 'Dampier', '2020-11-23', '6363109595', 'rrhh');
-insert into empleados (cedula, nombre, apellido1, fechaNacimiento, telefono, userName) values (189696583, 'Marney', 'Laws', '2020-12-21', '8126633297', 'rrhh');
-insert into empleados (cedula, nombre, apellido1, fechaNacimiento, telefono, userName) values (387834523, 'Leslie', 'Issakov', '2020-06-20', '2823547808', 'rrhh');
-insert into empleados (cedula, nombre, apellido1, fechaNacimiento, telefono, userName) values (220319553, 'Annalise', 'Hodgins', '2020-05-08', '2616052724', 'rrhh');
-insert into empleados (cedula, nombre, apellido1, fechaNacimiento, telefono, userName) values (195304313, 'Gertrude', 'Waiting', '2020-07-11', '3103306007', 'rrhh');
-insert into empleados (cedula, nombre, apellido1, fechaNacimiento, telefono, userName) values (185887100, 'Joya', 'Sans', '2021-01-22', '9578333177', 'rrhh');
-insert into empleados (cedula, nombre, apellido1, fechaNacimiento, telefono, userName) values (227702360, 'Mei', 'Hanbury-Brown', '2020-04-21', '7486047919', 'rrhh');
 commit;
 
 insert into puestos (siglas, nombre, salarioMes, salarioDia, salarioHora, salarioHoraJm, salarioDiaJm, salarioMesJm) values ('TOCG', 'Agente de ventas*', 358468.86, 12802.46, 1600.31, 1760.34, 14082.71, 394315.75);
@@ -598,21 +591,6 @@ commit;
 
 INSERT INTO `sahr.application`.`ingresocontrato` (`idEmpleado`, `inicio`, `idPuesto`, `salarioDefinidoDia`) VALUES ('1', '2021-01-07', '2', '23000');
 INSERT INTO `sahr.application`.`ingresocontrato` (`idEmpleado`, `inicio`, `idPuesto`, `salarioDefinidoDia`) VALUES ('2', '2021-01-07', '3', '24000');
-INSERT INTO `sahr.application`.`ingresocontrato` (`idEmpleado`, `inicio`, `idPuesto`, `salarioDefinidoDia`) VALUES ('3', '2021-01-07', '4', '21000');
-INSERT INTO `sahr.application`.`ingresocontrato` (`idEmpleado`, `inicio`, `idPuesto`, `salarioDefinidoDia`) VALUES ('4', '2021-01-07', '5', '22000');
-INSERT INTO `sahr.application`.`ingresocontrato` (`idEmpleado`, `inicio`, `idPuesto`, `salarioDefinidoDia`) VALUES ('5', '2020-06-01', '6', '25000');
-INSERT INTO `sahr.application`.`ingresocontrato` (`idEmpleado`, `inicio`, `idPuesto`, `salarioDefinidoDia`) VALUES ('6', '2020-06-01', '7', '30000');
-INSERT INTO `sahr.application`.`ingresocontrato` (`idEmpleado`, `inicio`, `idPuesto`, `salarioDefinidoDia`) VALUES ('7', '2020-06-01', '8', '30000');
-INSERT INTO `sahr.application`.`ingresocontrato` (`idEmpleado`, `inicio`, `idPuesto`, `salarioDefinidoDia`) VALUES ('8', '2020-06-01', '9', '29000');
-INSERT INTO `sahr.application`.`ingresocontrato` (`idEmpleado`, `inicio`, `idPuesto`, `salarioDefinidoDia`) VALUES ('9', '2020-06-01', '10', '28000');
-INSERT INTO `sahr.application`.`ingresocontrato` (`idEmpleado`, `inicio`, `idPuesto`, `salarioDefinidoDia`) VALUES ('10', '2020-06-01', '11', '27000');
-COMMIT;
-
-INSERT INTO `sahr.application`.`fincontrato` (`idInicioContrato`, `fechaFin`, `motivoSalida`, `saldoVacaciones`) VALUES ('6', '2021-02-01', '0', '0');
-INSERT INTO `sahr.application`.`fincontrato` (`idInicioContrato`, `fechaFin`, `motivoSalida`, `saldoVacaciones`) VALUES ('7', '2021-02-01', '0', '0');
-INSERT INTO `sahr.application`.`fincontrato` (`idInicioContrato`, `fechaFin`, `motivoSalida`, `saldoVacaciones`) VALUES ('8', '2021-02-01', '0', '0');
-INSERT INTO `sahr.application`.`fincontrato` (`idInicioContrato`, `fechaFin`, `motivoSalida`, `saldoVacaciones`) VALUES ('9', '2021-02-01', '0', '0');
-INSERT INTO `sahr.application`.`fincontrato` (`idInicioContrato`, `fechaFin`, `motivoSalida`, `saldoVacaciones`) VALUES ('10', '2021-02-01', '0', '0');
 COMMIT;
 
 insert into `sahr.application`.`deducciones` (`grupo`, `concepto`, `patrono`, `trabajador`) values ('A', 'SEM', '9.25', '5.50');
