@@ -538,8 +538,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 use `sahr.application`;
 
-insert into aspnetusersref (userName) values ('rrhh');
-insert into aspnetusersref (userName) values ('admin');
+insert into aspnetusersref (userName) values ('bmonge70449');
+insert into aspnetusersref (userName) values ('bleal70466');
 commit;
 
 use `sahr.application`;
