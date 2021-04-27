@@ -45,7 +45,7 @@ namespace SARH___JMéndez_Constructora.Models
                 result = userManager.CreateAsync(rrhhUser, "$tr1ng123Pa$$word.").Result;
                 if (result.Succeeded)
                 {
-                    userManager.AddToRoleAsync(rrhhUser, Roles.Admin.ToString());
+                    userManager.AddToRoleAsync(rrhhUser, Roles.RRHH.ToString());
                 }
 
             }
