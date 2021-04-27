@@ -19,7 +19,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Hasta)
                 </th>
-                <th>Acciones</th>
+                @* <th>Acciones</th> *@
             </tr>
         </thead>
         <tbody>
@@ -39,14 +39,16 @@
                 </td>
                 <td>
                     <span>
-                    <a class="text-secondary" asp-action="Details" asp-route-id="@item.Cedula" >
+                    @* asp-action="Details" asp-route-id="@item.Cedula"  *@
+                    <a class="text-secondary" >
                         <span>@Html.DisplayFor(modelItem => item.Cedula)</span>
                     </a>  
                     </span>      
                 </td>
                 <td>
                     <div class="font-15">
-                        <a class="text-secondary" asp-action="Details" asp-route-id="@item.Cedula" >
+                        @* asp-action="Details" asp-route-id="@item.Cedula" *@
+                        <a class="text-secondary"  >
                             @Html.DisplayFor(modelItem => item.Nombre) 
                             @Html.DisplayFor(modelItem => item.Apellido1) 
                             @Html.DisplayFor(modelItem => item.Apellido2) 
@@ -73,7 +75,7 @@
                 <td>
                     <span>@Html.DisplayFor(modelItem => item.Hasta)</span>
                 </td>
-                <td class="opacity-3">
+                @* <td class="opacity-3">
                     <a asp-action="Details" 
                         asp-route-id="@item.Cedula"
                         class="btn btn-sm btn-default">
@@ -86,7 +88,7 @@
                             disabled>
                         <i class="fa fa-trash-o text-danger"></i>
                     </button>
-                </td>
+                </td> *@
             </tr>
     }
         </tbody>
