@@ -1,4 +1,5 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
 <table id="table">
     <thead>
         <tr>
@@ -28,46 +29,51 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in ViewBag.Users)
-            {
-<tr>
-    <td>
-        <div class="avtar-pic w35 bg-blue"
-            >
-            <span>
-                @(
-                                item.UserName.Length >= 2
+    @foreach (var item in ViewBag.Users)
+    {
+            <tr>
+                <td>
+                    <div class="avtar-pic w35 bg-blue">
+                        @{
+                            string iniciales = item.UserName.Length >= 2 
                                 ? item.UserName.Substring(0, 2)
-                                : item.UserName
-                            )
-            </span>
-        </div>
-    </td>
-    <td>
-        <h6 class="mb-0">@item.UserName</h6>
-    </td>
-    <td>
-        <span class="badge badge-success">Admin</span>
-    </td>
-    <td class="text-right">
-        <a class="btn btn-sm btn-default" href="@Url.Action("SetPassword", "Usuarios", new { id = item.Id,  userName = item.UserName})">
-            <i class="fa fa-edit">
-            </i>
-        </a>
-        <form id="formEliminarUsuario" class="form-inline d-inline" asp-action="Delete" asp-route-returnurl="@item.Id">
-            <button 
-                    class="btn btn-default deleteUserButton  @(User.Identity.Name == item.UserName ? "shadow-none" : "") "
-                    @(User.Identity.Name == item.UserName ? "disabled" : "")
-                    title="Eliminar">
-                <i class="fa fa-trash-o text-danger"></i>
-            </button>
-        </form>
-       
-    </td>
-</tr>}
+                                : item.UserName.Substring(0, 1);
+                        }
+                        <span>@iniciales</span>
+                    </div>
+                </td>
+                <td>
+                    <h6 class="mb-0">@item.UserName</h6>
+                </td>
+                <td>
+                    @{
+                        string rol = string.Empty;
+                        var user = await UserManager.FindByNameAsync(item.UserName);
+                        if(await UserManager.IsInRoleAsync(user, Roles.Admin.ToString())){
+                            rol = Roles.Admin.ToString();
+                        }else{
+                            rol = Roles.RRHH.ToString();
+                        }
+                    }
+                    <span class="badge badge-success">@rol</span>
+                </td>
+                <td class="text-right">
+                    <a class="btn btn-sm btn-default" href="@Url.Action("SetPassword", "Usuarios", new { id = item.Id,  userName = item.UserName})">
+                        <i class="fa fa-edit">
+                        </i>
+                    </a>
+                    <!--<form id="formEliminarUsuario" class="form-inline d-inline" asp-action="Delete" asp-route-returnurl="@item.Id">-->
+                        <button class="btn btn-sm btn-default deleteUserButton  @(User.Identity.Name == item.UserName ? "shadow-none" : "") "
+                                @(User.Identity.Name == item.UserName ? "disabled" : "")
+                                title="Eliminar" onclick="deleteUser('@item.Id')">
+                            <i class="fa fa-trash-o text-danger"></i>
+                        </button>
+                    <!--</form>-->
+                
+                </td>
+            </tr>
+    }
         </tbody>
     </table>
-
-
 </div>
 

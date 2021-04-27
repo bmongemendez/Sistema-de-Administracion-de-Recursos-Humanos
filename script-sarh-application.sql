@@ -57,12 +57,7 @@ CREATE TABLE IF NOT EXISTS `sahr.application`.`Empleados` (
   `userName` VARCHAR(256) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `cedula_UNIQUE` (`cedula` ASC) VISIBLE,
-  INDEX `idUser_Empleados_idx` (`userName` ASC) VISIBLE,
-  CONSTRAINT `userNameEmpleados`
-    FOREIGN KEY (`userName`)
-    REFERENCES `sahr.application`.`AspNetUsersRef` (`userName`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  INDEX `idUser_Empleados_idx` (`userName` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -225,11 +220,6 @@ CREATE TABLE IF NOT EXISTS `sahr.application`.`Pagos` (
   CONSTRAINT `idContratoPagos`
     FOREIGN KEY (`idContrato`)
     REFERENCES `sahr.application`.`IngresoContrato` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `userNamePagos`
-    FOREIGN KEY (`userName`)
-    REFERENCES `sahr.application`.`AspNetUsersRef` (`userName`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `idTiempoPagos`

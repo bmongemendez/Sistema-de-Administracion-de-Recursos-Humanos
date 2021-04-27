@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SARH___JMéndez_Constructora.Data;
 using SARH___JMéndez_Constructora.Models;
 using SARH___JMéndez_Constructora.Models.AccountViewModels;
 using System;
@@ -17,18 +18,17 @@ namespace SARH___JMéndez_Constructora.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger _logger;
+        private readonly ApplicationDbContext _appContext;
 
-      
-
-
-        public UsuariosController( 
+        public UsuariosController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory, ApplicationDbContext appContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = loggerFactory.CreateLogger<AccountController>();
+            _appContext = appContext;
         }
 
         public IActionResult Index(UsuariosMessageId? message = null)
@@ -53,7 +53,7 @@ namespace SARH___JMéndez_Constructora.Controllers
             return View();
         }
 
-        // POST: /Account/Register
+        // POST: /Usuarios/Index
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -69,10 +69,11 @@ namespace SARH___JMéndez_Constructora.Controllers
                     var roleRsult = await _userManager.AddToRoleAsync(user, model.Role);
                     if (roleRsult.Succeeded)
                     {
-                        //await _signInManager.SignInAsync(user, isPersistent: false);
                         _logger.LogInformation(3, "User created a new account with password.");
+                        if(InsertUsuarioAppContex(user))
                         return RedirectToAction(nameof(Index), new { Message = UsuariosMessageId.AddUserSuccess });
                     }
+                    await _userManager.DeleteAsync(user);
                     return RedirectToAction(nameof(Index), new { Message = UsuariosMessageId.Error});
                 }
                 AddErrors(result);
@@ -140,7 +141,7 @@ namespace SARH___JMéndez_Constructora.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public async Task<IActionResult> Delete(string returnUrl)
         {
             string id = returnUrl;
@@ -148,18 +149,16 @@ namespace SARH___JMéndez_Constructora.Controllers
             var user = await _userManager.FindByIdAsync(id);
             if (user != null)
             {
-                //user.isDeleted = true;
                 var result = await _userManager.DeleteAsync(user);
-                //var result = await _userManager.UpdateAsync(user);
-
                 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction(nameof(UsuariosController.Index), "Usuarios", new { Message = UsuariosMessageId.DeleteUserSuccess });
+                    if (DeleteUsuarioAppContex(user))
+                    return Json(new { response = "deleted" });
+                    //return RedirectToAction(nameof(UsuariosController.Index), "Usuarios", new { Message = UsuariosMessageId.DeleteUserSuccess });
                 }
-                AddErrors(result);
-                
-                return View(nameof(Index));
+                await _userManager.CreateAsync(user);
+                return Json(new { response = "error" });
             }
 
             ApplicationUser usr = await GetCurrentUserAsync();
@@ -193,7 +192,36 @@ namespace SARH___JMéndez_Constructora.Controllers
         }
 
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
-
+        private bool InsertUsuarioAppContex (ApplicationUser user)
+        {
+            try
+            {
+                _appContext.Aspnetusersref.Add(new Aspnetusersref
+                {
+                    UserName = user.UserName
+                });
+                return _appContext.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        private bool DeleteUsuarioAppContex (ApplicationUser user)
+        {
+            try
+            {
+                _appContext.Aspnetusersref.Remove(new Aspnetusersref
+                {
+                    UserName = user.UserName
+                });
+                return _appContext.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
         public enum UsuariosMessageId
         {
             AddUserSuccess,

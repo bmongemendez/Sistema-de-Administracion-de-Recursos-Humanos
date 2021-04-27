@@ -116,17 +116,34 @@
     </div>
 </div>
 @section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
-
+    
 <script type="text/javascript">
     console.log("cargado!!")
 
 
-    $(".deleteUserButton").click((e) => {
-        e.preventDefault();
-        console.log("clickeado!!")
+    //$(".deleteUserButton").click((e) => {
+    //    e.preventDefault();
+    //    console.log("clickeado!!")
+    //    Swal.fire({
+    //        title: '¿Seguro que desea eliminar el usuario seleccionado?',
+    //        showDenyButton: true,
+    //        showCancelButton: false,
+    //        confirmButtonText: `Cancelar`,
+    //        denyButtonText: `Eliminar`,
+    //    }).then((result) => {
+    //        /* Read more about isConfirmed, isDenied below */
+    //        if (result.isDenied) {
+    //            $("#formEliminarUsuario").submit();
+    //            //Swal.fire('Usuario Eliminado!', '', 'success')
+    //        } else if ( result.isConfirmed) {
+    //            //Swal.fire('Cancelado!', '', 'info')
+    //        }
+    //    })
+    //})
+    function deleteUser (userId) {
         Swal.fire({
-            title: '¿Seguro que desea eliminar el usuario seleccionado?',
+            title: "Atención",
+            text: "¿Seguro que desea eliminar el usuario seleccionado?",
             showDenyButton: true,
             showCancelButton: false,
             confirmButtonText: `Cancelar`,
@@ -134,13 +151,15 @@
         }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isDenied) {
-                $("#formEliminarUsuario").submit();
-                //Swal.fire('Usuario Eliminado!', '', 'success')
-            } else if ( result.isConfirmed) {
-                //Swal.fire('Cancelado!', '', 'info')
+                $.post("Delete", { returnUrl : userId }, function(data, status){
+                    if(status === 'success' && data.response === 'deleted'){
+                        return window.location.href = 'Index?Message=DeleteUserSuccess';
+                    }
+                    window.location.href = 'Index?Message=Error';
+                });
             }
         })
-    })
+    }
 </script>
 
 }
