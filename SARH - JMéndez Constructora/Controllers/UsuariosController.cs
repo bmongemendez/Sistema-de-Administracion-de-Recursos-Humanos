@@ -150,7 +150,7 @@ namespace SARH___JMéndez_Constructora.Controllers
             if (user != null)
             {
                 var result = await _userManager.DeleteAsync(user);
-                
+                string role = (await _userManager.IsInRoleAsync(user, Roles.Admin.ToString())) ? Roles.Admin.ToString() : Roles.RRHH.ToString();
                 if (result.Succeeded)
                 {
                     if (DeleteUsuarioAppContex(user))
@@ -158,6 +158,7 @@ namespace SARH___JMéndez_Constructora.Controllers
                     //return RedirectToAction(nameof(UsuariosController.Index), "Usuarios", new { Message = UsuariosMessageId.DeleteUserSuccess });
                 }
                 await _userManager.CreateAsync(user);
+                await _userManager.AddToRoleAsync(user, role);
                 return Json(new { response = "error" });
             }
 
