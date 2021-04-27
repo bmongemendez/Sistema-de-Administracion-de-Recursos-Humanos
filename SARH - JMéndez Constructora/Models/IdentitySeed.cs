@@ -23,7 +23,7 @@ namespace SARH___JMéndez_Constructora.Models
         public static void SeedUsersWithRoles(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             //Seed Default User
-            var defaultUser = new ApplicationUser { UserName = "admin" };
+            var defaultUser = new ApplicationUser { UserName = "bmonge70449" };
 
             if (userManager.Users.Where(u => u.UserName == defaultUser.UserName).SingleOrDefault() == null) 
             {
@@ -37,7 +37,7 @@ namespace SARH___JMéndez_Constructora.Models
             }
 
             // Seed RRHH User
-            var rrhhUser = new ApplicationUser { UserName = "rrhh" };
+            var rrhhUser = new ApplicationUser { UserName = "bleal70466" };
 
             if (userManager.Users.Where(u => u.UserName == rrhhUser.UserName).SingleOrDefault() == null)
             {
