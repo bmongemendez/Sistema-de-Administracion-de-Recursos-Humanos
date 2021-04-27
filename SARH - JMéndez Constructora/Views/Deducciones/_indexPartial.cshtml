@@ -3,27 +3,21 @@
 @{
     ViewData["Title"] = "Deducciones";
     ViewData["sidebarActive"] = "Deducciones";
-
 }
 
-<p>
-    <a asp-action="Create" class="btn btn-primary d-block">Crear Nueva Deducción</a>
-</p>
+<!--<p><a asp-action="Create" class="btn btn-primary d-block">Crear Nueva Deducción</a></p>-->
 <div class="table-responsive">
     <table class="table table-hover table-custom spacing5 mb-0">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Grupo)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.Concepto)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Patrono)
+                    % @Html.DisplayNameFor(model => model.Patrono)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Trabajador)
+                    % @Html.DisplayNameFor(model => model.Trabajador)
                 </th>
                 <th>Acciones</th>
             </tr>
@@ -32,9 +26,6 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Grupo)
-                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Concepto)
                     </td>
@@ -45,9 +36,9 @@
                         @Html.DisplayFor(modelItem => item.Trabajador)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-default">
+                            <i class="fa fa-edit"></i>
+                        </a>
                     </td>
                 </tr>
             }
