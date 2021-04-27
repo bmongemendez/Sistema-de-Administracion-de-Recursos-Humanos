@@ -16,6 +16,7 @@ namespace SARH___JMéndez_Constructora.Models
         [Column("id")]
         public int Id { get; set; }
         [Column("idEmpleado")]
+        [Display(Name = "Empleado")]
         public int IdEmpleado { get; set; }
         [Column("idContrato")]
         public int IdContrato { get; set; }
